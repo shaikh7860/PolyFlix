@@ -9,6 +9,7 @@ const movieServices = require('./models/movie-services');
 app.use(cors());
 app.use(express.json());
 
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
@@ -18,7 +19,7 @@ app.get('/movies', async (req, res) => {
     const description = req.query['description'];
     try {
         const result = await movieServices.getMovies(name, description);
-        res.send({users_list: result});         
+        res.send({movies: result});         
     } catch (error) {
         console.log(error);
         res.status(500).send('An error ocurred in the server.');
@@ -31,7 +32,7 @@ app.get('/movies/:id', async (req, res) => {
     if (result === undefined || result === null)
         res.status(404).send('Resource not found.');
     else {
-        res.send({users_list: result});
+        res.send({movies: result});
     }
 });
 
