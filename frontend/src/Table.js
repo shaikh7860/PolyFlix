@@ -6,21 +6,21 @@ function TableHeader() {
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>Job</th>
+          <th>Description</th>
         </tr>
       </thead>
     );
   }
 
   function TableBody(props) {
-    const rows = props.characterData.map((row, index) => {
+    const rows = props.movieData.map((row, index) => {
         return (
             <tr key={index}>
               <td>{row._id}</td>
               <td>{row.name}</td>
-              <td>{row.job}</td>
+              <td>{row.description}</td>
               <td>
-                <button onClick={() => props.removeCharacter(index)}>Delete</button>
+                <button onClick={() => props.removeMovie(index)}>Delete</button>
               </td>
             </tr>
           );
@@ -36,7 +36,7 @@ function TableHeader() {
         return (
           <table>
             <TableHeader />
-            <TableBody characterData={props.characterData} removeCharacter={props.removeCharacter} />
+            <TableBody movieData={props.movieData} removeMovie={props.removeMovie} />
           </table>
         );
       }

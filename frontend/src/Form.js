@@ -1,26 +1,26 @@
 import React, {useState} from 'react';
 
 function Form(props) {   
-   const [person, setPerson] = useState(
+   const [movie, setmovie] = useState(
       {  
          name: '',
-         job: '',
+         description: '',
       }
    );
    function handleChange(event) {
     const { name, value } = event.target;
-    if (name === "job")
-       setPerson(
-          {name: person['name'], job: value}
+    if (name === "description")
+       setmovie(
+          {name: movie['name'], description: value}
        );
     else
-      setPerson(
-          {name: value, job: person['job']}
+      setmovie(
+          {name: value, description: movie['description']}
        );   
   }
   function submitForm() {
-    props.handleSubmit(person);
-    setPerson({name: '', job: ''});
+    props.handleSubmit(movie);
+    setmovie({name: '', description: ''});
   }
   return (
     <form>
@@ -29,14 +29,14 @@ function Form(props) {
         type="text"
         name="name"
         id="name"
-        value={person.name}
+        value={movie.name}
         onChange={handleChange} />
-      <label htmlFor="job">Job</label>
+      <label htmlFor="description">Description</label>
       <input
         type="text"
-        name="job"
-        id="job"
-        value={person.job}
+        name="description"
+        id="description"
+        value={movie.description}
         onChange={handleChange} />
         <input type="button" value="Submit" onClick={submitForm} />
     </form>

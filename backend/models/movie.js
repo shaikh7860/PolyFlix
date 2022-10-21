@@ -1,20 +1,20 @@
 
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema({
+const MovieSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     trim: true,
   },
-  job: {
+  description: {
     type: String,
     required: true,
     trim: true,
     validate(value) {
-      if (value.length < 2) throw new Error("Invalid job.");
+      if (value.length < 2) throw new Error("Invalid Description.");
     },
   },
-}, {collection : 'users_list'});
+}, {collection : 'movies'});
 
-module.exports = UserSchema;
+module.exports = MovieSchema;

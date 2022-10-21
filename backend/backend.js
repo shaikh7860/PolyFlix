@@ -4,7 +4,7 @@ const port = 5001;
 const cors = require('cors');
 const crypto = require("crypto");
 
-const userServices = require('./models/user-services');
+const movieServices = require('./models/movie-services');
 
 app.use(cors());
 app.use(express.json());
@@ -13,11 +13,11 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/users', async (req, res) => {
+app.get('/movies', async (req, res) => {
     const name = req.query['name'];
-    const job = req.query['job'];
+    const description = req.query['description'];
     try {
-        const result = await userServices.getUsers(name, job);
+        const result = await movieServices.getMovies(name, description);
         res.send({users_list: result});         
     } catch (error) {
         console.log(error);
@@ -25,9 +25,9 @@ app.get('/users', async (req, res) => {
     }
 });
 
-app.get('/users/:id', async (req, res) => {
+app.get('/movies/:id', async (req, res) => {
     const id = req.params['id'];
-    const result = await userServices.findUserById(id);
+    const result = await movieServices.findMovieById(id);
     if (result === undefined || result === null)
         res.status(404).send('Resource not found.');
     else {
@@ -35,18 +35,18 @@ app.get('/users/:id', async (req, res) => {
     }
 });
 
-app.post('/users', async (req, res) => {
-    const user = req.body;
-    const savedUser = await userServices.addUser(user);
-    if (savedUser)
-        res.status(201).send(savedUser);
+app.post('/movies', async (req, res) => {
+    const movie = req.body;
+    const savedmovie = await movieServices.addMovie(movie);
+    if (savedmovie)
+        res.status(201).send(savedmovie);
     else
         res.status(500).end();
 });
 
-app.delete('/users/:id', async (req, res) => {
+app.delete('/movies/:id', async (req, res) => {
     const id = req.params['id'];
-    const result = await userServices.removeUserById(id);
+    const result = await movieServices.removeMovieById(id);
     if (result == -1){
        res.status(404).send('Resource not found.');
     }

@@ -5,13 +5,13 @@ import React, {useState, useEffect} from 'react';
 
 
 function MyApp() {
-  const [characters, setCharacters] = useState([]);
+  const [movies, setmovies] = useState([]);
 
   
   async function fetchAll(){
     try {
-       const response = await axios.get('http://localhost:5001/users');
-       return response.data.users_list;     
+       const response = await axios.get('http://localhost:5001/movies');
+       return response.data.movies;     
     }
     catch (error){
        //We're not handling errors. Just logging into the console.
@@ -23,13 +23,13 @@ function MyApp() {
   useEffect(() => {
     fetchAll().then( result => {
       if (result)
-          setCharacters(result);
+          setmovies(result);
     });
   }, [] );
 
-  async function makePostCall(person){
+  async function makePostCall(movie){
     try {
-       const response = await axios.post('http://localhost:5001/users', person);
+       const response = await axios.post('http://localhost:5001/movies', movie);
        return response;
     }
     catch (error) {
@@ -38,21 +38,21 @@ function MyApp() {
     }
  }
  
-function removeOneCharacter (index) {
+function removeOneMovie(index) {
 
-   makeDeleteCall(characters[index]['_id']).then( result => {
+   makeDeleteCall(movies[index]['_id']).then( result => {
       if (result && result.status === 204){
-            const updated = characters.filter((character, i) => {
+            const updated = movies.filter((movie, i) => {
             return i !== index
          });
-         setCharacters(updated);      
+         setmovies(updated);      
          }
       });
     
  }
  async function makeDeleteCall(id){
    try {
-      const response = await axios.delete(`http://localhost:5001/users/${id}`);
+      const response = await axios.delete(`http://localhost:5001/movies/${id}`);
       return response;
    }
    catch (error) {
@@ -60,15 +60,15 @@ function removeOneCharacter (index) {
       return false;
    }
 }
- function updateList(person) { 
-   makePostCall(person).then( result => {
+ function updateList(movie) { 
+   makePostCall(movie).then( result => {
    if (result && result.status === 201)
-      setCharacters([...characters, result.data] );
+      setmovies([...movies, result.data] );
    });
 }
  return (
   <div className="container">
-    <Table characterData={characters} removeCharacter={removeOneCharacter} />
+    <Table movieData={movies} removeMovie={removeOneMovie} />
     <Form handleSubmit = {updateList} />
   </div>
 );
