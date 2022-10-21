@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const UserSchema = require("./user");
-
+require('dotenv').config()
+console.log(process.env)
 let dbConnection;
 
 function getDbConnection() {
     if (!dbConnection) {
-        dbConnection = mongoose.createConnection("mongodb+srv://blyon03:dasilva123@project307.17vtscp.mongodb.net/users?retryWrites=true&w=majority", {
+        dbConnection = mongoose.createConnection(process.env.MONGO_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
