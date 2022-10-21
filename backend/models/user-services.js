@@ -5,14 +5,14 @@ let dbConnection;
 
 function getDbConnection() {
     if (!dbConnection) {
-        dbConnection = mongoose.createConnection("mongodb://localhost:27017/users", {
+        dbConnection = mongoose.createConnection("mongodb+srv://blyon03:dasilva123@project307.17vtscp.mongodb.net/users?retryWrites=true&w=majority", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
     }
     return dbConnection;
   }
-
+  
 async function getUsers(name, job){
     const userModel = getDbConnection().model("User", UserSchema);
     let result;
