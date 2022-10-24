@@ -3,6 +3,7 @@ const app = express();
 const port = 5001;
 const cors = require('cors');
 const crypto = require("crypto");
+const axios = require("axios");
 
 const movieServices = require('./models/movie-services');
 
@@ -15,14 +16,33 @@ app.get('/', (req, res) => {
 });
 
 app.get('/movies', async (req, res) => {
-    const name = req.query['name'];
-    const description = req.query['description'];
-    try {
-        const result = await movieServices.getMovies(name, description);
-        res.send({movies: result});         
-    } catch (error) {
-        console.log(error);
-        res.status(500).send('An error ocurred in the server.');
+    // const name = req.query['name'];
+    // const description = req.query['description'];
+    // try {
+    //     const result = await movieServices.getMovies(name, description);
+    //     res.send({movies: result});         
+    // } catch (error) {
+    //     console.log(error);
+    //     res.status(500).send('An error ocurred in the server.');
+    // }
+
+    const options = {
+    method: 'GET',
+    url: 'https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/',
+    params: {page_size: '50', page: '1'},
+    headers: {
+        'X-RapidAPI-Key': 'c3715ced6emsh8ebc03165036886p14c112jsn1b69e01272c3',
+        'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+    }
+    };
+    try{
+        const result = await axios.request(options)
+        console.log(result.data.results)
+        // res.send({movies: result.data.results});
+        res.send(result.data.results);
+    } catch(error){
+            console.log(error);
+            res.status(500).send('An error ocurred in the server.');
     }
 });
 

@@ -11,7 +11,8 @@ function MyApp() {
   async function fetchAll(){
     try {
        const response = await axios.get('http://localhost:5001/movies');
-       return response.data.movies;     
+       console.log(response.data)
+       return response.data;     
     }
     catch (error){
        //We're not handling errors. Just logging into the console.
