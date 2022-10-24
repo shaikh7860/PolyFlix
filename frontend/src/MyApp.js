@@ -2,6 +2,14 @@ import Table from './Table';
 import Form from './Form';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Profile from "./Pages/Profile";
+import Movie from "./Pages/Movie";
+import ErrorPage from "./Pages/ErrorPage";
+
+
+
 
 
 function MyApp() {
@@ -68,9 +76,19 @@ function removeOneCharacter (index) {
 }
  return (
   <div className="container">
-    <Table characterData={characters} removeCharacter={removeOneCharacter} />
-    <Form handleSubmit = {updateList} />
-  </div>
+    {/* <Table characterData={characters} removeCharacter={removeOneCharacter} />
+    <Form handleSubmit = {updateList} /> */}
+   
+   <Router>
+      <Routes>
+         <Route path="/" element={<Home />} />
+         <Route path="/profile" element={<Profile />} />
+         <Route path="/movie" element={<Movie />} />
+         <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </Router>
+   </div>
+
 );
 }
 
