@@ -1,11 +1,15 @@
 import Table from './Table';
 import Form from './Form';
 import axios from 'axios';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
 import React, {useState, useEffect} from 'react';
+import SearchBar from './SearchBar';
 
 
 function MyApp() {
   const [movies, setmovies] = useState([]);
+  let [searchResults, setResults] = useState([...movies]);
+  const navigate = useNavigate();
 
   
   async function fetchAll(){
@@ -66,10 +70,49 @@ function removeOneMovie(index) {
       setmovies([...movies, result.data] );
    });
 }
+
+function searchForMovies(movie) {
+   fetchSome(movie).then(result => {
+     if (result)
+       setResults(result);
+   });
+   navigate('/search');  
+   return;
+ }
+
+ async function fetchSome(name){
+    try {
+        const response = await axios.get('http://localhost:5001/movies?name=' + name);
+        return response.data.movies;
+    }
+    catch (error){
+        console.log(error);
+        return false;
+    }
+ }
+
  return (
   <div className="container">
-    <Table movieData={movies} removeMovie={removeOneMovie} />
-    <Form handleSubmit = {updateList} />
+    <SearchBar handleSubmit = {searchForMovies}/>
+    <Routes>
+      <Route
+         path = '/'
+         element = {
+            <div>
+               <Table movieData={movies} removeMovie={removeOneMovie} />
+               <Form handleSubmit = {updateList} />
+            </div>
+         }
+      />
+      <Route
+         path = '/'
+         element = {
+            <div>
+               <Table movieData={searchResults} removeMovie={removeOneMovie} />
+            </div>
+         }
+      />
+    </Routes>
   </div>
 );
 }
