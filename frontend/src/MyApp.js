@@ -2,7 +2,7 @@ import Table from './Table';
 import Form from './Form';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import Movie from "./Pages/Movie";
@@ -14,7 +14,7 @@ import ErrorPage from "./Pages/ErrorPage";
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
-
+  const navigate = useNavigate()
   
   async function fetchAll(){
     try {
@@ -72,22 +72,30 @@ function removeOneCharacter (index) {
    makePostCall(person).then( result => {
    if (result && result.status === 201)
       setCharacters([...characters, result.data] );
+      navigate('/users-table')
    });
 }
  return (
   <div className="container">
+   <nav>
+      <ul>
+         <li><Link to='/profile'>Go to Profile</Link></li>
+         <li><Link to='/'>Go Home</Link></li>
+      </ul>
+      </nav>
     {/* <Table characterData={characters} removeCharacter={removeOneCharacter} />
     <Form handleSubmit = {updateList} /> */}
    
-   <Router>
+
       <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/profile" element={<Profile />} />
-         <Route path="/movie" element={<Movie />} />
-         <Route path="*" element={<ErrorPage />} />
+         <Route path="/movie/:movieName" element={<Movie />} />
+         <Route path="*" element={<ErrorPage />}/>
       </Routes>
-    </Router>
+  
    </div>
+
 
 );
 }
