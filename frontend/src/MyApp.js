@@ -88,7 +88,7 @@ function removeOneCharacter (index) {
    
 
       <Routes>
-         <Route path="/" element={<Home />} />
+         <Route path="/" element={<Home characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
          <Route path="/profile" element={<Profile />} />
          <Route path="/movie/:movieName" element={<Movie />} />
          <Route path="*" element={<ErrorPage />}/>

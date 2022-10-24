@@ -1,7 +1,20 @@
 import React from "react";
+import Form from '../Form.js'
+import Table from '../Table.js'
 
-function Home() {
-  return <div>THIS IS THE HOME PAGE</div>;
+
+function Home(props) {
+  return(
+    <div>
+      THIS IS THE HOME PAGE
+
+      <Table characterData={props.characterData} removeCharacter={props.removeCharacter} />
+      <Form handleSubmit = {props.handleSubmit} />
+
+    </div>
+    
+  );
+   
 }
 
 export default Home;
