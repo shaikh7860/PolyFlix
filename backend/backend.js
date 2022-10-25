@@ -4,6 +4,8 @@ const port = 5001;
 const cors = require('cors');
 const crypto = require("crypto");
 const axios = require("axios");
+require('dotenv').config()
+
 
 const movieServices = require('./models/movie-services');
 
@@ -25,13 +27,13 @@ app.get('/movies', async (req, res) => {
     //     console.log(error);
     //     res.status(500).send('An error ocurred in the server.');
     // }
-
+    // key = process.env.KEY
     const options = {
     method: 'GET',
     url: 'https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/',
     params: {page_size: '50', page: '1'},
     headers: {
-        'X-RapidAPI-Key': 'c3715ced6emsh8ebc03165036886p14c112jsn1b69e01272c3',
+        'X-RapidAPI-Key': process.env.KEY,
         'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
     }
     };
