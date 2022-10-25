@@ -28,17 +28,17 @@ app.get('/movies', async (req, res) => {
     //     res.status(500).send('An error ocurred in the server.');
     // }
     // key = process.env.KEY
-    const options = {
-    method: 'GET',
-    url: 'https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/',
-    params: {page_size: '50', page: '1'},
-    headers: {
-        'X-RapidAPI-Key': process.env.KEY,
-        'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-    }
-    };
+    // const options = {
+    // method: 'GET',
+    // url: 'https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/',
+    // params: {page_size: '50', page: '1'},
+    // headers: {
+    //     'X-RapidAPI-Key': process.env.KEY,
+    //     'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+    // }
+    // };
     try{
-        const result = await axios.request(options)
+        const result = await axios.request('https://api.themoviedb.org/3/movie/popular?api_key=' + process.env.API_KEY + '&language=en-US&page=1')
         console.log(result.data.results)
         // res.send({movies: result.data.results});
         res.send(result.data.results);

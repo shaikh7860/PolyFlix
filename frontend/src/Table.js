@@ -16,9 +16,9 @@ function TableHeader() {
     const rows = props.movieData.map((row, index) => {
         return (
             <tr key={index}>
-              <td>{row.imdb_id}</td>
+              <td>{row.id}</td>
               <td>{row.title}</td>
-              <td>{row.rating}</td>
+              <td>{row.vote_average}</td>
               {/* <td>
                 <button onClick={() => props.removeMovie(index)}>Delete</button>
               </td> */}
