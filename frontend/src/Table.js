@@ -7,6 +7,7 @@ function TableHeader() {
           <th>ID</th>
           <th>Title</th>
           <th>Rating</th>
+          <th>Image</th>
         </tr>
       </thead>
     );
@@ -19,6 +20,9 @@ function TableHeader() {
               <td>{row.id}</td>
               <td>{row.title}</td>
               <td>{row.vote_average}</td>
+              <td>
+                <img src={"http://image.tmdb.org/t/p/w92/"+row.poster_path} alt={""}/>
+              </td>
               {/* <td>
                 <button onClick={() => props.removeMovie(index)}>Delete</button>
               </td> */}

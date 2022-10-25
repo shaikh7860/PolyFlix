@@ -39,13 +39,15 @@ app.get('/movies', async (req, res) => {
     // };
     try{
         const result = await axios.request('https://api.themoviedb.org/3/movie/popular?api_key=' + process.env.API_KEY + '&language=en-US&page=1')
-        console.log(result.data.results)
         // res.send({movies: result.data.results});
         res.send(result.data.results);
     } catch(error){
             console.log(error);
             res.status(500).send('An error ocurred in the server.');
     }
+    // const path = await axios.request("https://api.themoviedb.org/3/configuration?api_key=" + process.env.API_KEY)
+    // baseURL = path.data.images.base_url + "w500" + result.data.result
+    // console.log(baseURL)
 });
 
 app.get('/movies/:id', async (req, res) => {
