@@ -1,5 +1,5 @@
-import Table from './Table';
-import Form from './Form';
+// import Table from './Table';
+// import Form from './Form';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {Routes, Route, Link, useNavigate } from "react-router-dom";
@@ -15,12 +15,14 @@ import SearchResult from './Pages/SearchResult';
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
+  const [movies, setmovies] = useState([]);
   const navigate = useNavigate()
   
   async function fetchAll(){
     try {
-       const response = await axios.get('http://localhost:5001/users');
-       return response.data.users_list;     
+       const response = await axios.get('http://localhost:5001/');
+       console.log(response.data)
+       return response.data;     
     }
     catch (error){
        //We're not handling errors. Just logging into the console.
@@ -29,12 +31,14 @@ function MyApp() {
     }
  }
 
-  useEffect(() => {
-    fetchAll().then( result => {
-      if (result)
-          setCharacters(result);
-    });
-  }, [] );
+ useEffect(() => {
+   fetchAll().then( result => {
+     if (result)
+         setmovies(result);
+   });
+ }, [] );
+
+
 
   async function makePostCall(person){
     try {
@@ -90,7 +94,7 @@ function removeOneCharacter (index) {
    
 
       <Routes>
-         <Route path="/" element={<Home characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
+         <Route path="/" element={<Home movieData={movies} characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
          <Route path="/profile" element={<Profile />} />
          <Route path="/movie/:movieName" element={<Movie />} />
          <Route path="/searchResult" element={<SearchResult />} />

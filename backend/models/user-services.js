@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const UserSchema = require("./user");
 require('dotenv').config()
-console.log(process.env)
+// console.log(process.env)
 let dbConnection;
 
 function getDbConnection() {

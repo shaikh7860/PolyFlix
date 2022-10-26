@@ -8,7 +8,7 @@ function Home(props) {
     <div>
       THIS IS THE HOME PAGE
 
-      <Table characterData={props.characterData} removeCharacter={props.removeCharacter} />
+      <Table movieData = {props.movieData} characterData={props.characterData} removeCharacter={props.removeCharacter} />
       <Form handleSubmit = {props.handleSubmit} />
 
     </div>
