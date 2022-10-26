@@ -28,10 +28,7 @@ function TableHeader() {
                 <img src={"http://image.tmdb.org/t/p/w92/"+row.poster_path} alt={""}/>
               </td>
               <td>
-                <button onClick={() => props.removeMovie(index)}>Delete</button>
-              </td>
-              <td>
-                <button onClick={() => navigate("/movie/" + row.title) }>View Info</button>
+                <button onClick={() => props.removeCharacter(index)}>Delete</button>
               </td>
               <td>
                 <button onClick={() => navigate("/movie/" + row.title) }>View Info</button>
