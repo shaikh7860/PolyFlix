@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function TableHeader() {
     return (
@@ -13,6 +14,9 @@ function TableHeader() {
   }
 
   function TableBody(props) {
+    const navigate = useNavigate();
+
+    console.log(props.characterData)
     const rows = props.characterData.map((row, index) => {
         return (
             <tr key={index}>
@@ -21,6 +25,9 @@ function TableHeader() {
               <td>{row.job}</td>
               <td>
                 <button onClick={() => props.removeCharacter(index)}>Delete</button>
+              </td>
+              <td>
+                <button onClick={() => navigate("/movie/" + row.name) }>View Info</button>
               </td>
             </tr>
           );

@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import Movie from "./Pages/Movie";
 import ErrorPage from "./Pages/ErrorPage";
+import SearchResult from './Pages/SearchResult';
 
 
 
@@ -81,6 +82,7 @@ function removeOneCharacter (index) {
       <ul>
          <li><Link to='/profile'>Go to Profile</Link></li>
          <li><Link to='/'>Go Home</Link></li>
+         <li><Link to='/searchResult'>Search</Link></li>
       </ul>
       </nav>
     {/* <Table characterData={characters} removeCharacter={removeOneCharacter} />
@@ -91,6 +93,7 @@ function removeOneCharacter (index) {
          <Route path="/" element={<Home characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
          <Route path="/profile" element={<Profile />} />
          <Route path="/movie/:movieName" element={<Movie />} />
+         <Route path="/searchResult" element={<SearchResult />} />
          <Route path="*" element={<ErrorPage />}/>
       </Routes>
   
