@@ -6,4 +6,6 @@ https://www.figma.com/file/uYDGdJpJMdvsbJIZhnjp3b/307-Project-Prototype?node-id=
 
 
 ### NPM INSTALLS
- npm install dotenv
+npm install dotenv (backend)
+npm install axios (on backend)
+npm install react-router-dom@6 (frontend)
