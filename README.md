@@ -6,4 +6,5 @@ https://www.figma.com/file/uYDGdJpJMdvsbJIZhnjp3b/307-Project-Prototype?node-id=
 
 
 ### NPM INSTALLS
- npm install dotenv
+npm install dotenv
+npm install axios (on backend)
