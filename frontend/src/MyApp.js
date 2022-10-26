@@ -1,17 +1,28 @@
-import Table from './Table';
-import Form from './Form';
+// import Table from './Table';
+// import Form from './Form';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
+import {Routes, Route, Link, useNavigate } from "react-router-dom";
+import Home from "./Pages/Home";
+import Profile from "./Pages/Profile";
+import Movie from "./Pages/Movie";
+import ErrorPage from "./Pages/ErrorPage";
+import SearchResult from './Pages/SearchResult';
+
+
+
 
 
 function MyApp() {
+  const [characters, setCharacters] = useState([]);
   const [movies, setmovies] = useState([]);
-
+  const navigate = useNavigate()
   
   async function fetchAll(){
     try {
-       const response = await axios.get('http://localhost:5001/movies');
-       return response.data.movies;     
+       const response = await axios.get('http://localhost:5001/');
+       console.log(response.data)
+       return response.data;     
     }
     catch (error){
        //We're not handling errors. Just logging into the console.
@@ -20,14 +31,16 @@ function MyApp() {
     }
  }
 
-  useEffect(() => {
-    fetchAll().then( result => {
-      if (result)
-          setmovies(result);
-    });
-  }, [] );
+ useEffect(() => {
+   fetchAll().then( result => {
+     if (result)
+         setmovies(result);
+   });
+ }, [] );
 
-  async function makePostCall(movie){
+
+
+  async function makePostCall(person){
     try {
        const response = await axios.post('http://localhost:5001/movies', movie);
        return response;
@@ -63,14 +76,34 @@ function removeOneMovie(index) {
  function updateList(movie) { 
    makePostCall(movie).then( result => {
    if (result && result.status === 201)
-      setmovies([...movies, result.data] );
+      setCharacters([...characters, result.data] );
+      navigate('/users-table')
    });
 }
  return (
   <div className="container">
-    <Table movieData={movies} removeMovie={removeOneMovie} />
-    <Form handleSubmit = {updateList} />
-  </div>
+   <nav>
+      <ul>
+         <li><Link to='/profile'>Go to Profile</Link></li>
+         <li><Link to='/'>Go Home</Link></li>
+         <li><Link to='/searchResult'>Search</Link></li>
+      </ul>
+      </nav>
+    {/* <Table characterData={characters} removeCharacter={removeOneCharacter} />
+    <Form handleSubmit = {updateList} /> */}
+   
+
+      <Routes>
+         <Route path="/" element={<Home movieData={movies} characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
+         <Route path="/profile" element={<Profile />} />
+         <Route path="/movie/:movieName" element={<Movie />} />
+         <Route path="/searchResult" element={<SearchResult />} />
+         <Route path="*" element={<ErrorPage />}/>
+      </Routes>
+  
+   </div>
+
+
 );
 }
 
