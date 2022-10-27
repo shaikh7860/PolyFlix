@@ -91,15 +91,14 @@ function searchForMovies(movie) {
  }
 
  async function fetchSome(name){
-   //  try {
-   //      const response = await axios.get('http://localhost:5001/?name=' + name);
-   //      return response.data.movies;
-   //  }
-   //  catch (error){
-   //      console.log(error);
-   //      return false;
-   //  }
-   return
+    try {
+        const response = await axios.get('http://localhost:5001/?name=' + name);
+        return response.data;
+    }
+    catch (error){
+        console.log(error);
+        return false;
+    }
  }
 
  return (
@@ -119,7 +118,7 @@ function searchForMovies(movie) {
          <Route path="/" element={<Home movieData={movies} characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
          <Route path="/profile" element={<Profile />} />
          <Route path="/movie/:movieName" element={<Movie />} />
-         <Route path="/searchResult" element={<SearchResult />} />
+         <Route path="/searchResult" element={<SearchResult movieData={searchResults} characterData={characters} removeCharacter={removeOneCharacter}/>} />
          <Route path="*" element={<ErrorPage />}/>
       </Routes>
   
