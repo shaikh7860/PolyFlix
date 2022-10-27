@@ -1,26 +1,37 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function TableHeader() {
-    return (
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-    );
-  }
+  return (
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+  );
+}
 
   function TableBody(props) {
+    const navigate = useNavigate();
+
+    console.log(props.movieData)
     const rows = props.movieData.map((row, index) => {
         return (
-            <tr key={index}>
-              <td>{row._id}</td>
-              <td>{row.name}</td>
-              <td>{row.description}</td>
+          <tr key={index}>
+              <td>{row.id}</td>
+              <td>{row.title}</td>
+              <td>{row.vote_average}</td>
               <td>
-                <button onClick={() => props.removeMovie(index)}>Delete</button>
+                <img src={"http://image.tmdb.org/t/p/w92/"+row.poster_path} alt={""}/>
+              </td>
+              <td>
+                <button onClick={() => props.removeCharacter(index)}>Delete</button>
+              </td>
+              <td>
+                <button onClick={() => navigate("/movie/" + row.title) }>View Info</button>
               </td>
             </tr>
           );
@@ -36,7 +47,7 @@ function TableHeader() {
         return (
           <table>
             <TableHeader />
-            <TableBody movieData={props.movieData} removeMovie={props.removeMovie} />
+            <TableBody movieData = {props.movieData} characterData={props.characterData} removeCharacter={props.removeCharacter} />
           </table>
         );
       }
