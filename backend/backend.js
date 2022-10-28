@@ -6,7 +6,7 @@ const crypto = require("crypto");
 const axios = require("axios");
 require('dotenv').config();
 
-const movieServices = require('./models/movie-services');
+const userServices = require('./models/user-services');
 
 app.use(cors());
 app.use(express.json());
@@ -34,38 +34,38 @@ app.get('/', async (req, res) => {
 });
 app.get('/users', async (req, res) => {
     const name = req.query['name'];
-    const description = req.query['description'];
+    const job = req.query['job'];
     try {
-        const result = await movieServices.getMovies(name, description);
-        res.send({movies: result});         
+        const result = await userServices.getUsers(name, job);
+        res.send({users_list: result});         
     } catch (error) {
         console.log(error);
         res.status(500).send('An error ocurred in the server.');
     }
 });
 
-app.get('/movies/:id', async (req, res) => {
+app.get('/users/:id', async (req, res) => {
     const id = req.params['id'];
-    const result = await movieServices.findMovieById(id);
+    const result = await userServices.findUserById(id);
     if (result === undefined || result === null)
         res.status(404).send('Resource not found.');
     else {
-        res.send({movies: result});
+        res.send({users_list: result});
     }
 });
 
-app.post('/movies', async (req, res) => {
-    const movie = req.body;
-    const savedmovie = await movieServices.addMovie(movie);
-    if (savedmovie)
-        res.status(201).send(savedmovie);
+app.post('/users', async (req, res) => {
+    const user = req.body;
+    const savedUser = await userServices.addUser(user);
+    if (savedUser)
+        res.status(201).send(savedUser);
     else
         res.status(500).end();
 });
 
-app.delete('/movies/:id', async (req, res) => {
+app.delete('/users/:id', async (req, res) => {
     const id = req.params['id'];
-    const result = await movieServices.removeMovieById(id);
+    const result = await userServices.removeUserById(id);
     if (result == -1){
        res.status(404).send('Resource not found.');
     }
