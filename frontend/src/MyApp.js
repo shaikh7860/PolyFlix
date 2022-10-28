@@ -41,22 +41,22 @@ function MyApp() {
 
 
 
-  async function makePostCall(person){
-    try {
-       const response = await axios.post('http://localhost:5001/users', person);
-       return response;
-    }
-    catch (error) {
-       console.log(error);
-       return false;
-    }
- }
+ async function makePostCall(person){
+   try {
+      const response = await axios.post('http://localhost:5001/users', person);
+      return response;
+   }
+   catch (error) {
+      console.log(error);
+      return false;
+   }
+}
  
-function removeOneCharacter(index) {
+function removeOneCharacter (index) {
 
    makeDeleteCall(characters[index]['_id']).then( result => {
       if (result && result.status === 204){
-            const updated = characters.filter((movie, i) => {
+            const updated = characters.filter((character, i) => {
             return i !== index
          });
          setCharacters(updated);      
@@ -74,7 +74,7 @@ function removeOneCharacter(index) {
       return false;
    }
 }
- function updateList(person) { 
+function updateList(person) { 
    makePostCall(person).then( result => {
    if (result && result.status === 201)
       setCharacters([...characters, result.data] );
