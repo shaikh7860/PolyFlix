@@ -2,10 +2,15 @@ import React from "react";
 import Table from '../Table.js'
 
 function SearchResult(props) {
-  return <div>THIS IS THE SearchResult PAGE
+  if (props.movieData.length > 0){
+
+    return <div>Search results for: {props.movieName}
 
     <Table movieData = {props.movieData} characterData={props.characterData} removeCharacter={props.removeCharacter} />
-  </div>;
+    </div>;
+  }else{
+    return <div>No results found for: {props.movieName}</div>
+  }
 
 }
 

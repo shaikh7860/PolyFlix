@@ -15,6 +15,7 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
   const [movies, setmovies] = useState([]);
   let [searchResults, setResults] = useState([...movies]);
+  const [searchInput, setSearchInput] = useState('');
   const navigate = useNavigate();
 
   
@@ -82,6 +83,7 @@ function removeOneCharacter(index) {
 }
 
 function searchForMovies(movie) {
+   setSearchInput(movie);
    fetchSome(movie).then(result => {
      if (result)
        setResults(result);
@@ -118,7 +120,12 @@ function searchForMovies(movie) {
          <Route path="/" element={<Home movieData={movies} characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
          <Route path="/profile" element={<Profile />} />
          <Route path="/movie/:movieName" element={<Movie />} />
-         <Route path="/searchResult" element={<SearchResult movieData={searchResults} characterData={characters} removeCharacter={removeOneCharacter}/>} />
+         <Route path="/searchResult" element={
+         <SearchResult movieData={searchResults} 
+         characterData={characters} 
+         removeCharacter={removeOneCharacter}
+         movieName={searchInput}/>
+         } />
          <Route path="*" element={<ErrorPage />}/>
       </Routes>
   
