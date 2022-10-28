@@ -31,7 +31,7 @@ function TableHeader() {
                 <button onClick={() => props.removeCharacter(index)}>Delete</button>
               </td>
               <td>
-                <button onClick={() => navigate("/movie/" + row.title) }>View Info</button>
+                <button onClick={() => navigate("/movie/" + row.title, {state: {id: row.id, title: row.title, vote_average: row.vote_average, poster_path: row.poster_path}}) }>View Info</button>
               </td>
             </tr>
           );
