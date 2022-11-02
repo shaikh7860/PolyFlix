@@ -10,6 +10,7 @@ import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from './Pages/SearchResult';
 import SearchBar from './SearchBar';
 import Login from './Pages/Login'
+import CreateAccount from './Pages/CreateAccount';
 
 
 
@@ -105,7 +106,11 @@ function searchForMovies(movie) {
     }
  }
 
- function updateToken(token){
+function makeAccount(token){
+   updateToken(token);
+}
+
+function updateToken(token){
    setToken(token);
    navigate('/');
 }
@@ -116,7 +121,20 @@ function logOut(){
 }
 
 if (!token){
- return <Login handleSubmit={updateToken}/>
+ return <div>
+
+    <Routes>
+      <Route path='/' 
+             element={<div>
+                  <Login handleSubmit={updateToken}/>
+                  <ul>
+                     <li><Link to='/createaccount'>Create an account</Link></li>
+                  </ul>
+               </div>
+            }/>
+      <Route path="/createaccount" element={<CreateAccount handleSubmit={makeAccount}/>}/>
+    </Routes>
+ </div>
 }
 
  return (
@@ -134,7 +152,7 @@ if (!token){
 
       <Routes>
          <Route path="/" element={<Home movieData={movies} characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
-         <Route path="/profile" element={<Profile logOut={logOut}/>} />
+         <Route path="/profile" element={<Profile logOut={logOut} token={token}/>} />
          <Route path="/movie/:movieName" element={<Movie />} />
          <Route path="/searchResult" element={
          <SearchResult movieData={searchResults} 
