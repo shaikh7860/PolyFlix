@@ -3,6 +3,8 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {Routes, Route, Link, useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import Movie from "./Pages/Movie";
@@ -23,7 +25,6 @@ function MyApp() {
   async function fetchAll(){
     try {
        const response = await axios.get('http://localhost:5001/');
-       console.log(response.data)
        return response.data;     
     }
     catch (error){
@@ -118,7 +119,7 @@ function searchForMovies(movie) {
    
 
       <Routes>
-         <Route path="/" element={<Home movieData={movies} characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
+         <Route path="/" element={<Home movieData={movies} />} />
          <Route path="/profile" element={<Profile />} />
          <Route path="/movie/:movieName" element={<Movie />} />
          <Route path="/searchResult" element={

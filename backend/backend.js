@@ -20,11 +20,9 @@ app.get('/', async (req, res) => {
         const name = req.query['name'];
         if (name){
             const result = await axios.request('https://api.themoviedb.org/3/search/movie/?api_key=' + process.env.API_KEY + '&query=' + name)
-            console.log(result.data.results)
             res.send(result.data.results);
         }else{
             const result = await axios.request('https://api.themoviedb.org/3/movie/popular?api_key=' + process.env.API_KEY + '&language=en-US&page=1')
-            console.log(result.data.results)
             res.send(result.data.results);
         }
     } catch(error){
