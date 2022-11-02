@@ -11,6 +11,7 @@ function Movie() {
           Title: {location.state.title} <br />
           Vote Average: {location.state.vote_average} <br />
           Image: <img src={"http://image.tmdb.org/t/p/w92/" + location.state.poster_path} alt={""}/><br />
+          Overview: {location.state.overview} <br />
     </div>
   );
 
