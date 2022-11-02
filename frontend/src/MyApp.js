@@ -3,6 +3,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import Movie from "./Pages/Movie";
@@ -10,8 +12,6 @@ import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from "./Pages/SearchResult";
 import SearchBar from "./SearchBar";
 import NavBar from "./NavBar";
-
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
@@ -58,7 +58,6 @@ function MyApp() {
       }
     });
   }
-
   async function makeDeleteCall(id) {
     try {
       const response = await axios.delete(`http://localhost:5001/users/${id}`);
@@ -68,7 +67,6 @@ function MyApp() {
       return false;
     }
   }
-  
   function updateList(person) {
     makePostCall(person).then((result) => {
       if (result && result.status === 201)
@@ -88,7 +86,7 @@ function MyApp() {
 
   async function fetchSome(name) {
     try {
-      const response = await axios.get("http://localhost:5001/?name=" + name);
+      const response = await axios.get("http://localhost:5001/search?name=" + name);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -114,17 +112,7 @@ function MyApp() {
     <Form handleSubmit = {updateList} /> */}
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              movieData={movies}
-              characterData={characters}
-              removeCharacter={removeOneCharacter}
-              handleSubmit={updateList}
-            />
-          }
-        />
+        <Route path="/" element={<Home movieData={movies} />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/movie/:movieName" element={<Movie />} />
         <Route
