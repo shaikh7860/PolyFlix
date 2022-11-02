@@ -1,10 +1,8 @@
-
-
-import React from 'react'
-import ReactDOM from 'react-dom'
-import MyApp from './MyApp'
-import './index.css'
-import { BrowserRouter } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import MyApp from "./MyApp";
+import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 
 /*
 //If you have React v17:
@@ -18,7 +16,7 @@ ReactDOM.render(
 // With React v18:
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <BrowserRouter>
-        <MyApp />
-    </BrowserRouter>
-)
+  <BrowserRouter>
+    <MyApp />
+  </BrowserRouter>
+);
