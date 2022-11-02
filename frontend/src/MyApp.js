@@ -9,7 +9,7 @@ import Movie from "./Pages/Movie";
 import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from './Pages/SearchResult';
 import SearchBar from './SearchBar';
-
+import Login from './Pages/Login'
 
 
 
@@ -18,6 +18,7 @@ function MyApp() {
   const [movies, setmovies] = useState([]);
   let [searchResults, setResults] = useState([...movies]);
   const [searchInput, setSearchInput] = useState('');
+  const [token, setToken] = useState();
   const navigate = useNavigate()
   
   async function fetchAll(){
@@ -104,6 +105,20 @@ function searchForMovies(movie) {
     }
  }
 
+ function updateToken(token){
+   setToken(token);
+   navigate('/');
+}
+
+function logOut(){
+   setToken(0);
+   navigate('/');
+}
+
+if (!token){
+ return <Login handleSubmit={updateToken}/>
+}
+
  return (
   <div className="container">
    <nav>
@@ -119,7 +134,7 @@ function searchForMovies(movie) {
 
       <Routes>
          <Route path="/" element={<Home movieData={movies} characterData={characters} removeCharacter={removeOneCharacter} handleSubmit = {updateList} />} />
-         <Route path="/profile" element={<Profile />} />
+         <Route path="/profile" element={<Profile logOut={logOut}/>} />
          <Route path="/movie/:movieName" element={<Movie />} />
          <Route path="/searchResult" element={
          <SearchResult movieData={searchResults} 

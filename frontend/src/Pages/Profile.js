@@ -1,7 +1,12 @@
 import React from "react";
 
-function Profile() {
-  return <div>THIS IS THE PROFILE PAGE</div>;
+function Profile(props) {
+
+  return <div>THIS IS THE PROFILE PAGE
+    <div>
+      <input type="button" value="Log Out" onClick={props.logOut} />
+    </div>
+  </div>
 }
 
 export default Profile;
