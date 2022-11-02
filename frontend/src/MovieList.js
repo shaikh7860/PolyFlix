@@ -20,6 +20,7 @@ const MovieList = (props) => {
                   title: movie.title,
                   vote_average: movie.vote_average,
                   poster_path: movie.poster_path,
+                  overview: movie.overview
                 },
               })
             }

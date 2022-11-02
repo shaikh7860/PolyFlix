@@ -42,6 +42,7 @@ function TableBody(props) {
                   title: row.title,
                   vote_average: row.vote_average,
                   poster_path: row.poster_path,
+                  overview: row.overview
                 },
               })
             }
