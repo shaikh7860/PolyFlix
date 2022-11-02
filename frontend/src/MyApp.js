@@ -84,7 +84,7 @@ function MyApp() {
 
   async function fetchSome(name) {
     try {
-      const response = await axios.get("http://localhost:5001/?name=" + name);
+      const response = await axios.get("http://localhost:5001/search?name=" + name);
       return response.data;
     } catch (error) {
       console.log(error);

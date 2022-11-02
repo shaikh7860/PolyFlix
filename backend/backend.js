@@ -40,6 +40,23 @@ app.get("/", async (req, res) => {
   }
 });
 
+app.get("/search", async (req, res) => {
+    try {
+        const name = req.query["name"];
+        const result = await axios.request(
+            "https://api.themoviedb.org/3/search/movie/?api_key=" +
+              process.env.API_KEY +
+              "&query=" +
+              name
+          );
+        res.send(result.data.results);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send("An error ocurred in the server.");
+    }
+})
+
 app.get("/users", async (req, res) => {
   const name = req.query["name"];
   const job = req.query["job"];
