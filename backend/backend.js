@@ -58,11 +58,17 @@ app.get("/search", async (req, res) => {
 })
 
 app.get("/users", async (req, res) => {
-  const name = req.query["name"];
-  const job = req.query["job"];
+  const username = req.query["username"];
+  const password = req.query["password"];
   try {
-    const result = await userServices.getUsers(name, job);
-    res.send({ users_list: result });
+    const result = await userServices.getUsers(username, password);
+    console.log({ users_list: result});
+    if ({users_list: result}){
+        res.send({ users_list: result });
+    }
+    else{
+        res.status(500).send("No users found");
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");

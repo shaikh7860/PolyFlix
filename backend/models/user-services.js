@@ -14,21 +14,22 @@ function getDbConnection() {
     return dbConnection;
   }
   
-async function getUsers(name, job){
+async function getUsers(username, password){
     const userModel = getDbConnection().model("User", UserSchema);
     let result;
-    if (name === undefined && job === undefined){
-        result = await userModel.find();
+    if (username && password){
+        result = await findUser(username, password);
     }
-    else if (name && !job) {
-        result = await findUserByName(name);
-    }
-    else if (job && !name){
-        result = await findUserByJob(job);
-    }   
+    else {
+        throw 'ENTER USERNAME AND PASSWORD'
+    }  
     return result;  
 }
 
+async function findUser(username, password){
+    const userModel = getDbConnection().model("User", UserSchema);
+    return await userModel.find({'username': username, 'password': password});
+}
 async function findUserById(id){
     const userModel = getDbConnection().model("User", UserSchema);    
     try{

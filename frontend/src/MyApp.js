@@ -97,7 +97,32 @@ function MyApp() {
     }
   }
 
-function makeAccount(token){
+
+  async function tryLogIn(token){
+    try {
+      const response = await axios.get("http://localhost:5001/users?username=" + token['username'] + "&password=" + token['password']);
+      if (response){
+         console.log(response.data)
+         updateToken(response.data.users_list[0])
+      }
+      else{
+         return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+async function makeAccount(token){
+    try {
+      const response = await axios.post("http://localhost:5001/users", token);
+      if (!response){
+         return
+      }
+    } catch (error) {
+      console.log(error);
+    }
    updateToken(token);
 }
 
@@ -113,13 +138,12 @@ function logOut(){
 
 if (!token){
  return <div>
-
     <Routes>
       <Route path='/' 
              element={<div>
-                  <Login handleSubmit={updateToken}/>
+                  <Login handleSubmit={tryLogIn}/>
                   <ul>
-                     <li><Link to='/createaccount'>Create an account</Link></li>
+                     <Link to='/createaccount'>Create an account</Link>
                   </ul>
                </div>
             }/>
