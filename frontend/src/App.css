@@ -31,10 +31,12 @@
   .logo-image{
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    border-radius: 8px;
     overflow: hidden;
     margin-top: 50px;
   }
+
+
   
   @keyframes App-logo-spin {
     from {
@@ -91,3 +93,32 @@
     padding: 20px;
     text-align: center;
   }
+
+
+  /* Movie Image */
+  .movie-image {
+    height: 300px;
+    width: 200px;
+    border-radius: 0px;
+  }
+
+   /* Search Bar */
+   .search input[type=text] {
+    position: absolute;
+    left: 25%;
+    padding: 14px;
+    width: 500px;
+  }
+  .search button {
+    position: absolute;
+    left: 45%;
+  }
+
+
+
+
+
+
+
+
+ 

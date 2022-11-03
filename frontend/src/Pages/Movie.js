@@ -7,10 +7,15 @@ function Movie() {
 
   return (
    // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
-    <div> ID: {location.state.id } <br />
+    <div> 
           Title: {location.state.title} <br />
+          
+            {/* <img src={"http://image.tmdb.org/t/p/w92/" + location.state.poster_path} alt={""} class="fill"/><br /> */}
+          <img src={"http://image.tmdb.org/t/p/w92/" + location.state.poster_path} class="movie-image"/><br />
+          
+          ID: {location.state.id } <br />
+          
           Vote Average: {location.state.vote_average} <br />
-          Image: <img src={"http://image.tmdb.org/t/p/w92/" + location.state.poster_path} alt={""}/><br />
           Overview: {location.state.overview} <br />
     </div>
   );

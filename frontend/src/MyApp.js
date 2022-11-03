@@ -96,20 +96,11 @@ function MyApp() {
 
   return (
     <div className="container">
-      {/* <nav>
-      <ul>
-         <li><Link to='/profile'>Go to Profile</Link></li>
-         <li><Link to='/'>Go Home</Link></li>
-      </ul>
-      <SearchBar handleSubmit={searchForMovies}/>
-      </nav> */}
+      
       <nav>
-        <NavBar></NavBar>
-        <SearchBar handleSubmit={searchForMovies} />
+        <NavBar handleSubmit={searchForMovies}></NavBar>
+        {/* <SearchBar handleSubmit={searchForMovies} /> */}
       </nav>
-
-      {/* <Table characterData={characters} removeCharacter={removeOneCharacter} />
-    <Form handleSubmit = {updateList} /> */}
 
       <Routes>
         <Route path="/" element={<Home movieData={movies} />} />
