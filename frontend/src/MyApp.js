@@ -206,8 +206,7 @@ function MyApp() {
       <SearchBar handleSubmit={searchForMovies}/>
       </nav> */}
       <nav>
-        <NavBar></NavBar>
-        <SearchBar handleSubmit={searchForMovies} />
+        <NavBar handleSubmit={searchForMovies}></NavBar>
       </nav>
 
       {/* <Table characterData={characters} removeCharacter={removeOneCharacter} />
