@@ -17,16 +17,39 @@ import CreateAccount from "./Pages/CreateAccount";
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
-  const [movies, setmovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [Popmovies, setPopmovies] = useState([]);
+  const [Topmovies, setTopmovies] = useState([]);
+  const [Upcomingmovies, setUpcomingmovies] = useState([]);
+
   let [searchResults, setResults] = useState([...movies]);
   const [searchInput, setSearchInput] = useState("");
   const [token, setToken] = useState();
   const navigate = useNavigate();
 
-  async function fetchAll() {
+  async function fetchPopular() {
     try {
-      const response = await axios.get("http://localhost:5001/");
-      console.log(response.data);
+      const response = await axios.get("http://localhost:5001/movies/popular");
+      return response.data;
+    } catch (error) {
+      //We're not handling errors. Just logging into the console.
+      console.log(error);
+      return false;
+    }
+  }
+  async function fetchTop() {
+    try {
+      const response = await axios.get("http://localhost:5001/movies/top");
+      return response.data;
+    } catch (error) {
+      //We're not handling errors. Just logging into the console.
+      console.log(error);
+      return false;
+    }
+  }
+  async function fetchUpcoming() {
+    try {
+      const response = await axios.get("http://localhost:5001/movies/upcoming");
       return response.data;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -36,8 +59,14 @@ function MyApp() {
   }
 
   useEffect(() => {
-    fetchAll().then((result) => {
-      if (result) setmovies(result);
+    fetchPopular().then((result) => {
+      if (result) setPopmovies(result);
+    });
+    fetchTop().then((result) => {
+      if (result) setTopmovies(result);
+    });
+    fetchUpcoming().then((result) => {
+      if (result) setUpcomingmovies(result);
     });
   }, []);
 
@@ -120,8 +149,10 @@ function MyApp() {
   }
 
   async function makeAccount(token) {
+    console.log(token);
     try {
-      const response = await axios.post("http://localhost:5001/users", token);
+      const response = await axios.post("http://localhost:5001/user", token);
+      console.log(response);
       if (!response) {
         return;
       }
@@ -187,7 +218,9 @@ function MyApp() {
           path="/"
           element={
             <Home
-              movieData={movies}
+              PopMovieData={Popmovies}
+              TopMovieData={Topmovies}
+              UpcomingMovieData={Upcomingmovies}
               characterData={characters}
               removeCharacter={removeOneCharacter}
               handleSubmit={updateList}

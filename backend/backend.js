@@ -15,25 +15,40 @@ app.use(express.json());
 //     res.send('Hello World!');
 // });
 
-app.get("/", async (req, res) => {
+app.get("/movies/popular", async (req, res) => {
   try {
-    const name = req.query["name"];
-    if (name) {
-      const result = await axios.request(
-        "https://api.themoviedb.org/3/search/movie/?api_key=" +
-          process.env.API_KEY +
-          "&query=" +
-          name
-      );
-      res.send(result.data.results);
-    } else {
-      const result = await axios.request(
-        "https://api.themoviedb.org/3/movie/popular?api_key=" +
-          process.env.API_KEY +
-          "&language=en-US&page=1"
-      );
-      res.send(result.data.results);
-    }
+    const result = await axios.request(
+      "https://api.themoviedb.org/3/movie/popular?api_key=" +
+        process.env.API_KEY +
+        "&language=en-US&page=1"
+    );
+    res.send(result.data.results);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
+});
+app.get("/movies/top", async (req, res) => {
+  try {
+    const result = await axios.request(
+      "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
+        process.env.API_KEY +
+        "&language=en-US&page=1"
+    );
+    res.send(result.data.results);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
+});
+app.get("/movies/upcoming", async (req, res) => {
+  try {
+    const result = await axios.request(
+      "https://api.themoviedb.org/3/movie/upcoming?api_key=" +
+        process.env.API_KEY +
+        "&language=en-US&page=1"
+    );
+    res.send(result.data.results);
   } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");
@@ -41,33 +56,31 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/search", async (req, res) => {
-    try {
-        const name = req.query["name"];
-        const result = await axios.request(
-            "https://api.themoviedb.org/3/search/movie/?api_key=" +
-              process.env.API_KEY +
-              "&query=" +
-              name
-          );
-        res.send(result.data.results);
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).send("An error ocurred in the server.");
-    }
-})
+  try {
+    const name = req.query["name"];
+    const result = await axios.request(
+      "https://api.themoviedb.org/3/search/movie/?api_key=" +
+        process.env.API_KEY +
+        "&query=" +
+        name
+    );
+    res.send(result.data.results);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
+});
 
 app.get("/users", async (req, res) => {
   const username = req.query["username"];
   const password = req.query["password"];
   try {
     const result = await userServices.getUsers(username, password);
-    console.log({ users_list: result});
-    if ({users_list: result}){
-        res.send({ users_list: result });
-    }
-    else{
-        res.status(500).send("No users found");
+    console.log({ users_list: result });
+    if ({ users_list: result }) {
+      res.send({ users_list: result });
+    } else {
+      res.status(500).send("No users found");
     }
   } catch (error) {
     console.log(error);
@@ -85,7 +98,7 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-app.post("/users", async (req, res) => {
+app.post("/user", async (req, res) => {
   const user = req.body;
   const savedUser = await userServices.addUser(user);
   if (savedUser) res.status(201).send(savedUser);
