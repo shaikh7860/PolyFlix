@@ -12,12 +12,15 @@ import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from "./Pages/SearchResult";
 import SearchBar from "./SearchBar";
 import NavBar from "./NavBar";
+import Login from "./Pages/Login";
+import CreateAccount from "./Pages/CreateAccount";
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
   const [movies, setmovies] = useState([]);
   let [searchResults, setResults] = useState([...movies]);
   const [searchInput, setSearchInput] = useState("");
+  const [token, setToken] = useState();
   const navigate = useNavigate();
 
   async function fetchAll() {
@@ -86,7 +89,9 @@ function MyApp() {
 
   async function fetchSome(name) {
     try {
-      const response = await axios.get("http://localhost:5001/search?name=" + name);
+      const response = await axios.get(
+        "http://localhost:5001/search?name=" + name
+      );
       return response.data;
     } catch (error) {
       console.log(error);
@@ -94,9 +99,75 @@ function MyApp() {
     }
   }
 
+  async function tryLogIn(token) {
+    try {
+      const response = await axios.get(
+        "http://localhost:5001/users?username=" +
+          token["username"] +
+          "&password=" +
+          token["password"]
+      );
+      if (response) {
+        console.log(response.data);
+        updateToken(response.data.users_list[0]);
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  async function makeAccount(token) {
+    try {
+      const response = await axios.post("http://localhost:5001/users", token);
+      if (!response) {
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    updateToken(token);
+  }
+
+  function updateToken(token) {
+    setToken(token);
+    navigate("/");
+  }
+
+  function logOut() {
+    setToken(0);
+    navigate("/");
+  }
+
+  if (!token) {
+    return (
+      <div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <Login handleSubmit={tryLogIn} />
+                <ul>
+                  <Link to="/createaccount">Create an account</Link>
+                </ul>
+              </div>
+            }
+          />
+          <Route
+            path="/createaccount"
+            element={<CreateAccount handleSubmit={makeAccount} />}
+          />
+        </Routes>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
-      {/* <nav>
+      {/*<nav>
       <ul>
          <li><Link to='/profile'>Go to Profile</Link></li>
          <li><Link to='/'>Go Home</Link></li>
@@ -112,8 +183,21 @@ function MyApp() {
     <Form handleSubmit = {updateList} /> */}
 
       <Routes>
-        <Route path="/" element={<Home movieData={movies} />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              movieData={movies}
+              characterData={characters}
+              removeCharacter={removeOneCharacter}
+              handleSubmit={updateList}
+            />
+          }
+        />
+        <Route
+          path="/profile"
+          element={<Profile logOut={logOut} token={token} />}
+        />
         <Route path="/movie/:movieName" element={<Movie />} />
         <Route
           path="/searchResult"
