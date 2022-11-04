@@ -24,31 +24,34 @@ function Login(props) {
     }
     
     return(
-      <form>
-        <label>
-          <p>Username</p>
-          <input 
-            type="text"
-            name="username"
-            id="username"
-            value={token.username}
-            onChange={handleChange}
-           />
-        </label>
-        <label>
-          <p>Password</p>
-          <input 
-            type="password"
-            name="password"
-            id="password"
-            value={token.password}
-            onChange={handleChange}
+      <div>
+        {props.errorMessage}
+        <form>
+            <label>
+            <p>Username</p>
+            <input 
+                type="text"
+                name="username"
+                id="username"
+                value={token.username}
+                onChange={handleChange}
             />
-        </label>
-        <div>
-            <input type="button" value="Log in" onClick={submitForm} />
-        </div>
-      </form>
+            </label>
+            <label>
+            <p>Password</p>
+            <input 
+                type="password"
+                name="password"
+                id="password"
+                value={token.password}
+                onChange={handleChange}
+                />
+            </label>
+            <div>
+                <input type="button" value="Log in" onClick={submitForm} />
+            </div>
+        </form>
+      </div>
     )
 }
 

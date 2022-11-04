@@ -22,6 +22,7 @@ function MyApp() {
   let [searchResults, setResults] = useState([...movies]);
   const [searchInput, setSearchInput] = useState("");
   const [token, setToken] = useState();
+  const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
 
   async function fetchAll() {
@@ -101,12 +102,13 @@ function MyApp() {
   async function tryLogIn(token){
     try {
       const response = await axios.get("http://localhost:5001/users?username=" + token['username'] + "&password=" + token['password']);
-      if (response){
+      if (response && response.status === 200 ){
          console.log(response.data)
          updateToken(response.data.users_list[0])
       }
       else{
-         return false;
+         setLoginError('Invalid Username or Password. Please Try Again');
+         navigate('/');
       }
     } catch (error) {
       console.log(error);
@@ -117,13 +119,19 @@ function MyApp() {
 async function makeAccount(token){
     try {
       const response = await axios.post("http://localhost:5001/users", token);
-      if (!response){
-         return
+      if (response && response.status === 200){
+         updateToken(token);
+      }
+      else if (response && response.status === 400){
+          setLoginError('Username already taken')
+          navigate('/createaccount')
+      }
+      else{
+        return false;
       }
     } catch (error) {
       console.log(error);
     }
-   updateToken(token);
 }
 
 function updateToken(token){
@@ -141,13 +149,16 @@ if (!token){
     <Routes>
       <Route path='/' 
              element={<div>
-                  <Login handleSubmit={tryLogIn}/>
+                  <Login handleSubmit={tryLogIn} errorMessage={loginError}/>
                   <ul>
                      <Link to='/createaccount'>Create an account</Link>
                   </ul>
                </div>
             }/>
-      <Route path="/createaccount" element={<CreateAccount handleSubmit={makeAccount}/>}/>
+      <Route path="/createaccount" element={<div>
+        <CreateAccount handleSubmit={makeAccount}/>
+      </div>
+      }/>
     </Routes>
  </div>
 }

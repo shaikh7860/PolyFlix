@@ -22,7 +22,11 @@ async function getUsers(username, password){
     }
     else {
         throw 'ENTER USERNAME AND PASSWORD'
-    }  
+    }
+    console.log(result.length);  
+    if (result.length === 0){
+        return null;
+    }
     return result;  
 }
 
@@ -55,9 +59,9 @@ async function addUser(user){
     }   
 }
 
-async function findUserByName(name){
+async function findUserByUserName(username){
     const userModel = getDbConnection().model("User", UserSchema);
-    return await userModel.find({'name':name});
+    return await userModel.find({'username':username});
 }
 
 async function findUserByJob(job){
@@ -80,3 +84,4 @@ exports.getUsers = getUsers;
 exports.findUserById = findUserById;
 exports.addUser = addUser;
 exports.removeUserById = removeUserById;
+exports.findUserByUserName = findUserByUserName;

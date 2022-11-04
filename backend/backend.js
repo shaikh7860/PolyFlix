@@ -62,12 +62,13 @@ app.get("/users", async (req, res) => {
   const password = req.query["password"];
   try {
     const result = await userServices.getUsers(username, password);
-    console.log({ users_list: result});
-    if ({users_list: result}){
-        res.send({ users_list: result });
+    //console.log({ users_list: result});
+    if (result){
+        res.status(200).send({ users_list: result });
     }
     else{
-        res.status(500).send("No users found");
+        console.log({ users_list: result});
+        res.status(500).end();
     }
   } catch (error) {
     console.log(error);
@@ -87,9 +88,15 @@ app.get("/users/:id", async (req, res) => {
 
 app.post("/users", async (req, res) => {
   const user = req.body;
-  const savedUser = await userServices.addUser(user);
-  if (savedUser) res.status(201).send(savedUser);
-  else res.status(500).end();
+  const result = await userServices.findUserByUserName(user['username'])
+  if (result.length > 0){
+    console.log(result)
+    res.status(400).end();
+  }else{
+    const savedUser = await userServices.addUser(user);
+    if (savedUser) res.status(200).send(savedUser);
+    else res.status(500).end();
+  }
 });
 
 app.delete("/users/:id", async (req, res) => {
