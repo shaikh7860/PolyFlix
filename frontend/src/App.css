@@ -103,22 +103,50 @@
   }
 
    /* Search Bar */
-   .search input[type=text] {
+   .search-bar input[type=text] {
     position: absolute;
     left: 25%;
     padding: 14px;
-    width: 500px;
+    width: 510px;
+    height: 42px;
   }
-  .search button {
+  .search-button {
     position: absolute;
-    left: 45%;
+    left: 69%;
   }
 
 
+  /* NEW ADDITIONS */
+  /* Movie Text */
+  .description-text{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    word-wrap: break-word
+  }
 
+  .description-header {
+    font-size: 150%;
+    font-weight: bold;
+  }
 
+  .float-container {
+    padding: 10px;
+  }
 
+  .float-child1 {
+    width: 25%;
+    float: left;
+    padding: 20px;
+  }  
+  .float-child2 {
+    width: 75%;
+    float: left;
+    padding: 20px;
+  }  
 
+  .title-format {
+    font-size: 250%;
+    font-weight: bold;
+  }
 
-
- 
