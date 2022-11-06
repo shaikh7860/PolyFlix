@@ -125,27 +125,55 @@ body {
   word-wrap: break-word
 }
 
+.title-format {
+  font-size: 250%;
+  font-weight: bold;
+}
+
 .description-header {
   font-size: 150%;
   font-weight: bold;
 }
 
-.float-container {
+.description-body {
+  position: relative;
+  font-size: 100%;
+  top: 5px;
+  /* font-weight: bold; */
+}
+
+.movie-description {
+  position: relative;
+  font-size: 100%;
+  top: 50x;
+}
+
+.float-container1{
   padding: 10px;
 }
 
+.image-placement{
+  top: -100px;
+}
+
 .float-child1 {
+  position: relative;
   width: 25%;
   float: left;
-  padding: 20px;
+  padding: 0px;
+  top: 35px;
 }  
-.float-child2 {
+.float-child2{
+  position: relative;
   width: 75%;
   float: left;
-  padding: 20px;
+  padding: 0px;
+  top: 35px;
 }  
 
-.title-format {
-  font-size: 250%;
-  font-weight: bold;
+.add-to-favorites-button {
+  position: relative;
+  top: 500x;
+  left: 1000px;
+
 }
