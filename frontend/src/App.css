@@ -192,7 +192,8 @@ body {
   font-size: 175%;
   font-weight: bold;
   right: 290px;
-  top: 50px;
+  top: 20px;
+  /* bottom: 50px; */
 }
 
 .user-reviews-text-box {
@@ -205,4 +206,9 @@ body {
 .user-box {
   position: relative;
   top: 150px;
+}
+
+.post-button {
+  position: relative;
+  top: -30px;
 }

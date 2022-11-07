@@ -73,7 +73,7 @@ const MovieList = (props) => {
                   poster_path: movie.poster_path,
                   overview: movie.overview,
                   release_date: formatDate(movie.release_date),
-                  runtime1: movie.runtime
+                  popularity: movie.popularity
                 },
               })
             }

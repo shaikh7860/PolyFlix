@@ -39,7 +39,7 @@ function Movie() {
           <div class = "description-body"> {location.state.overview} <br /> </div>  <br /> 
           <div class = "movie-description"> <strong> Release Date: </strong> {location.state.release_date} </div> <br /> 
           <div class = "movie-description"> <strong> Rating: </strong> {location.state.vote_average} </div> <br /> 
-          <div class = "movie-description"> <strong> Duration: </strong> {location.state.runtime} </div> 
+          <div class = "movie-description"> <strong> Duration: </strong> {location.state.popularity} </div> 
         </div>
 
 
@@ -74,6 +74,7 @@ function Movie() {
       <label for="freeform"></label><br/>
         <textarea id="freeform" name="freeform" placeholder="Enter Review Here..." rows="4" cols="50"></textarea> <br/> <br/>
       </div>
+      <div class = "post-button"> <input value="Post" class="submit" type="button" onClick="dosomething(this.value);"/> </div>
 
   </div>
 
