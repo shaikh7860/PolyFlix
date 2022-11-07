@@ -14,6 +14,7 @@ import SearchBar from "./SearchBar";
 import NavBar from "./NavBar";
 import Login from "./Pages/Login";
 import CreateAccount from "./Pages/CreateAccount";
+import { useCookies } from "react-cookie";
 
 function MyApp() {
   const [characters, setCharacters] = useState([]);
@@ -24,7 +25,8 @@ function MyApp() {
 
   let [searchResults, setResults] = useState([...movies]);
   const [searchInput, setSearchInput] = useState("");
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
+  const [cookies, setCookie] = useCookies(["username", "password"]);
   const navigate = useNavigate();
 
   async function fetchPopular() {
@@ -149,7 +151,6 @@ function MyApp() {
   }
 
   async function makeAccount(token) {
-    console.log(token);
     try {
       const response = await axios.post("http://localhost:5001/user", token);
       console.log(response);
@@ -164,6 +165,8 @@ function MyApp() {
 
   function updateToken(token) {
     setToken(token);
+    setCookie("username", token["username"], { path: "/" });
+    setCookie("password", token["password"], { path: "/" });
     navigate("/");
   }
 
@@ -172,7 +175,7 @@ function MyApp() {
     navigate("/");
   }
 
-  if (!token) {
+  if (!cookies.password) {
     return (
       <div>
         <Routes>

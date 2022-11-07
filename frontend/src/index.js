@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import MyApp from "./MyApp";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
 /*
 //If you have React v17:
@@ -17,6 +18,8 @@ ReactDOM.render(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <MyApp />
+    <CookiesProvider>
+      <MyApp />
+    </CookiesProvider>
   </BrowserRouter>
 );
