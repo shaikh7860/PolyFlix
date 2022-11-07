@@ -4,8 +4,9 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "./logo.png";
 import "./App.css";
+import SearchBar from "./SearchBar";
 
-function NavBar() {
+function NavBar(props) {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -19,8 +20,11 @@ function NavBar() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/profile">Profile</Nav.Link>
+            <SearchBar handleSubmit={props.handleSubmit} />
           </Nav>
         </Navbar.Collapse>
+
+        {/* <SearchBar handleSubmit={props.handleSubmit} /> */}
       </Container>
     </Navbar>
   );
