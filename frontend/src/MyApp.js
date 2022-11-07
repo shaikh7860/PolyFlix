@@ -26,7 +26,7 @@ function MyApp() {
   let [searchResults, setResults] = useState([...movies]);
   const [searchInput, setSearchInput] = useState("");
   const [token, setToken] = useState(null);
-  const [cookies, setCookie] = useCookies(["username", "password"]);
+  const [cookies, setCookie] = useCookies("name", "username", "password");
   const navigate = useNavigate();
 
   async function fetchPopular() {
@@ -165,13 +165,14 @@ function MyApp() {
 
   function updateToken(token) {
     setToken(token);
-    setCookie("username", token["username"], { path: "/" });
-    setCookie("password", token["password"], { path: "/" });
+    setCookie("name", token["name"], { path: "/", maxAge: "5" });
+    setCookie("username", token["username"], { path: "/", maxAge: "100" });
+    setCookie("password", token["password"], { path: "/", maxAge: "100" });
     navigate("/");
   }
 
   function logOut() {
-    setToken(0);
+    setCookie("password", null);
     navigate("/");
   }
 
@@ -231,7 +232,7 @@ function MyApp() {
         />
         <Route
           path="/profile"
-          element={<Profile logOut={logOut} token={token} />}
+          element={<Profile logOut={logOut} cookies={cookies} />}
         />
         <Route path="/movie/:movieName" element={<Movie />} />
         <Route
