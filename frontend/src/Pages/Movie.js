@@ -65,7 +65,7 @@ function Movie() {
         {/* </div> */}
       {/* </div> */}
 
-    <div>
+    <div class = "user-box">
       <div class = "user-reviews-header"> User Reviews: </div>
 
       <div class = ".user-reviews-text-box">
@@ -73,7 +73,7 @@ function Movie() {
         <textarea id="freeform" name="freeform" placeholder="Enter Review Here..." rows="4" cols="50"></textarea> <br/> <br/>
       </div>
 
-</div>
+  </div>
 
     </div>
 
