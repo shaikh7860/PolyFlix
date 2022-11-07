@@ -12,6 +12,8 @@ function Movie() {
     console.log(val);
   }
 
+  
+
   return (
    // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
     <div>
@@ -35,9 +37,9 @@ function Movie() {
         <div class = "float-child2">  
           <div class = "description-header"> Description: </div> 
           <div class = "description-body"> {location.state.overview} <br /> </div>  <br /> 
-          <div class = "movie-description"> <strong> Year: </strong> {location.state.id} </div> 
-          <div class = "movie-description"> <strong> Rating: </strong> {location.state.id} </div> 
-          <div class = "movie-description"> <strong> Duration: </strong> {location.state.id} </div> 
+          <div class = "movie-description"> <strong> Release Date: </strong> {location.state.release_date} </div> <br /> 
+          <div class = "movie-description"> <strong> Rating: </strong> {location.state.vote_average} </div> <br /> 
+          <div class = "movie-description"> <strong> Duration: </strong> {location.state.runtime} </div> 
         </div>
 
 
