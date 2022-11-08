@@ -1,9 +1,14 @@
 import React from "react";
-import Form from "../Form.js";
-import Table from "../Table.js";
+import NavBar from "../NavBar";
 import MovieList from "../MovieList.js";
+import { useNavigate } from "react-router-dom";
 
 function Home(props) {
+  const navigate = useNavigate();
+  if (!props.cookies.password) {
+    navigate("/");
+  }
+
   return (
     // <div>
     //   THIS IS THE HOME PAGE
@@ -13,6 +18,9 @@ function Home(props) {
     //   <Form handleSubmit = {props.handleSubmit} />
 
     <div>
+      <nav>
+        <NavBar handleSubmit={props.handleSubmit}></NavBar>
+      </nav>
       <br></br>
       <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popular Movies</strong>
       <div class="magic-wrapper">

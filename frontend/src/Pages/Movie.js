@@ -1,12 +1,19 @@
 import React from "react";
-import { useParams, useLocation} from "react-router-dom"
+// import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import NavBar from "../NavBar";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { MDBTextArea } from 'mdb-react-ui-kit';
 
 
-function Movie() {
-  let { movieName } = useParams();
+function Movie(props) {
+  const navigate = useNavigate();
+  // let { movieName } = useParams();
   const location = useLocation();
+  if (!props.cookies.password) {
+    navigate("/");
+  }
 
   function dosomething(val){
     console.log(val);
@@ -15,8 +22,12 @@ function Movie() {
   
 
   return (
-   // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
+    // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
     <div>
+
+      <nav>
+        <NavBar handleSubmit={props.handleSubmit}></NavBar>
+      </nav>
 
       <div class = "float-container1">
       
@@ -81,7 +92,6 @@ function Movie() {
     </div>
 
   );
-
 }
 
 export default Movie;

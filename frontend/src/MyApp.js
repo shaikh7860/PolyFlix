@@ -10,8 +10,8 @@ import Profile from "./Pages/Profile";
 import Movie from "./Pages/Movie";
 import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from "./Pages/SearchResult";
-import SearchBar from "./SearchBar";
-import NavBar from "./NavBar";
+// import SearchBar from "./SearchBar";
+// import NavBar from "./NavBar";
 import Login from "./Pages/Login";
 import CreateAccount from "./Pages/CreateAccount";
 import { useCookies } from "react-cookie";
@@ -72,15 +72,15 @@ function MyApp() {
     });
   }, []);
 
-  async function makePostCall(person) {
-    try {
-      const response = await axios.post("http://localhost:5001/users", person);
-      return response;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
+  // async function makePostCall(person) {
+  //   try {
+  //     const response = await axios.post("http://localhost:5001/users", person);
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //     return false;
+  //   }
+  // }
 
   function removeOneCharacter(index) {
     makeDeleteCall(characters[index]["_id"]).then((result) => {
@@ -101,13 +101,13 @@ function MyApp() {
       return false;
     }
   }
-  function updateList(person) {
-    makePostCall(person).then((result) => {
-      if (result && result.status === 201)
-        setCharacters([...characters, result.data]);
-      navigate("/users-table");
-    });
-  }
+  // function updateList(person) {
+  //   makePostCall(person).then((result) => {
+  //     if (result && result.status === 201)
+  //       setCharacters([...characters, result.data]);
+  //     navigate("/users-table");
+  //   });
+  // }
 
   function searchForMovies(movie) {
     setSearchInput(movie);
@@ -154,21 +154,20 @@ function MyApp() {
     try {
       const response = await axios.post("http://localhost:5001/user", token);
       console.log(response);
-      if (!response) {
-        return;
-      }
     } catch (error) {
       console.log(error);
+      navigate("/createaccount");
+      return;
     }
     updateToken(token);
   }
 
   function updateToken(token) {
     setToken(token);
-    setCookie("name", token["name"], { path: "/", maxAge: "5" });
-    setCookie("username", token["username"], { path: "/", maxAge: "100" });
-    setCookie("password", token["password"], { path: "/", maxAge: "100" });
-    navigate("/");
+    setCookie("name", token["name"], { path: "/", maxAge: "900" });
+    setCookie("username", token["username"], { path: "/", maxAge: "900" });
+    setCookie("password", token["password"], { path: "/", maxAge: "900" });
+    navigate("/home");
   }
 
   function logOut() {
@@ -176,49 +175,34 @@ function MyApp() {
     navigate("/");
   }
 
-  if (!cookies.password) {
-    return (
-      <div>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div>
-                <Login handleSubmit={tryLogIn} />
-                <ul>
-                  <Link to="/createaccount">Create an account</Link>
-                </ul>
-              </div>
-            }
-          />
-          <Route
-            path="/createaccount"
-            element={<CreateAccount handleSubmit={makeAccount} />}
-          />
-        </Routes>
-      </div>
-    );
-  }
-
   return (
     <div className="container">
-      {/*<nav>
-      <ul>
-         <li><Link to='/profile'>Go to Profile</Link></li>
-         <li><Link to='/'>Go Home</Link></li>
-      </ul>
-      <SearchBar handleSubmit={searchForMovies}/>
-      </nav> */}
-      <nav>
-        <NavBar handleSubmit={searchForMovies}></NavBar>
-      </nav>
-
-      {/* <Table characterData={characters} removeCharacter={removeOneCharacter} />
-    <Form handleSubmit = {updateList} /> */}
-
       <Routes>
         <Route
           path="/"
+          element={
+            <div>
+              <Login handleSubmit={tryLogIn} />
+              <ul>
+                <Link to="/createaccount">Create an account</Link>
+              </ul>
+            </div>
+          }
+        />
+        <Route
+          path="/createaccount"
+          element={
+            <div>
+              <CreateAccount handleSubmit={makeAccount} />
+              <ul>
+                <Link to="/">Go back</Link>
+              </ul>
+            </div>
+          }
+        />
+
+        <Route
+          path="/home"
           element={
             <Home
               PopMovieData={Popmovies}
@@ -226,15 +210,25 @@ function MyApp() {
               UpcomingMovieData={Upcomingmovies}
               characterData={characters}
               removeCharacter={removeOneCharacter}
-              handleSubmit={updateList}
+              handleSubmit={searchForMovies}
+              cookies={cookies}
             />
           }
         />
         <Route
           path="/profile"
-          element={<Profile logOut={logOut} cookies={cookies} />}
+          element={
+            <Profile
+              logOut={logOut}
+              cookies={cookies}
+              handleSubmit={searchForMovies}
+            />
+          }
         />
-        <Route path="/movie/:movieName" element={<Movie />} />
+        <Route
+          path="/movie/:movieName"
+          element={<Movie cookies={cookies} handleSubmit={searchForMovies} />}
+        />
         <Route
           path="/searchResult"
           element={
@@ -243,6 +237,8 @@ function MyApp() {
               characterData={characters}
               removeCharacter={removeOneCharacter}
               movieName={searchInput}
+              handleSubmit={searchForMovies}
+              cookies={cookies}
             />
           }
         />
