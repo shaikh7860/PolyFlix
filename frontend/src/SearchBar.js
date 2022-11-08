@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+// import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 
 function SearchBar(props) {
   const [searchInput, setSearchInput] = useState("");
