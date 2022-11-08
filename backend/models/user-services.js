@@ -4,6 +4,11 @@ require("dotenv").config();
 // console.log(process.env)
 let dbConnection;
 
+function setConnection(newConn){
+  dbConnection = newConn;
+  return dbConnection;
+}
+
 function getDbConnection() {
   if (!dbConnection) {
     dbConnection = mongoose.createConnection(process.env.MONGO_URL, {
@@ -54,15 +59,15 @@ async function addUser(user) {
   }
 }
 
-async function findUserByName(name) {
-  const userModel = getDbConnection().model("User", UserSchema);
-  return await userModel.find({ name: name });
-}
+// async function findUserByName(name) {
+//   const userModel = getDbConnection().model("User", UserSchema);
+//   return await userModel.find({ name: name });
+// }
 
-async function findUserByJob(job) {
-  const userModel = getDbConnection().model("User", UserSchema);
-  return await userModel.find({ job: job });
-}
+// async function findUserByJob(job) {
+//   const userModel = getDbConnection().model("User", UserSchema);
+//   return await userModel.find({ job: job });
+// }
 
 async function removeUserById(id) {
   const userModel = getDbConnection().model("User", UserSchema);
@@ -79,3 +84,6 @@ exports.getUsers = getUsers;
 exports.findUserById = findUserById;
 exports.addUser = addUser;
 exports.removeUserById = removeUserById;
+exports.setConnection = setConnection;
+exports.findUser = findUser;
+
