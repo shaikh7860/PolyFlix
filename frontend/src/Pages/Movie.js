@@ -50,7 +50,7 @@ function Movie(props) {
           <div class = "description-body"> {location.state.overview} <br /> </div>  <br /> 
           <div class = "movie-description"> <strong> Release Date: </strong> {location.state.release_date} </div> <br /> 
           <div class = "movie-description"> <strong> Rating: </strong> {location.state.vote_average} </div> <br /> 
-          <div class = "movie-description"> <strong> Duration: </strong> {location.state.popularity} </div> 
+          <div class = "movie-description"> <strong> Duration: </strong> {location.state.runtime} </div> 
         </div>
 
 

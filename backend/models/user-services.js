@@ -4,7 +4,7 @@ require("dotenv").config();
 // console.log(process.env)
 let dbConnection;
 
-function setConnection(newConn){
+function setConnection(newConn) {
   dbConnection = newConn;
   return dbConnection;
 }
@@ -86,4 +86,3 @@ exports.addUser = addUser;
 exports.removeUserById = removeUserById;
 exports.setConnection = setConnection;
 exports.findUser = findUser;
-
