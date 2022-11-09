@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667951345379" clover="3.2.0">
-  <project timestamp="1667951345379" name="All files">
+<coverage generated="1667951445238" clover="3.2.0">
+  <project timestamp="1667951445238" name="All files">
     <metrics statements="44" coveredstatements="42" conditionals="10" coveredconditionals="8" methods="9" coveredmethods="9" elements="63" coveredelements="59" complexity="0" loc="44" ncloc="44" packages="1" files="2" classes="2"/>
-    <file name="user-services.js" path="/Users/alishaikh/Desktop/307/307-Project/backend/models/user-services.js">
+    <file name="user-services.js" path="/Users/berkeleyreynolds/Documents/calpoly/fall2022/csc307/groupProject/307-Project/backend/models/user-services.js">
       <metrics statements="39" coveredstatements="37" conditionals="6" coveredconditionals="4" methods="7" coveredmethods="7"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
@@ -44,7 +44,7 @@
       <line num="87" count="1" type="stmt"/>
       <line num="88" count="1" type="stmt"/>
     </file>
-    <file name="user.js" path="/Users/alishaikh/Desktop/307/307-Project/backend/models/user.js">
+    <file name="user.js" path="/Users/berkeleyreynolds/Documents/calpoly/fall2022/csc307/groupProject/307-Project/backend/models/user.js">
       <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
       <line num="2" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>

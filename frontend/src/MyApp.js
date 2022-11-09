@@ -222,6 +222,7 @@ function MyApp() {
               logOut={logOut}
               cookies={cookies}
               handleSubmit={searchForMovies}
+              PopMovieData={Popmovies}
             />
           }
         />

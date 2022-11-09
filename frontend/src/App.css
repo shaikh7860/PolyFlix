@@ -212,3 +212,55 @@ body {
   position: relative;
   top: -30px;
 }
+
+.profile-page {
+  position: relative;
+  top: 30px;
+}
+
+.profile-header {
+  position: relative;
+  text-align: center;
+  font-size: 300%;
+  font-weight: bold;
+}
+
+.profile-username {
+  position: relative;
+  left: 22px;
+  font-size: 150%;
+}
+
+/* .profile-name-header {
+  position: relative;
+  font-size: 100%;
+  font-weight: bold;
+} */
+
+.profile-username-header {
+  position: relative;
+  font-size: 100%;
+  font-weight: bold;
+  display: inline;
+}
+
+.recent-reviews {
+  position: relative;
+  font-size: 100%;
+  left: 22px;
+}
+
+.recent-reviews-header {
+  position: relative;
+  font-size: 150%;
+  font-weight: bold;
+}
+
+.log-out-button {
+  position: relative;
+  top: 50px;
+  left: 22px;
+}
+
+
+
