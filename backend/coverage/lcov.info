@@ -1,5 +1,5 @@
 TN:
-SF:models/user-services.js
+SF:user-services.js
 FN:7,setConnection
 FN:12,getDbConnection
 FN:22,getUsers
@@ -67,7 +67,7 @@ BRF:6
 BRH:4
 end_of_record
 TN:
-SF:models/user.js
+SF:user.js
 FN:14,(anonymous_0)
 FN:22,(anonymous_1)
 FNF:2
