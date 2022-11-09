@@ -2,9 +2,13 @@ name: Node.js CI
 
 on:
   push:
-    branches: [dev-branch, main]
+    branches: [dev_branch, main]
   pull_request:
-    branches: [dev-branch, main]
+    branches: [dev_branch, main]
+
+defaults:
+  run:
+    working-directory: ./backend
 
 jobs:
   build:
