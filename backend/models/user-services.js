@@ -20,7 +20,7 @@ function getDbConnection() {
 }
 
 async function getUsers(username, password) {
-  const userModel = getDbConnection().model("User", UserSchema);
+  // const userModel = getDbConnection().model("User", UserSchema);
   let result;
   if (username && password) {
     result = await findUser(username, password);
@@ -34,15 +34,15 @@ async function findUser(username, password) {
   const userModel = getDbConnection().model("User", UserSchema);
   return await userModel.find({ username: username, password: password });
 }
-async function findUserById(id) {
-  const userModel = getDbConnection().model("User", UserSchema);
-  try {
-    return await userModel.findById(id);
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
-}
+// async function findUserById(id) {
+//   const userModel = getDbConnection().model("User", UserSchema);
+//   try {
+//     return await userModel.findById(id);
+//   } catch (error) {
+//     console.log(error);
+//     return undefined;
+//   }
+// }
 
 async function addUser(user) {
   // userModel is a Model, a subclass of mongoose.Model
@@ -69,20 +69,20 @@ async function addUser(user) {
 //   return await userModel.find({ job: job });
 // }
 
-async function removeUserById(id) {
-  const userModel = getDbConnection().model("User", UserSchema);
-  try {
-    const result = await userModel.findByIdAndDelete(id);
-    return result;
-  } catch (error) {
-    console.log(error);
-    return -1;
-  }
-}
+// async function removeUserById(id) {
+//   const userModel = getDbConnection().model("User", UserSchema);
+//   try {
+//     const result = await userModel.findByIdAndDelete(id);
+//     return result;
+//   } catch (error) {
+//     console.log(error);
+//     return -1;
+//   }
+// }
 
 exports.getUsers = getUsers;
-exports.findUserById = findUserById;
+// exports.findUserById = findUserById;
 exports.addUser = addUser;
-exports.removeUserById = removeUserById;
+// exports.removeUserById = removeUserById;
 exports.setConnection = setConnection;
 exports.findUser = findUser;
