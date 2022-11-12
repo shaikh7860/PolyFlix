@@ -5,7 +5,6 @@ function TableHeader() {
   return (
     <thead>
       <tr>
-        <th>ID</th>
         <th>Title</th>
         <th>Rating</th>
         <th>Image</th>
@@ -21,7 +20,6 @@ function TableBody(props) {
   const rows = props.movieData.map((row, index) => {
     return (
       <tr key={index}>
-        <td>{row.id}</td>
         <td>{row.title}</td>
         <td>{row.vote_average}</td>
         <td>
@@ -29,9 +27,6 @@ function TableBody(props) {
             src={"http://image.tmdb.org/t/p/w92/" + row.poster_path}
             alt={""}
           />
-        </td>
-        <td>
-          <button onClick={() => props.removeCharacter(index)}>Delete</button>
         </td>
         <td>
           <button

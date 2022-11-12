@@ -236,7 +236,6 @@ function MyApp() {
             <SearchResult
               movieData={searchResults}
               characterData={characters}
-              removeCharacter={removeOneCharacter}
               movieName={searchInput}
               handleSubmit={searchForMovies}
               cookies={cookies}

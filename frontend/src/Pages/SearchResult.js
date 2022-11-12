@@ -19,7 +19,6 @@ function SearchResult(props) {
         <Table
           movieData={props.movieData}
           characterData={props.characterData}
-          removeCharacter={props.removeCharacter}
         />
       </div>
     );
