@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
       validate(value) {
         if (value.length < 2) throw new Error("Invalid salt.");
       },
-    }
+    },
   },
   { collection: "users_list" }
 );
