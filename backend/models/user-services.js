@@ -51,6 +51,9 @@ async function getUsers(username, password) {
 async function findUser(username, password) {
   const userModel = getDbConnection().model("User", UserSchema);
   let user = await userModel.findOne({ username: username });
+  if (!user || !password) {
+    return null;
+  }
   let compare = (userpassword, hashedpassword, salt) => {
     let passwordData = hasher(userpassword, salt);
     if (passwordData.hashedpassword === hashedpassword) {
@@ -61,7 +64,7 @@ async function findUser(username, password) {
   if (compare(password, user.password, user.salt)) {
     return user;
   } else {
-    return false;
+    return null;
   }
 }
 // async function findUserById(id) {
@@ -76,6 +79,9 @@ async function findUser(username, password) {
 
 async function addUser(user) {
   // userModel is a Model, a subclass of mongoose.Model
+  if (!user.password || user.password.length < 2) {
+    return false;
+  }
   hashedObject = hasher(user.password, generateSalt(12));
   user.password = hashedObject.hashedpassword;
   user.salt = hashedObject.salt;
