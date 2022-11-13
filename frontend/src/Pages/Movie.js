@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { MDBTextArea } from 'mdb-react-ui-kit';
+import { useState } from "react";
 
 
 function Movie(props) {
@@ -15,11 +16,16 @@ function Movie(props) {
     navigate("/");
   }
 
+  const [favButtonText, setFavButtonText] = useState('Add to Favorites');
+
   function dosomething(val){
     console.log(val);
   }
 
-  
+  function handleFavorites(movie){
+    setFavButtonText('Favorite');
+    props.addToFavorites(movie);
+  }
 
   return (
     // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
@@ -33,8 +39,8 @@ function Movie(props) {
       
         <div class = "title-format"> {location.state.title} <br /> 
         <div class="add-to-favorites-button">
-          <Button variant="danger" onClick="dosomething(this.value)">
-            Add to Favorites
+          <Button variant="danger" onClick={() => handleFavorites(location)}>
+            {favButtonText}
           </Button>
         </div>
         

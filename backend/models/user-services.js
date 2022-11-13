@@ -59,6 +59,18 @@ async function addUser(user) {
   }
 }
 
+async function pushFavMovie(userId, movie) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    return await userModel.updateOne(
+      { _id: userId },
+      { $push: { favmovies: movie } }
+    );
+  } catch {
+    return null;
+  }
+}
+
 // async function findUserByName(name) {
 //   const userModel = getDbConnection().model("User", UserSchema);
 //   return await userModel.find({ name: name });
@@ -86,3 +98,4 @@ exports.addUser = addUser;
 // exports.removeUserById = removeUserById;
 exports.setConnection = setConnection;
 exports.findUser = findUser;
+exports.pushFavMovie = pushFavMovie;

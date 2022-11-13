@@ -162,6 +162,11 @@ function MyApp() {
     updateToken(token);
   }
 
+  async function addToFavorites(movie) {
+    const response = await axios.put("http://localhost:5001/user/" + token["_id"], movie);
+    return response;
+  }
+
   function updateToken(token) {
     setToken(token);
     setCookie("name", token["name"], { path: "/", maxAge: "900" });
@@ -228,7 +233,12 @@ function MyApp() {
         />
         <Route
           path="/movie/:movieName"
-          element={<Movie cookies={cookies} handleSubmit={searchForMovies} />}
+          element={<Movie 
+                      cookies={cookies} 
+                      handleSubmit={searchForMovies} 
+                      addToFavorites={addToFavorites}
+                    />
+                  }
         />
         <Route
           path="/searchResult"

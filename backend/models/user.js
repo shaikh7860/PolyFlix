@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema(
         if (value.length < 2) throw new Error("Invalid password.");
       },
     },
+    favmovies: {
+      type: Array,
+      default: [],
+    },
   },
   { collection: "users_list" }
 );
