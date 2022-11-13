@@ -76,7 +76,7 @@ app.get("/users", async (req, res) => {
   const password = req.query["password"];
   try {
     const result = await userServices.getUsers(username, password);
-    console.log({ users_list: result });
+    // console.log({ users_list: result });
     if ({ users_list: result }) {
       res.send({ users_list: result });
     } else {

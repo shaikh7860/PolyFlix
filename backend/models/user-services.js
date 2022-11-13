@@ -1,8 +1,23 @@
 const mongoose = require("mongoose");
 const UserSchema = require("./user");
+let crypto = require("crypto")
 require("dotenv").config();
 // console.log(process.env)
 let dbConnection;
+
+let generateSalt = rounds => {
+  return crypto.randomBytes(Math.ceil(rounds / 2)).toString('hex').slice(0, rounds);
+};
+
+let hasher = (password, salt) => {
+  let hash = crypto.createHmac('sha512', salt);
+  hash.update(password);
+  let value = hash.digest('hex');
+  return {
+      salt: salt,
+      hashedpassword: value
+  };
+};
 
 function setConnection(newConn) {
   dbConnection = newConn;
@@ -32,7 +47,20 @@ async function getUsers(username, password) {
 
 async function findUser(username, password) {
   const userModel = getDbConnection().model("User", UserSchema);
-  return await userModel.find({ username: username, password: password });
+  let user = await userModel.findOne({ username: username});
+  let compare = (userpassword, hashedpassword, salt) => {
+    let passwordData = hasher(userpassword, salt);
+    if (passwordData.hashedpassword === hashedpassword) {
+        return true;
+    }
+    return false;
+  }
+  if(compare(password,user.password, user.salt)){
+    return user;
+  }
+  else{
+    return false;
+  }
 }
 // async function findUserById(id) {
 //   const userModel = getDbConnection().model("User", UserSchema);
@@ -46,6 +74,9 @@ async function findUser(username, password) {
 
 async function addUser(user) {
   // userModel is a Model, a subclass of mongoose.Model
+  hashedObject = hasher(user.password, generateSalt(12))
+  user.password = hashedObject.hashedpassword
+  user.salt = hashedObject.salt
   const userModel = getDbConnection().model("User", UserSchema);
   try {
     // You can use a Model to create new documents using 'new' and

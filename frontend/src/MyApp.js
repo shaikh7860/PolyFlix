@@ -140,7 +140,7 @@ function MyApp() {
       );
       if (response) {
         console.log(response.data);
-        updateToken(response.data.users_list[0]);
+        updateToken(response.data.users_list);
       } else {
         return false;
       }
@@ -153,13 +153,13 @@ function MyApp() {
   async function makeAccount(token) {
     try {
       const response = await axios.post("http://localhost:5001/user", token);
-      console.log(response);
+      updateToken(response.data);
     } catch (error) {
       console.log(error);
       navigate("/createaccount");
       return;
     }
-    updateToken(token);
+    // updateToken(response.data);
   }
 
   function updateToken(token) {

@@ -18,11 +18,17 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      trim: true,
       validate(value) {
         if (value.length < 2) throw new Error("Invalid password.");
       },
     },
+    salt: {
+      type: String,
+      required: true,
+      validate(value) {
+        if (value.length < 2) throw new Error("Invalid salt.");
+      },
+    }
   },
   { collection: "users_list" }
 );
