@@ -20,7 +20,7 @@ app.get("/movies/popular", async (req, res) => {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/popular?api_key=" +
         process.env.API_KEY +
-        "&language=en-US&page=1"
+        "&language=en-US&page=1&region=US"
     );
     res.send(result.data.results);
   } catch (error) {
@@ -33,7 +33,7 @@ app.get("/movies/top", async (req, res) => {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
         process.env.API_KEY +
-        "&language=en-US&page=1"
+        "&language=en-US&page=1&region=US"
     );
     res.send(result.data.results);
   } catch (error) {
@@ -46,7 +46,7 @@ app.get("/movies/upcoming", async (req, res) => {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/upcoming?api_key=" +
         process.env.API_KEY +
-        "&language=en-US&page=1"
+        "&language=en-US&page=1&region=US"
     );
     res.send(result.data.results);
   } catch (error) {
