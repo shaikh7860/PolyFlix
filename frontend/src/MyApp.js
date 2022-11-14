@@ -154,12 +154,12 @@ function MyApp() {
     try {
       const response = await axios.post("http://localhost:5001/user", token);
       console.log(response);
+      updateToken(response.data);
     } catch (error) {
       console.log(error);
       navigate("/createaccount");
       return;
     }
-    updateToken(token);
   }
 
   async function addToFavorites(movie) {
