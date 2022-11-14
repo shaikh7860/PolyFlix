@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { useParams, useLocation } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NavBar from "../NavBar";
@@ -17,14 +17,35 @@ function Movie(props) {
   }
 
   const [favButtonText, setFavButtonText] = useState('Add to Favorites');
+  const [favButtonDisabled, changeDisabled] = useState(false);
+
+  useEffect(() => {
+    props.getFavMovies(props.cookies.id).then((result) => {
+      if (result){
+        console.log(result);
+        for (let i = 0; i < result.length; i++){
+          console.log(result[i].id);
+          console.log('checking above id')
+          if (location.state.id === result[i].id){
+            console.log('match found');
+            setFavButtonText('Favorite');
+            changeDisabled(true);
+          }
+        }
+      } 
+    });
+
+  }, [])
+
 
   function dosomething(val){
     console.log(val);
   }
 
   function handleFavorites(movie){
-    setFavButtonText('Favorite');
     props.addToFavorites(movie);
+    setFavButtonText('Favorited');
+    changeDisabled(true);
   }
 
   return (
@@ -39,7 +60,7 @@ function Movie(props) {
       
         <div class = "title-format"> {location.state.title} <br /> 
         <div class="add-to-favorites-button">
-          <Button variant="danger" onClick={() => handleFavorites(location)}>
+          <Button disabled={favButtonDisabled} variant="danger" onClick={() => handleFavorites(location.state)}>
             {favButtonText}
           </Button>
         </div>

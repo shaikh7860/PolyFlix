@@ -1,3 +1,4 @@
+const { response } = require("express");
 const mongoose = require("mongoose");
 const UserSchema = require("./user");
 require("dotenv").config();
@@ -34,15 +35,17 @@ async function findUser(username, password) {
   const userModel = getDbConnection().model("User", UserSchema);
   return await userModel.find({ username: username, password: password });
 }
-// async function findUserById(id) {
-//   const userModel = getDbConnection().model("User", UserSchema);
-//   try {
-//     return await userModel.findById(id);
-//   } catch (error) {
-//     console.log(error);
-//     return undefined;
-//   }
-// }
+async function findUserById(id) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    const response = await userModel.findById(id);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
 
 async function addUser(user) {
   // userModel is a Model, a subclass of mongoose.Model
@@ -93,7 +96,7 @@ async function pushFavMovie(userId, movie) {
 // }
 
 exports.getUsers = getUsers;
-// exports.findUserById = findUserById;
+exports.findUserById = findUserById;
 exports.addUser = addUser;
 // exports.removeUserById = removeUserById;
 exports.setConnection = setConnection;

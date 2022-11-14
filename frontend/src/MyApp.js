@@ -26,7 +26,7 @@ function MyApp() {
   let [searchResults, setResults] = useState([...movies]);
   const [searchInput, setSearchInput] = useState("");
   const [token, setToken] = useState(null);
-  const [cookies, setCookie] = useCookies("name", "username", "password");
+  const [cookies, setCookie] = useCookies("name", "username", "password", "id");
   const navigate = useNavigate();
 
   async function fetchPopular() {
@@ -163,16 +163,36 @@ function MyApp() {
   }
 
   async function addToFavorites(movie) {
-    const response = await axios.put("http://localhost:5001/user/" + token["_id"], movie);
-    return response;
+    console.log(cookies.id);
+    const response = await axios.put("http://localhost:5001/user/" + cookies.id, movie);
+    if (response){
+      const userRes = await axios.get("http://localhost:5001/users/" + cookies.id);
+      console.log(userRes.data.users_list);
+      updateToken(userRes.data.users_list, false);
+      return userRes;
+    }
   }
 
-  function updateToken(token) {
+  async function getFavMovies(id){
+    const userRes = await axios.get("http://localhost:5001/users/" + id);
+    if (userRes){
+      console.log('favorites found:');
+      console.log(userRes.data.users_list["favmovies"])
+      return userRes.data.users_list["favmovies"];
+    }else{
+      return [];
+    }
+  }
+
+  function updateToken(token, goHome=true) {
     setToken(token);
     setCookie("name", token["name"], { path: "/", maxAge: "900" });
     setCookie("username", token["username"], { path: "/", maxAge: "900" });
     setCookie("password", token["password"], { path: "/", maxAge: "900" });
-    navigate("/home");
+    setCookie("id", token["_id"], { path: "/", maxAge: "900" });
+    if (goHome){
+      navigate("/home");
+    }
   }
 
   function logOut() {
@@ -227,7 +247,8 @@ function MyApp() {
               logOut={logOut}
               cookies={cookies}
               handleSubmit={searchForMovies}
-              PopMovieData={Popmovies}
+              PopMovieData={cookies.favmovies}
+              getFavMovies={getFavMovies}
             />
           }
         />
@@ -237,6 +258,7 @@ function MyApp() {
                       cookies={cookies} 
                       handleSubmit={searchForMovies} 
                       addToFavorites={addToFavorites}
+                      getFavMovies={getFavMovies}
                     />
                   }
         />

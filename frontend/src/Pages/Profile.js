@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar";
 import { useNavigate } from "react-router-dom";
 import MovieList from "../MovieList";
 
 function Profile(props) {
   const navigate = useNavigate();
+  const [favmovies, setFavMovies] = useState([]);
   if (!props.cookies.password) {
     navigate("/");
   }
 
+  useEffect(() => {
+    props.getFavMovies(props.cookies.id).then((result) => {
+      if (result) setFavMovies(result);
+    });
+  }, [])
   return (
     <div>
       <nav>
@@ -26,11 +32,11 @@ function Profile(props) {
           <br></br>
         </div>
 
-        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popular Movies</strong>
+        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favorites</strong>
         <div class="magic-wrapper">
           <div className="container-fluid movie-app">
             <div className="row">
-              <MovieList movieData={props.PopMovieData} />
+              <MovieList movieData={favmovies} />
             </div>
           </div>
         </div>

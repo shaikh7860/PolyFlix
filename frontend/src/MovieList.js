@@ -54,6 +54,7 @@ function formatDate(date) {
 
 const MovieList = (props) => {
   const navigate = useNavigate();
+  console.log(props.movieData)
   return (
     <>
       {props.movieData.map((movie, index) => (
