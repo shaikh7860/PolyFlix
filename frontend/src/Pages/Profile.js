@@ -11,8 +11,12 @@ function Profile(props) {
   }
 
   useEffect(() => {
+    console.log(props.cookies.id);
     props.getFavMovies(props.cookies.id).then((result) => {
-      if (result) setFavMovies(result);
+      if (result){
+        console.log(result);
+        setFavMovies(result);
+      } 
     });
   }, [])
   return (

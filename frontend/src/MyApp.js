@@ -153,6 +153,7 @@ function MyApp() {
   async function makeAccount(token) {
     try {
       const response = await axios.post("http://localhost:5001/user", token);
+      console.log(response.data);
       updateToken(response.data);
     } catch (error) {
       console.log(error);
