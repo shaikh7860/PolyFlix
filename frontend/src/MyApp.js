@@ -31,7 +31,7 @@ function MyApp() {
 
   async function fetchPopular() {
     try {
-      const response = await axios.get("http://localhost:5001/movies/popular");
+      const response = await axios.get("https://polyflix.azurewebsites.net/movies/popular"); // http://localhost:5001/movies/popular
       return response.data;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -41,7 +41,7 @@ function MyApp() {
   }
   async function fetchTop() {
     try {
-      const response = await axios.get("http://localhost:5001/movies/top");
+      const response = await axios.get("https://polyflix.azurewebsites.net/movies/top"); // http://localhost:5001/movies/top
       return response.data;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -51,7 +51,7 @@ function MyApp() {
   }
   async function fetchUpcoming() {
     try {
-      const response = await axios.get("http://localhost:5001/movies/upcoming");
+      const response = await axios.get("https://polyflix.azurewebsites.net/movies/upcoming"); // http://localhost:5001/movies/upcoming
       return response.data;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -94,7 +94,7 @@ function MyApp() {
   }
   async function makeDeleteCall(id) {
     try {
-      const response = await axios.delete(`http://localhost:5001/users/${id}`);
+      const response = await axios.delete(`https://polyflix.azurewebsites.net/users/${id}`); // http://localhost:5001/users/${id}
       return response;
     } catch (error) {
       console.log(error);
@@ -133,7 +133,7 @@ function MyApp() {
   async function tryLogIn(token) {
     try {
       const response = await axios.get(
-        "http://localhost:5001/users?username=" +
+        "https://polyflix.azurewebsites.net/users?username= " + // http://localhost:5001/users?username=
           token["username"] +
           "&password=" +
           token["password"]
@@ -152,7 +152,7 @@ function MyApp() {
 
   async function makeAccount(token) {
     try {
-      const response = await axios.post("http://localhost:5001/user", token);
+      const response = await axios.post("https://polyflix.azurewebsites.net/user", token); // http://localhost:5001/user
       console.log(response);
     } catch (error) {
       console.log(error);
