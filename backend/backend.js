@@ -106,13 +106,9 @@ app.post("/user", async (req, res) => {
 });
 
 app.put("/user/:id", async (req, res) => {
-  console.log("Hi");
   const movie = req.body;
   const userId = req.params["id"];
-  console.log(userId);
-  console.log(movie);
   const updatedUser = await userServices.pushFavMovie(userId, movie);
-  console.log(updatedUser);
   if (updatedUser) res.status(201).send(updatedUser);
   else res.status(500).end();
 });

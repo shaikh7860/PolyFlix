@@ -153,7 +153,6 @@ function MyApp() {
   async function makeAccount(token) {
     try {
       const response = await axios.post("http://localhost:5001/user", token);
-      console.log(response);
       updateToken(response.data);
     } catch (error) {
       console.log(error);
@@ -163,11 +162,9 @@ function MyApp() {
   }
 
   async function addToFavorites(movie) {
-    console.log(cookies.id);
     const response = await axios.put("http://localhost:5001/user/" + cookies.id, movie);
     if (response){
       const userRes = await axios.get("http://localhost:5001/users/" + cookies.id);
-      console.log(userRes.data.users_list);
       updateToken(userRes.data.users_list, false);
       return userRes;
     }
@@ -176,8 +173,6 @@ function MyApp() {
   async function getFavMovies(id){
     const userRes = await axios.get("http://localhost:5001/users/" + id);
     if (userRes){
-      console.log('favorites found:');
-      console.log(userRes.data.users_list["favmovies"])
       return userRes.data.users_list["favmovies"];
     }else{
       return [];

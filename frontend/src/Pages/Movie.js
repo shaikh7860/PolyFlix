@@ -22,7 +22,6 @@ function Movie(props) {
   useEffect(() => {
     props.getFavMovies(props.cookies.id).then((result) => {
       if (result){
-        console.log(result);
         for (let i = 0; i < result.length; i++){
           console.log(result[i].id);
           console.log('checking above id')

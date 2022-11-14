@@ -39,7 +39,6 @@ async function findUserById(id) {
   const userModel = getDbConnection().model("User", UserSchema);
   try {
     const response = await userModel.findById(id);
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
