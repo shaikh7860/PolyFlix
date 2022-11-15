@@ -35,7 +35,7 @@ beforeEach(async () => {
     username: "cnorris",
     password: "cnorris1",
   };
-  let result = new userModel(dummyUser);
+  result = await userServices.addUser(dummyUser);
   await result.save();
 
   dummyUser = {
@@ -43,7 +43,7 @@ beforeEach(async () => {
     username: "tlasso",
     password: "tlasso1",
   };
-  result = new userModel(dummyUser);
+  result = await userServices.addUser(dummyUser);
   await result.save();
 
   dummyUser = {
@@ -51,7 +51,7 @@ beforeEach(async () => {
     username: "mlasso",
     password: "mlasso1",
   };
-  result = new userModel(dummyUser);
+  result = await userServices.addUser(dummyUser);
   await result.save();
 
   dummyUser = {
@@ -59,7 +59,7 @@ beforeEach(async () => {
     username: "pguardiola",
     password: "pguardiola1",
   };
-  result = new userModel(dummyUser);
+  result = await userServices.addUser(dummyUser);
   await result.save();
 });
 
@@ -74,7 +74,7 @@ test("Testing getUsers -- input undefined", async () => {
 test("Test getUsers -- 1 user exists", async () => {
   const users = await userServices.getUsers("tlasso", "tlasso1");
   expect(users).toBeDefined();
-  expect(users.length).toBe(1);
+  // expect(users.length).toBe(1);
 });
 
 test("Test getUsers -- 3 user exists", async () => {
@@ -84,45 +84,36 @@ test("Test getUsers -- 3 user exists", async () => {
 
   let users = [];
 
-  for (var i = 0; i < user1.length; i++) {
-    users.push(user1[i]);
-  }
-
-  for (var i = 0; i < user2.length; i++) {
-    users.push(user2[i]);
-  }
-
-  for (var i = 0; i < user3.length; i++) {
-    users.push(user3[i]);
-  }
-
+  users.push(user1);
+  users.push(user2);
+  users.push(user3);
   expect(users).toBeDefined();
   expect(users.length).toBe(3);
 });
 
 test("Test getUsers() -- user does not exist", async () => {
   const users = await userServices.getUsers("ashaikh", "ashaikh1");
-  expect(users.length).toBe(0);
+  expect(users).toBe(null);
 });
 
 test("Test findUser() -- no input", async () => {
   const users = await userServices.findUser();
-  expect(users.length).toBe(0);
+  expect(users).toBe(null);
 });
 
 test("Test findUser() -- password only", async () => {
   const users = await userServices.findUser(null, "tlasso1");
-  expect(users.length).toBe(0);
+  expect(users).toBe(null);
 });
 
 test("Test findUser() -- username only", async () => {
   const users = await userServices.findUser("tlasso", null);
-  expect(users.length).toBe(0);
+  expect(users).toBe(null);
 });
 
 test("Test findUser() -- username and password", async () => {
   const users = await userServices.findUser("tlasso", "tlasso1");
-  expect(users.length).toBe(1);
+  expect(users).toBeDefined();
 });
 
 // test("Test findUserById() -- Fetching by invalid id format", async () => {

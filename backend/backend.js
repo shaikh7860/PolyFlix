@@ -20,7 +20,7 @@ app.get("/movies/popular", async (req, res) => {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/popular?api_key=" +
         process.env.API_KEY +
-        "&language=en-US&page=1"
+        "&language=en-US&page=1&region=US"
     );
     res.send(result.data.results);
   } catch (error) {
@@ -33,7 +33,7 @@ app.get("/movies/top", async (req, res) => {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
         process.env.API_KEY +
-        "&language=en-US&page=1"
+        "&language=en-US&page=1&region=US"
     );
     res.send(result.data.results);
   } catch (error) {
@@ -46,7 +46,7 @@ app.get("/movies/upcoming", async (req, res) => {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/upcoming?api_key=" +
         process.env.API_KEY +
-        "&language=en-US&page=1"
+        "&language=en-US&page=1&region=US"
     );
     res.send(result.data.results);
   } catch (error) {
@@ -62,7 +62,7 @@ app.get("/search", async (req, res) => {
       "https://api.themoviedb.org/3/search/movie/?api_key=" +
         process.env.API_KEY +
         "&query=" +
-        name
+        name 
     );
     res.send(result.data.results);
   } catch (error) {
@@ -76,7 +76,7 @@ app.get("/users", async (req, res) => {
   const password = req.query["password"];
   try {
     const result = await userServices.getUsers(username, password);
-    console.log({ users_list: result });
+    // console.log({ users_list: result });
     if ({ users_list: result }) {
       res.send({ users_list: result });
     } else {
