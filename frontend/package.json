@@ -9,10 +9,12 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.2",
     "mdb-react-ui-kit": "^5.0.0",
+    "movie-trailer": "^2.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
+    "react-player": "^2.11.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"

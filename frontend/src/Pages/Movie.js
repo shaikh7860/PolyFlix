@@ -6,8 +6,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { MDBTextArea } from 'mdb-react-ui-kit';
 
+import { useState } from 'react';
+import ReactPlayer from 'react-player';
+import movieTrailer from 'movie-trailer';
+const axios = require("axios");
 
 function Movie(props) {
+  
   const navigate = useNavigate();
   // let { movieName } = useParams();
   const location = useLocation();
@@ -15,11 +20,31 @@ function Movie(props) {
     navigate("/");
   }
 
-  function dosomething(val){
-    console.log(val);
+  async function getMovieTrailer(movieID) {
+    console.log("inside func: " +movieID);
+    
+    const result = await axios.request(
+      "https://api.themoviedb.org/3/movie/"+movieID+"/videos?api_key=" +
+      "a4f5ca3d995fae36deb0e8691ab2d880"+"&language=en-US"+"&append_to_response=videos"
+    );
+    var str = JSON.stringify(result.data);
+    console.log("after axios: " + str);
+    console.log("FINAL: "+result.data.results[0].key)
+    
+    var y = result.data.results[0].key;
+    console.log("Y: "+y);
+    location.state.movieTrailer = String(result.data.results[0].key);
   }
 
+  getMovieTrailer(location.state.id)
+  // code to implement trailers on movie page //
+  // const [video, setVideo] = useState("inception");
+  // const [videoURL, setVideoURL] = useState("https://youtu.be/sa91-dTv9Gk");
+
+  // setVideo(location.state.title);
+  // movieTrailer(video).then((res) => {setVideoURL(res)});
   
+
 
   return (
     // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
@@ -33,7 +58,7 @@ function Movie(props) {
       
         <div class = "title-format"> {location.state.title} <br /> 
         <div class="add-to-favorites-button">
-          <Button variant="danger" onClick="dosomething(this.value)">
+          <Button variant="danger" style={{ color: "red"}} onClick="dosomething(this.value)">
             Add to Favorites
           </Button>
         </div>
@@ -51,8 +76,9 @@ function Movie(props) {
           <div class = "movie-description"> <strong> Release Date: </strong> {location.state.release_date} </div> <br /> 
           <div class = "movie-description"> <strong> Rating: </strong> {location.state.vote_average} </div> <br /> 
           <div class = "movie-description"> <strong> Duration: </strong> {location.state.runtime} </div> 
+          {/* <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QBmre1vaLwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
         </div>
-
+       
 
           {/* ID: {location.state.id } <br />
           Vote Average: {location.state.vote_average} <br /> */}
@@ -77,6 +103,10 @@ function Movie(props) {
             </Button> */}
         {/* </div> */}
       {/* </div> */}
+
+      <div>
+          <ReactPlayer url={"https://www.youtube.com/watch?v="+location.state.movieTrailer} controls={true} />
+      </div>
 
     <div class = "user-box">
       <div class = "user-reviews-header"> User Reviews: </div>

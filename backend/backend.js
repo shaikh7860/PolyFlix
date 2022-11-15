@@ -20,7 +20,7 @@ app.get("/movies/popular", async (req, res) => {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/popular?api_key=" +
         process.env.API_KEY +
-        "&language=en-US&page=1"
+        "&language=en-US&page=1" 
     );
     res.send(result.data.results);
   } catch (error) {
@@ -62,7 +62,7 @@ app.get("/search", async (req, res) => {
       "https://api.themoviedb.org/3/search/movie/?api_key=" +
         process.env.API_KEY +
         "&query=" +
-        name
+        name 
     );
     res.send(result.data.results);
   } catch (error) {
