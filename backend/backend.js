@@ -62,7 +62,7 @@ app.get("/search", async (req, res) => {
       "https://api.themoviedb.org/3/search/movie/?api_key=" +
         process.env.API_KEY +
         "&query=" +
-        name 
+        name
     );
     res.send(result.data.results);
   } catch (error) {
