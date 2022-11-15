@@ -15,13 +15,12 @@ function Profile(props) {
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
       <div class="profile-page">
-        <div class="profile-header">
-          PROFILE
-        </div>
+        <div class="profile-header">PROFILE</div>
 
         <div class="profile-username">
           {/* <span class="profile-name-header">Name: </span> {props.cookies.name} */}
-          <div class="profile-username-header">Username: </div> {props.cookies.username} 
+          <div class="profile-username-header">Username: </div>{" "}
+          {props.cookies.username}
           <br></br>
           <br></br>
         </div>
@@ -37,16 +36,13 @@ function Profile(props) {
         <br></br>
 
         <div class="recent-reviews">
-          <div class="recent-reviews-header">
-            Recent Reviews
-          </div>
+          <div class="recent-reviews-header">Recent Reviews</div>
         </div>
 
         <div class="log-out-button">
           <input type="button" value="Log Out" onClick={props.logOut} />
         </div>
       </div>
-
     </div>
   );
 }

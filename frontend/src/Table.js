@@ -44,7 +44,7 @@ function TableBody(props) {
                   poster_path: row.poster_path,
                   overview: row.overview,
                   runtime: row.runtime,
-                  release_date: row.release_date
+                  release_date: row.release_date,
                 },
               })
             }
