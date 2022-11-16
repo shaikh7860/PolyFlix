@@ -9,7 +9,11 @@ import { MDBTextArea } from 'mdb-react-ui-kit';
 import { useState } from 'react';
 import ReactPlayer from 'react-player';
 import movieTrailer from 'movie-trailer';
+
+
 const axios = require("axios");
+
+
 
 function Movie(props) {
   
@@ -34,15 +38,14 @@ function Movie(props) {
     var y = result.data.results[0].key;
     console.log("Y: "+y);
     location.state.movieTrailer = String(result.data.results[0].key);
+    console.log("MOVIE RUNTIME: "+ JSON.stringify(location.state));
   }
 
   getMovieTrailer(location.state.id)
-  // code to implement trailers on movie page //
-  // const [video, setVideo] = useState("inception");
-  // const [videoURL, setVideoURL] = useState("https://youtu.be/sa91-dTv9Gk");
 
-  // setVideo(location.state.title);
-  // movieTrailer(video).then((res) => {setVideoURL(res)});
+  // code for implementing modal to play trailer video
+  const [modalOpen, setModalOpen] = useState(false);
+
   
 
 
@@ -75,7 +78,8 @@ function Movie(props) {
           <div class = "description-body"> {location.state.overview} <br /> </div>  <br /> 
           <div class = "movie-description"> <strong> Release Date: </strong> {location.state.release_date} </div> <br /> 
           <div class = "movie-description"> <strong> Rating: </strong> {location.state.vote_average} </div> <br /> 
-          <div class = "movie-description"> <strong> Duration: </strong> {location.state.runtime} </div> 
+          {/* <div class = "movie-description"> <strong> Duration: </strong> {location.state.runtime} </div> <br /> */}
+          
           {/* <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QBmre1vaLwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
         </div>
        
@@ -104,8 +108,11 @@ function Movie(props) {
         {/* </div> */}
       {/* </div> */}
 
-      <div>
-          <ReactPlayer url={"https://www.youtube.com/watch?v="+location.state.movieTrailer} controls={true} />
+      <div class="player-wrapper">
+          <div class="trailer-label"> 
+            <strong> Trailer: </strong> 
+          </div>
+          <ReactPlayer class="react-player" url={"https://www.youtube.com/watch?v="+location.state.movieTrailer} controls={true} />
       </div>
 
     <div class = "user-box">
