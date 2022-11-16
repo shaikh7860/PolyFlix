@@ -205,7 +205,7 @@ body {
 
 .user-box {
   position: relative;
-  top: 150px;
+  top: 950px;
 }
 
 .post-button {
@@ -262,5 +262,38 @@ body {
   left: 22px;
 }
 
+
+
+
+.player-wrapper {
+  position: absolute;
+  /* padding-top: 56.25% Player ratio: 100 / (1280 / 720) */
+  top: 570px;
+  left: 470px;
+}
+
+.react-player {
+  position: relative;
+  top: -100px;;
+  left: 0px;
+}
+
+.trailer-label {
+  position: absolute;
+  bottom: 340px;
+  left: 297px;
+}
+
+.trailer-exit-button {
+  position: relative;
+  top: -50px;
+  left: 670px;
+}
+
+.trailer-watch-button {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
 
 

@@ -8,6 +8,9 @@ import { MDBTextArea } from 'mdb-react-ui-kit';
 import { useState } from "react";
 import ReactPlayer from 'react-player';
 import movieTrailer from 'movie-trailer';
+// import { Modal } from "bootstrap";
+import Modal from "../Modal";
+
 const axios = require("axios");
 
 function Movie(props) {
@@ -64,12 +67,9 @@ function Movie(props) {
     changeDisabled(true);
   }
   getMovieTrailer(location.state.id)
-  // code to implement trailers on movie page //
-  // const [video, setVideo] = useState("inception");
-  // const [videoURL, setVideoURL] = useState("https://youtu.be/sa91-dTv9Gk");
 
-  // setVideo(location.state.title);
-  // movieTrailer(video).then((res) => {setVideoURL(res)});
+  // code to implement modal for trailer video
+  const [openModal, setOpenModal] = useState(false);
 
 
   return (
@@ -130,9 +130,17 @@ function Movie(props) {
         {/* </div> */}
       {/* </div> */}
 
-      <div>
-          <ReactPlayer url={"https://www.youtube.com/watch?v="+location.state.movieTrailer} controls={true} />
+      <div class="player-wrapper">
+          {/* <div class="trailer-label"> 
+            <strong> Trailer: </strong> 
+          </div> */}
+          <div class="trailer-watch-button">         
+            <button onClick={() => {setOpenModal(true)}}> Watch Trailer </button>
+          </div>
+          {openModal && <Modal setOpenModal={setOpenModal} url={"https://www.youtube.com/watch?v="+location.state.movieTrailer}/>}
+          {/* <ReactPlayer class="react-player" url={"https://www.youtube.com/watch?v="+location.state.movieTrailer} controls={true} /> */}
       </div>
+      <br />
 
     <div class = "user-box">
       <div class = "user-reviews-header"> User Reviews: </div>
