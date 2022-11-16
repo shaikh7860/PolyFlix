@@ -262,5 +262,16 @@ body {
   left: 22px;
 }
 
+.empty-search-text1 {
+  position: relative;
+  top: 50px;
+  font-size: 150%;
+}
+
+.empty-search-text2 {
+  position: relative;
+  top: 100px;
+  font-size: 150%;
+}
 
 
