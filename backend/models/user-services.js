@@ -79,6 +79,12 @@ async function findUserById(id) {
   }
 }
 
+async function getAllUsers() {
+  const userModel = getDbConnection().model("User", UserSchema);
+  result = await userModel.find().select(["-password", "-salt"]);
+  return result;
+}
+
 async function addUser(user) {
   // userModel is a Model, a subclass of mongoose.Model
   if (!user.password || user.password.length < 2) {
@@ -140,3 +146,4 @@ exports.addUser = addUser;
 exports.setConnection = setConnection;
 exports.findUser = findUser;
 exports.pushFavMovie = pushFavMovie;
+exports.getAllUsers = getAllUsers;

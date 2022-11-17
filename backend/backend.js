@@ -98,6 +98,15 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
+app.get("/allusers", async (req, res) => {
+  const result = await userServices.getAllUsers();
+  if (result === undefined || result === null)
+    res.status(404).send("Resource not found.");
+  else {
+    res.send({ users_list: result });
+  }
+});
+
 app.post("/user", async (req, res) => {
   const user = req.body;
   const savedUser = await userServices.addUser(user);

@@ -10,6 +10,7 @@ import Profile from "./Pages/Profile";
 import Movie from "./Pages/Movie";
 import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from "./Pages/SearchResult";
+import UserSearch from "./Pages/UserSearch";
 // import SearchBar from "./SearchBar";
 // import NavBar from "./NavBar";
 import Login from "./Pages/Login";
@@ -162,30 +163,44 @@ function MyApp() {
   }
 
   async function addToFavorites(movie) {
-    const response = await axios.put("http://localhost:5001/user/" + cookies.id, movie);
-    if (response){
-      const userRes = await axios.get("http://localhost:5001/users/" + cookies.id);
+    const response = await axios.put(
+      "http://localhost:5001/user/" + cookies.id,
+      movie
+    );
+    if (response) {
+      const userRes = await axios.get(
+        "http://localhost:5001/users/" + cookies.id
+      );
       updateToken(userRes.data.users_list, false);
       return userRes;
     }
   }
 
-  async function getFavMovies(id){
+  async function getFavMovies(id) {
     const userRes = await axios.get("http://localhost:5001/users/" + id);
-    if (userRes){
+    if (userRes) {
       return userRes.data.users_list["favmovies"];
-    }else{
+    } else {
       return [];
     }
   }
 
-  function updateToken(token, goHome=true) {
+  async function getAllUsers() {
+    const result = await axios.get("http://localhost:5001/allusers");
+    if (result) {
+      return result.data.users_list;
+    } else {
+      return [];
+    }
+  }
+
+  function updateToken(token, goHome = true) {
     setToken(token);
     setCookie("name", token["name"], { path: "/", maxAge: "900" });
     setCookie("username", token["username"], { path: "/", maxAge: "900" });
     setCookie("password", token["password"], { path: "/", maxAge: "900" });
     setCookie("id", token["_id"], { path: "/", maxAge: "900" });
-    if (goHome){
+    if (goHome) {
       navigate("/home");
     }
   }
@@ -249,13 +264,14 @@ function MyApp() {
         />
         <Route
           path="/movie/:movieName"
-          element={<Movie 
-                      cookies={cookies} 
-                      handleSubmit={searchForMovies} 
-                      addToFavorites={addToFavorites}
-                      getFavMovies={getFavMovies}
-                    />
-                  }
+          element={
+            <Movie
+              cookies={cookies}
+              handleSubmit={searchForMovies}
+              addToFavorites={addToFavorites}
+              getFavMovies={getFavMovies}
+            />
+          }
         />
         <Route
           path="/searchResult"
@@ -266,6 +282,16 @@ function MyApp() {
               movieName={searchInput}
               handleSubmit={searchForMovies}
               cookies={cookies}
+            />
+          }
+        />
+        <Route
+          path="/userSearch"
+          element={
+            <UserSearch
+              handleSubmit={searchForMovies}
+              cookies={cookies}
+              getAllUsers={getAllUsers}
             />
           }
         />

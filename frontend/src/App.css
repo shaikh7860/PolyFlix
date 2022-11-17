@@ -105,16 +105,15 @@ body {
  /* Search Bar */
  .search-bar input[type=text] {
   position: absolute;
-  left: 25%;
+  left: 32%;
   padding: 14px;
   width: 510px;
   height: 42px;
 }
 .search-button {
   position: absolute;
-  left: 69%;
+  left: 77%;
 }
-
 
 /* NEW ADDITIONS */
 /* Movie Text */
