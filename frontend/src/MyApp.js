@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
+import OtherUserProfile from "./Pages/OtherUserProfile";
 import Movie from "./Pages/Movie";
 import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from "./Pages/SearchResult";
@@ -255,6 +256,15 @@ function MyApp() {
               logOut={logOut}
               handleSubmit={searchForMovies}
               PopMovieData={cookies.favmovies}
+              getFavMovies={getFavMovies}
+            />
+          }
+        />
+        <Route
+          path="/user/:userName"
+          element={
+            <OtherUserProfile
+              handleSubmit={searchForMovies}
               getFavMovies={getFavMovies}
             />
           }

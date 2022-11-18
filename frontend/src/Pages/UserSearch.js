@@ -25,7 +25,20 @@ function TableBody(props) {
         <td>{row.name}</td>
         <td>{row.username}</td>
         <td>
-          <button onClick={() => doSomething()}>View Profile</button>
+          <button
+            onClick={() =>
+              navigate("/user/" + row.username, {
+                state: {
+                  id: row.id,
+                  username: row.username,
+                  name: row.name,
+                  favmovies: row.favmovies,
+                },
+              })
+            }
+          >
+            View Profile
+          </button>
         </td>
       </tr>
     );
