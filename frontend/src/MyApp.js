@@ -28,10 +28,16 @@ function MyApp() {
   const [token, setToken] = useState(null);
   const [cookies, setCookie] = useCookies("name", "username", "password", "id");
   const navigate = useNavigate();
+  var baseUrl = "http://localhost:5001/";
+
+  if (process.env.NODE_ENV == "production"){
+    baseUrl = "https://polyflix.azurewebsites.net/"
+  }
+
 
   async function fetchPopular() {
     try {
-      const response = await axios.get("http://localhost:5001/movies/popular"); // https://polyflix.azurewebsites.net/movies/popular http://localhost:5001/movies/popular
+      const response = await axios.get(baseUrl + "movies/popular"); // https://polyflix.azurewebsites.net/movies/popular http://localhost:5001/movies/popular
       return response.data;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
