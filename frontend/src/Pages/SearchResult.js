@@ -9,6 +9,10 @@ function SearchResult(props) {
     navigate("/");
   }
 
+function GoToHomePage(){
+    window.location = '/home';   
+}
+
   if (props.movieData.length > 0) {
     return (
       <div>
@@ -23,7 +27,27 @@ function SearchResult(props) {
       </div>
     );
   } else {
-    return <div>No results found for: {props.movieName}</div>;
+    return (
+      <div>
+        <div>
+          <nav>
+            <NavBar handleSubmit={props.handleSubmit}></NavBar>
+          </nav>
+        </div>
+        <div class="invalid-url-text">
+          No results found for: {props.movieName}
+        </div>
+        <div class="empty-search-text2">
+        <a href="https://www.google.com/">Return to the home page!</a>
+          {/* <input
+            name="action"
+            type="submit"
+            value="Home"
+            onclick= "GoToHomePage"
+          /> */}
+        </div>
+      </div>
+    );
   }
 }
 
