@@ -307,4 +307,12 @@ body {
   left: 0px;
 }
 
-
+.invalid-url-text {
+  position: relative;
+  background-color: red ;
+  top: 50px;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 10px ;
+  border: 1px solid green ;
+}

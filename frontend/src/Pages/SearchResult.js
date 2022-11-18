@@ -34,17 +34,17 @@ function GoToHomePage(){
             <NavBar handleSubmit={props.handleSubmit}></NavBar>
           </nav>
         </div>
-        <div class="empty-search-text1">
+        <div class="invalid-url-text">
           No results found for: {props.movieName}
         </div>
         <div class="empty-search-text2">
-          Return to home page{" "}
-          <input
+        <a href="https://www.google.com/">Return to the home page!</a>
+          {/* <input
             name="action"
             type="submit"
             value="Home"
             onclick= "GoToHomePage"
-          />
+          /> */}
         </div>
       </div>
     );
