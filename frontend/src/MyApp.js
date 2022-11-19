@@ -30,10 +30,9 @@ function MyApp() {
   const navigate = useNavigate();
   var baseUrl = "http://localhost:5001/";
 
-  if (process.env.NODE_ENV == "production"){
-    baseUrl = "https://polyflix.azurewebsites.net/"
+  if (process.env.NODE_ENV == "production") {
+    baseUrl = "https://polyflix.azurewebsites.net/";
   }
-
 
   async function fetchPopular() {
     try {
@@ -139,7 +138,8 @@ function MyApp() {
   async function tryLogIn(token) {
     try {
       const response = await axios.get(
-        baseUrl + "users?username=" + // http://localhost:5001/users?username=
+        baseUrl +
+          "users?username=" + // http://localhost:5001/users?username=
           token["username"] +
           "&password=" +
           token["password"]
@@ -169,29 +169,29 @@ function MyApp() {
 
   async function addToFavorites(movie) {
     const response = await axios.put(baseUrl + "user/" + cookies.id, movie);
-    if (response){
+    if (response) {
       const userRes = await axios.get(baseUrl + "users/" + cookies.id);
       updateToken(userRes.data.users_list, false);
       return userRes;
     }
   }
 
-  async function getFavMovies(id){
+  async function getFavMovies(id) {
     const userRes = await axios.get(baseUrl + "users/" + id);
-    if (userRes){
+    if (userRes) {
       return userRes.data.users_list["favmovies"];
-    }else{
+    } else {
       return [];
     }
   }
 
-  function updateToken(token, goHome=true) {
+  function updateToken(token, goHome = true) {
     setToken(token);
     setCookie("name", token["name"], { path: "/", maxAge: "900" });
     setCookie("username", token["username"], { path: "/", maxAge: "900" });
     setCookie("password", token["password"], { path: "/", maxAge: "900" });
     setCookie("id", token["_id"], { path: "/", maxAge: "900" });
-    if (goHome){
+    if (goHome) {
       navigate("/home");
     }
   }
@@ -255,13 +255,14 @@ function MyApp() {
         />
         <Route
           path="/movie/:movieName"
-          element={<Movie 
-                      cookies={cookies} 
-                      handleSubmit={searchForMovies} 
-                      addToFavorites={addToFavorites}
-                      getFavMovies={getFavMovies}
-                    />
-                  }
+          element={
+            <Movie
+              cookies={cookies}
+              handleSubmit={searchForMovies}
+              addToFavorites={addToFavorites}
+              getFavMovies={getFavMovies}
+            />
+          }
         />
         <Route
           path="/searchResult"

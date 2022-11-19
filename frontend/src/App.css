@@ -28,15 +28,13 @@
   color: #61dafb;
 }
 
-.logo-image{
+.logo-image {
   width: 100px;
   height: 100px;
   border-radius: 8px;
   overflow: hidden;
   margin-top: 50px;
 }
-
-
 
 @keyframes App-logo-spin {
   from {
@@ -47,12 +45,10 @@
   }
 }
 
-
 body {
   background: #141414;
   color: #ffffff;
 }
-
 
 .movie-app > .row {
   overflow-x: auto;
@@ -71,12 +67,12 @@ body {
 
 .magic {
   padding-bottom: 30px;
- }
- .magic-wrapper {
+}
+.magic-wrapper {
   height: 250px;
   overflow-y: hidden;
   width: 100%;
- }
+}
 
 .image-container:hover .overlay {
   opacity: 1;
@@ -94,7 +90,6 @@ body {
   text-align: center;
 }
 
-
 /* Movie Image */
 .movie-image {
   height: 300px;
@@ -102,8 +97,8 @@ body {
   border-radius: 0px;
 }
 
- /* Search Bar */
- .search-bar input[type=text] {
+/* Search Bar */
+.search-bar input[type="text"] {
   position: absolute;
   left: 25%;
   padding: 14px;
@@ -115,14 +110,13 @@ body {
   left: 69%;
 }
 
-
 /* NEW ADDITIONS */
 /* Movie Text */
-.description-text{
+.description-text {
   position: relative;
   top: 0px;
   left: 0px;
-  word-wrap: break-word
+  word-wrap: break-word;
 }
 
 .title-format {
@@ -148,15 +142,15 @@ body {
   top: 50x;
 }
 
-.float-container1{
+.float-container1 {
   padding: 10px;
 }
 
-.float-container2{
+.float-container2 {
   padding: 10px;
 }
 
-.image-placement{
+.image-placement {
   top: -100px;
 }
 
@@ -166,20 +160,19 @@ body {
   float: left;
   padding: 0px;
   top: 35px;
-}  
-.float-child2{
+}
+.float-child2 {
   position: relative;
   width: 75%;
   float: left;
   padding: 0px;
   top: 35px;
-}  
+}
 
 .add-to-favorites-button {
   position: absolute;
   top: 500x;
   left: 1000px;
-
 }
 
 .user-reviews {
@@ -197,11 +190,11 @@ body {
 }
 
 .user-reviews-text-box {
-    position: absolute;
-    top: 100px;
-    /* top: 100px; */
+  position: absolute;
+  top: 100px;
+  /* top: 100px; */
 }
-  /* left 100px; */
+/* left 100px; */
 
 .user-box {
   position: relative;
@@ -274,8 +267,6 @@ body {
   font-size: 150%;
 }
 
-
-
 .player-wrapper {
   position: absolute;
   /* padding-top: 56.25% Player ratio: 100 / (1280 / 720) */
@@ -285,7 +276,7 @@ body {
 
 .react-player {
   position: relative;
-  top: -100px;;
+  top: -100px;
   left: 0px;
 }
 
@@ -309,10 +300,10 @@ body {
 
 .invalid-url-text {
   position: relative;
-  background-color: red ;
+  background-color: red;
   top: 50px;
   font-size: 150%;
   font-weight: bold;
-  padding: 10px ;
-  border: 1px solid green ;
+  padding: 10px;
+  border: 1px solid green;
 }

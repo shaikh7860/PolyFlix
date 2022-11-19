@@ -17,9 +17,9 @@ ReactDOM.render(
 // With React v18:
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <BrowserRouter>
-      <CookiesProvider>
-        <MyApp />
-      </CookiesProvider>
-    </BrowserRouter>  
+  <BrowserRouter>
+    <CookiesProvider>
+      <MyApp />
+    </CookiesProvider>
+  </BrowserRouter>
 );

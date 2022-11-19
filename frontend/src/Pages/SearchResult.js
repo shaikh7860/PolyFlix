@@ -9,9 +9,9 @@ function SearchResult(props) {
     navigate("/");
   }
 
-function GoToHomePage(){
-    window.location = '/home';   
-}
+  function GoToHomePage() {
+    window.location = "/home";
+  }
 
   if (props.movieData.length > 0) {
     return (
@@ -38,7 +38,7 @@ function GoToHomePage(){
           No results found for: {props.movieName}
         </div>
         <div class="empty-search-text2">
-        <a href="https://www.google.com/">Return to the home page!</a>
+          <a href="https://www.google.com/">Return to the home page!</a>
           {/* <input
             name="action"
             type="submit"
