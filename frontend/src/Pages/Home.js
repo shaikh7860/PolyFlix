@@ -3,6 +3,7 @@ import NavBar from "../NavBar";
 import MovieList from "../MovieList.js";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import logo from "../moviedatabaselogo.svg";
 
 function Home(props) {
   const navigate = useNavigate();
@@ -48,6 +49,9 @@ function Home(props) {
               <MovieList movieData={props.UpcomingMovieData} />
             </div>
           </div>
+        </div>
+        <div>
+          <object data={logo} width="300" height="100"></object>
         </div>
       </div>
     );
