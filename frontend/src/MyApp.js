@@ -200,7 +200,7 @@ function MyApp() {
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <Routes>
         <Route
           path="/"
@@ -224,7 +224,6 @@ function MyApp() {
             </div>
           }
         />
-
         <Route
           path="/home"
           element={

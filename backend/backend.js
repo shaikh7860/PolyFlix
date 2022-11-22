@@ -16,26 +16,43 @@ app.use(express.json());
 // });
 
 app.get("/movies/popular", async (req, res) => {
+  listOfPopMovies = [];
   try {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/popular?api_key=" +
         process.env.API_KEY +
         "&language=en-US&page=1&region=US"
     );
-    res.send(result.data.results);
+
+    listOfPopMovies.push(...result.data.results);
+    const result2 = await axios.request(
+      "https://api.themoviedb.org/3/movie/popular?api_key=" +
+        process.env.API_KEY +
+        "&language=en-US&page=2&region=US"
+    );
+    listOfPopMovies.push(...result2.data.results);
+    res.send(listOfPopMovies);
   } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");
   }
 });
 app.get("/movies/top", async (req, res) => {
+  listOfTopMovies = [];
   try {
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
         process.env.API_KEY +
         "&language=en-US&page=1&region=US"
     );
-    res.send(result.data.results);
+    listOfTopMovies.push(...result.data.results);
+    const result2 = await axios.request(
+      "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
+        process.env.API_KEY +
+        "&language=en-US&page=2&region=US"
+    );
+    listOfTopMovies.push(...result2.data.results);
+    res.send(listOfTopMovies);
   } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");

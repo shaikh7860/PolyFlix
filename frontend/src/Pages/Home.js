@@ -1,4 +1,5 @@
 import React from "react";
+import "../App.css";
 import NavBar from "../NavBar";
 import MovieList from "../MovieList.js";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +19,7 @@ function Home(props) {
       //   {/* <Table movieData = {props.movieData} characterData={props.characterData} removeCharacter={props.removeCharacter} /> */}
       //   <MovieList movieData = {props.movieData} />
       //   <Form handleSubmit = {props.handleSubmit} />
-
-      <div>
+      <div class="container-fluid bg_image">
         <nav>
           <NavBar handleSubmit={props.handleSubmit}></NavBar>
         </nav>
@@ -51,7 +51,9 @@ function Home(props) {
           </div>
         </div>
         <div>
-          <object data={logo} width="300" height="100"></object>
+          <br></br>
+          <i>&nbsp;&nbsp;Movie database provided by:&nbsp;&nbsp;&nbsp;</i>
+          <object data={logo} width="250" height="20"></object>
         </div>
       </div>
     );
