@@ -1,8 +1,10 @@
 import React from "react";
+import "../App.css";
 import NavBar from "../NavBar";
 import MovieList from "../MovieList.js";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import logo from "../moviedatabaselogo.svg";
 
 function Home(props) {
   const navigate = useNavigate();
@@ -17,8 +19,7 @@ function Home(props) {
       //   {/* <Table movieData = {props.movieData} characterData={props.characterData} removeCharacter={props.removeCharacter} /> */}
       //   <MovieList movieData = {props.movieData} />
       //   <Form handleSubmit = {props.handleSubmit} />
-
-      <div>
+      <div class="container-fluid bg_image">
         <nav>
           <NavBar handleSubmit={props.handleSubmit}></NavBar>
         </nav>
@@ -48,6 +49,11 @@ function Home(props) {
               <MovieList movieData={props.UpcomingMovieData} />
             </div>
           </div>
+        </div>
+        <div>
+          <br></br>
+          <i>&nbsp;&nbsp;Movie database provided by:&nbsp;&nbsp;&nbsp;</i>
+          <object data={logo} width="250" height="20"></object>
         </div>
       </div>
     );
