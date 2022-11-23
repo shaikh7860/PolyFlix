@@ -12,8 +12,8 @@ function Profile(props) {
     navigate("/");
   }
   useEffect(() => {
-    console.log(props.cookies.id);
-    props.getFavMovies(props.cookies.id).then((result) => {
+    console.log(cookies.id);
+    props.getFavMovies(cookies.id).then((result) => {
       if (result) {
         console.log(result);
         setFavMovies(result);
@@ -31,7 +31,7 @@ function Profile(props) {
         <div class="profile-username">
           {/* <span class="profile-name-header">Name: </span> {props.cookies.name} */}
           <div class="profile-username-header">Username: </div>{" "}
-          {props.cookies.username}
+          {cookies.username}
           <br></br>
           <br></br>
         </div>
