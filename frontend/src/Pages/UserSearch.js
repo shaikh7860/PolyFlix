@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function TableHeader() {
   return (
@@ -13,32 +14,14 @@ function TableHeader() {
   );
 }
 
-function doSomething() {
-  console.log("hi");
-}
-
 function TableBody(props) {
-  const navigate = useNavigate();
   const rows = props.userData.map((row, index) => {
     return (
       <tr key={index}>
         <td>{row.name}</td>
         <td>{row.username}</td>
         <td>
-          <button
-            onClick={() =>
-              navigate("/user/" + row.username, {
-                state: {
-                  id: row.id,
-                  username: row.username,
-                  name: row.name,
-                  favmovies: row.favmovies,
-                },
-              })
-            }
-          >
-            View Profile
-          </button>
+          <button onClick={() => props.correctNav(row)}>View Profile</button>
         </td>
       </tr>
     );
@@ -48,7 +31,8 @@ function TableBody(props) {
 
 function UserSearch(props) {
   const navigate = useNavigate();
-  if (!props.cookies.password) {
+  const [cookies, setCookie] = useCookies("password");
+  if (!cookies.password) {
     navigate("/");
   }
 
@@ -68,6 +52,21 @@ function UserSearch(props) {
       }
     });
   }, []);
+
+  function correctNav(row) {
+    if (row.username === cookies.username) {
+      navigate("/profile");
+    } else {
+      navigate("/user/" + row.username, {
+        state: {
+          id: row.id,
+          username: row.username,
+          name: row.name,
+          favmovies: row.favmovies,
+        },
+      });
+    }
+  }
 
   function handleChange(event) {
     setSearchInput(event.target.value);
@@ -98,7 +97,7 @@ function UserSearch(props) {
       <div>
         <table>
           <TableHeader />
-          <TableBody userData={filteredUsers} />
+          <TableBody userData={filteredUsers} correctNav={correctNav} />
         </table>
       </div>
     </div>

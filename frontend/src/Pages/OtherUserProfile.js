@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 
 function OtherUserProfile(props) {
   const navigate = useNavigate();
-  const [favmovies, setFavMovies] = useState([]);
   const [cookies, setCookie] = useCookies("password");
   if (!cookies.password) {
     navigate("/");
