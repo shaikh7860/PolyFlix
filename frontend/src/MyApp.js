@@ -28,10 +28,15 @@ function MyApp() {
   const [token, setToken] = useState(null);
   const [cookies, setCookie] = useCookies("name", "username", "password", "id");
   const navigate = useNavigate();
+  var baseUrl = "http://localhost:5001/";
+
+  if (process.env.NODE_ENV == "production") {
+    baseUrl = "https://polyflix.azurewebsites.net/";
+  }
 
   async function fetchPopular() {
     try {
-      const response = await axios.get("http://localhost:5001/movies/popular");
+      const response = await axios.get(baseUrl + "movies/popular"); // http://localhost:5001/movies/popular
       return response.data;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -41,7 +46,7 @@ function MyApp() {
   }
   async function fetchTop() {
     try {
-      const response = await axios.get("http://localhost:5001/movies/top");
+      const response = await axios.get(baseUrl + "movies/top"); // http://localhost:5001/movies/top
       return response.data;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -51,7 +56,7 @@ function MyApp() {
   }
   async function fetchUpcoming() {
     try {
-      const response = await axios.get("http://localhost:5001/movies/upcoming");
+      const response = await axios.get(baseUrl + "movies/upcoming"); // http://localhost:5001/movies/upcoming
       return response.data;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -94,7 +99,7 @@ function MyApp() {
   }
   async function makeDeleteCall(id) {
     try {
-      const response = await axios.delete(`http://localhost:5001/users/${id}`);
+      const response = await axios.delete(baseUrl + `users/${id}`); // http://localhost:5001/users/${id}
       return response;
     } catch (error) {
       console.log(error);
@@ -120,7 +125,7 @@ function MyApp() {
   async function fetchSome(name) {
     try {
       const response = await axios.get(
-        "http://localhost:5001/search?name=" + name
+        baseUrl + "search?name=" + name // http://localhost:5001/search?name=
       );
       return response.data;
     } catch (error) {
@@ -132,7 +137,8 @@ function MyApp() {
   async function tryLogIn(token) {
     try {
       const response = await axios.get(
-        "http://localhost:5001/users?username=" +
+        baseUrl +
+          "users?username=" + // http://localhost:5001/users?username=
           token["username"] +
           "&password=" +
           token["password"]
@@ -151,7 +157,7 @@ function MyApp() {
 
   async function makeAccount(token) {
     try {
-      const response = await axios.post("http://localhost:5001/user", token);
+      const response = await axios.post(baseUrl + "user", token);
       updateToken(response.data);
     } catch (error) {
       console.log(error);
@@ -161,21 +167,16 @@ function MyApp() {
   }
 
   async function addToFavorites(movie) {
-    const response = await axios.put(
-      "http://localhost:5001/user/" + cookies.id,
-      movie
-    );
+    const response = await axios.put(baseUrl + "user/" + cookies.id, movie);
     if (response) {
-      const userRes = await axios.get(
-        "http://localhost:5001/users/" + cookies.id
-      );
+      const userRes = await axios.get(baseUrl + "users/" + cookies.id);
       updateToken(userRes.data.users_list, false);
       return userRes;
     }
   }
 
   async function getFavMovies(id) {
-    const userRes = await axios.get("http://localhost:5001/users/" + id);
+    const userRes = await axios.get(baseUrl + "users/" + id);
     if (userRes) {
       return userRes.data.users_list["favmovies"];
     } else {

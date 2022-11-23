@@ -11,9 +11,9 @@ const userServices = require("./models/user-services");
 app.use(cors());
 app.use(express.json());
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!');
-// });
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.get("/movies/popular", async (req, res) => {
   listOfPopMovies = [];
@@ -140,6 +140,10 @@ app.delete("/users/:id", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+// app.listen(port, () => {
+//   console.log(`Example app listening at http://localhost:${port}`);
+// });
+
+app.listen(process.env.PORT || port, () => {
+  console.log("REST API is listening.");
 });
