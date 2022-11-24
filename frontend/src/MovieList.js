@@ -1,3 +1,4 @@
+import movieTrailer from "movie-trailer";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -63,6 +64,7 @@ const MovieList = (props) => {
                   overview: movie.overview,
                   release_date: formatDate(movie.release_date),
                   popularity: movie.popularity,
+                  movieTrailer: null,
                 },
               })
             }

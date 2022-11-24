@@ -4,10 +4,8 @@ import { useLocation } from "react-router-dom";
 import NavBar from "../NavBar";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import { MDBTextArea } from "mdb-react-ui-kit";
+import { useCookies } from "react-cookie";
 import { useState } from "react";
-import ReactPlayer from "react-player";
-import movieTrailer from "movie-trailer";
 // import { Modal } from "bootstrap";
 import Modal from "../Modal";
 
@@ -17,7 +15,8 @@ function Movie(props) {
   const navigate = useNavigate();
   // let { movieName } = useParams();
   const location = useLocation();
-  if (!props.cookies.password) {
+  const [cookies, setCookie] = useCookies("password");
+  if (!cookies.password) {
     navigate("/");
   }
 
@@ -32,20 +31,17 @@ function Movie(props) {
         "&language=en-US" +
         "&append_to_response=videos"
     );
-    var str = JSON.stringify(result.data);
-    console.log("after axios: " + str);
-    console.log("FINAL: " + result.data.results[0].key);
-
-    var y = result.data.results[0].key;
-    console.log("Y: " + y);
-    location.state.movieTrailer = String(result.data.results[0].key);
+    var result_filter = result.data.results.filter(
+      (element) => element.type == "Trailer"
+    );
+    location.state.movieTrailer = String(result_filter[0].key);
   }
 
   const [favButtonText, setFavButtonText] = useState("Add to Favorites");
   const [favButtonDisabled, changeDisabled] = useState(false);
 
   useEffect(() => {
-    props.getFavMovies(props.cookies.id).then((result) => {
+    props.getFavMovies(cookies.id).then((result) => {
       if (result) {
         for (let i = 0; i < result.length; i++) {
           console.log(result[i].id);
@@ -123,27 +119,7 @@ function Movie(props) {
           </div>
           {/* <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QBmre1vaLwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
         </div>
-
-        {/* ID: {location.state.id } <br />
-          Vote Average: {location.state.vote_average} <br /> */}
       </div>
-
-      {/* <div class = "user-reviews"> */}
-
-      {/* <label for="Name">Name:</label> */}
-      {/* <input type="text" id="Name" name="Name" size="50" placeholder="Jane Doe"/> */}
-      {/* User Reviews1: */}
-
-      {/* <div class = ".user-reviews-text-box">
-          <label for="freeform"></label><br/>
-            <textarea id="freeform" name="freeform" placeholder="Enter Review Here..." rows="4" cols="50"></textarea> <br/> <br/> */}
-
-      {/* <MDBTextArea placeholder = 'Enter Review' id='textAreaExample' column= {2} rows={3} />
-            <Button variant="primary" type="submit">
-              Submit
-            </Button> */}
-      {/* </div> */}
-      {/* </div> */}
 
       <div class="player-wrapper">
         {/* <div class="trailer-label"> 

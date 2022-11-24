@@ -120,7 +120,6 @@ function MyApp() {
       if (result) setResults(result);
     });
     navigate("/searchResult");
-    return;
   }
 
   async function fetchSome(name) {
@@ -202,7 +201,7 @@ function MyApp() {
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <Routes>
         <Route
           path="/"
@@ -226,7 +225,6 @@ function MyApp() {
             </div>
           }
         />
-
         <Route
           path="/home"
           element={
@@ -237,7 +235,6 @@ function MyApp() {
               characterData={characters}
               removeCharacter={removeOneCharacter}
               handleSubmit={searchForMovies}
-              cookies={cookies}
             />
           }
         />
@@ -246,7 +243,6 @@ function MyApp() {
           element={
             <Profile
               logOut={logOut}
-              cookies={cookies}
               handleSubmit={searchForMovies}
               PopMovieData={cookies.favmovies}
               getFavMovies={getFavMovies}
@@ -257,7 +253,6 @@ function MyApp() {
           path="/movie/:movieName"
           element={
             <Movie
-              cookies={cookies}
               handleSubmit={searchForMovies}
               addToFavorites={addToFavorites}
               getFavMovies={getFavMovies}
@@ -272,7 +267,6 @@ function MyApp() {
               characterData={characters}
               movieName={searchInput}
               handleSubmit={searchForMovies}
-              cookies={cookies}
             />
           }
         />
