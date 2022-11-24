@@ -118,6 +118,18 @@ async function pushFavMovie(userId, movie) {
   }
 }
 
+async function pushFriend(userId, friend) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    return await userModel.updateOne(
+      { _id: userId },
+      { $push: { friends: friend } }
+    );
+  } catch {
+    return null;
+  }
+}
+
 // async function findUserByName(name) {
 //   const userModel = getDbConnection().model("User", UserSchema);
 //   return await userModel.find({ name: name });
@@ -146,4 +158,5 @@ exports.addUser = addUser;
 exports.setConnection = setConnection;
 exports.findUser = findUser;
 exports.pushFavMovie = pushFavMovie;
+exports.pushFriend = pushFriend;
 exports.getAllUsers = getAllUsers;

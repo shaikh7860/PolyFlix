@@ -131,10 +131,18 @@ app.post("/user", async (req, res) => {
   else res.status(500).end();
 });
 
-app.put("/user/:id", async (req, res) => {
+app.put("/usermovie/:id", async (req, res) => {
   const movie = req.body;
   const userId = req.params["id"];
   const updatedUser = await userServices.pushFavMovie(userId, movie);
+  if (updatedUser) res.status(201).send(updatedUser);
+  else res.status(500).end();
+});
+
+app.put("/userfriend/:id", async (req, res) => {
+  const friend = req.body;
+  const userId = req.params["id"];
+  const updatedUser = await userServices.pushFriend(userId, friend);
   if (updatedUser) res.status(201).send(updatedUser);
   else res.status(500).end();
 });

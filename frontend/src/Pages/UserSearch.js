@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 function TableHeader() {
@@ -31,6 +31,7 @@ function TableBody(props) {
 
 function UserSearch(props) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [cookies, setCookie] = useCookies("password");
   if (!cookies.password) {
     navigate("/");
@@ -41,16 +42,32 @@ function UserSearch(props) {
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    props.getAllUsers().then((result) => {
-      if (result) {
-        setStaticUsers(
-          result.sort((a, b) => a.username.localeCompare(b.username))
-        );
-        setFilteredUsers(
-          result.sort((a, b) => a.username.localeCompare(b.username))
-        );
-      }
-    });
+    if (location.state) {
+      console.log("Hi");
+      console.log(location.state);
+      props.getAllUsers(location.state.id).then((result) => {
+        if (result) {
+          setStaticUsers(
+            result.sort((a, b) => a.username.localeCompare(b.username))
+          );
+          setFilteredUsers(
+            result.sort((a, b) => a.username.localeCompare(b.username))
+          );
+        }
+      });
+    } else {
+      console.log("Uh oh");
+      props.getAllUsers().then((result) => {
+        if (result) {
+          setStaticUsers(
+            result.sort((a, b) => a.username.localeCompare(b.username))
+          );
+          setFilteredUsers(
+            result.sort((a, b) => a.username.localeCompare(b.username))
+          );
+        }
+      });
+    }
   }, []);
 
   function correctNav(row) {
@@ -59,10 +76,11 @@ function UserSearch(props) {
     } else {
       navigate("/user/" + row.username, {
         state: {
-          id: row.id,
+          id: row._id,
           username: row.username,
           name: row.name,
           favmovies: row.favmovies,
+          friends: row.friends,
         },
       });
     }

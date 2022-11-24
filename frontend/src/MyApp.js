@@ -169,7 +169,22 @@ function MyApp() {
   }
 
   async function addToFavorites(movie) {
-    const response = await axios.put(baseUrl + "user/" + cookies.id, movie);
+    const response = await axios.put(
+      baseUrl + "usermovie/" + cookies.id,
+      movie
+    );
+    if (response) {
+      const userRes = await axios.get(baseUrl + "users/" + cookies.id);
+      updateToken(userRes.data.users_list, false);
+      return userRes;
+    }
+  }
+
+  async function addFriend(user) {
+    const response = await axios.put(
+      baseUrl + "userfriend/" + cookies.id,
+      user
+    );
     if (response) {
       const userRes = await axios.get(baseUrl + "users/" + cookies.id);
       updateToken(userRes.data.users_list, false);
@@ -186,8 +201,17 @@ function MyApp() {
     }
   }
 
+  async function getFriends(id) {
+    const userRes = await axios.get(baseUrl + "users/" + id);
+    if (userRes) {
+      return userRes.data.users_list["friends"];
+    } else {
+      return [];
+    }
+  }
+
   async function getAllUsers() {
-    const result = await axios.get("http://localhost:5001/allusers");
+    const result = await axios.get(baseUrl + "allusers");
     if (result) {
       return result.data.users_list;
     } else {
@@ -266,6 +290,8 @@ function MyApp() {
             <OtherUserProfile
               handleSubmit={searchForMovies}
               getFavMovies={getFavMovies}
+              addFriend={addFriend}
+              getFriends={getFriends}
             />
           }
         />
@@ -295,8 +321,16 @@ function MyApp() {
           element={
             <UserSearch
               handleSubmit={searchForMovies}
-              cookies={cookies}
               getAllUsers={getAllUsers}
+            />
+          }
+        />
+        <Route
+          path="/friendslist/:userName"
+          element={
+            <UserSearch
+              handleSubmit={searchForMovies}
+              getAllUsers={getFriends}
             />
           }
         />
