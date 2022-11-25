@@ -30,13 +30,14 @@ function Profile(props) {
 
         <div class="profile-username">
           {/* <span class="profile-name-header">Name: </span> {props.cookies.name} */}
-          <div class="profile-username-header">Username: </div>{" "}
-          {cookies.username}
+          <div class="profile-username-header">&nbsp;Username: </div>{" "}
+          <span class="profile-username-text">{cookies.username}</span>
           <br></br>
           <br></br>
         </div>
 
-        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favorites</strong>
+      <div className="favorites-section">
+        <div className = "favorites-text"><strong>&nbsp;&nbsp;&nbsp;&nbsp;Your Favorites</strong> </div> 
         <div class="magic-wrapper">
           <div className="container-fluid movie-app">
             <div className="row">
@@ -45,13 +46,14 @@ function Profile(props) {
           </div>
         </div>
         <br></br>
+      </div>
 
-        <div class="recent-reviews">
+        {/* <div class="recent-reviews">
           <div class="recent-reviews-header">Recent Reviews</div>
-        </div>
+        </div> */}
 
         <div class="log-out-button">
-          <input type="button" value="Log Out" onClick={props.logOut} />
+          <input type="button" value="Sign out" onClick={props.logOut} />
         </div>
       </div>
     </div>

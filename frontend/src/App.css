@@ -59,6 +59,11 @@ body {
   flex-wrap: nowrap;
 }
 
+.movie-app1 > .row1 {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
 .image-container {
   position: relative;
   transition: transform 0.2s;
@@ -76,6 +81,24 @@ body {
   height: 250px;
   overflow-y: hidden;
   width: 100%;
+ }
+
+ .magic-wrapper1 {
+  height: 250px;
+  overflow-y: hidden;
+  width: 100%;
+ }
+ 
+ .favorites-text {
+  font-size: 150%;
+ }
+
+ .favorites-section {
+  position: relative;
+  top: 150px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1px;
  }
 
 .image-container:hover .overlay {
@@ -223,12 +246,29 @@ body {
   text-align: center;
   font-size: 300%;
   font-weight: bold;
+  color: #ffffff;
+  background-color: maroon ;
+  top: 5px;
+  padding: 10px ;
+  border: 1px solid green;
+  font-family: 'Helvetica', 'Times New Roman', Times, serif, Helvetica, sans-serif; 
+
 }
 
 .profile-username {
   position: relative;
-  left: 22px;
   font-size: 150%;
+  top:75px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1px;
+
+}
+
+.profile-username-text {
+  /* display: inline-block; */
+  position: relative;
+  left: 10px;
 }
 
 /* .profile-name-header {
@@ -242,6 +282,7 @@ body {
   font-size: 100%;
   font-weight: bold;
   display: inline;
+  left: 8px;
 }
 
 .recent-reviews {
@@ -258,8 +299,10 @@ body {
 
 .log-out-button {
   position: relative;
-  top: 50px;
-  left: 22px;
+  top: 230px;
+  left: 800px;
+  border-radius: 10px;
+  font-size: 25px;
 }
 
 .empty-search-text1 {
@@ -316,3 +359,13 @@ body {
   padding: 10px ;
   border: 1px solid green ;
 }
+
+/* .profile-text-background {
+  position: relative;
+  background-color: red ;
+  top: 50px;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 10px ;
+  border: 1px solid green ;
+} */
