@@ -7,6 +7,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 const userServices = require("./models/user-services");
+const { reset } = require("nodemon");
 
 app.use(cors());
 app.use(express.json());
@@ -127,8 +128,11 @@ app.get("/allusers", async (req, res) => {
 app.post("/user", async (req, res) => {
   const user = req.body;
   const savedUser = await userServices.addUser(user);
-  if (savedUser) res.status(201).send(savedUser);
-  else res.status(500).end();
+  if (savedUser === 1) {
+    res.status(400).end();
+  } else if (savedUser === 2) {
+    res.status(500).end();
+  } else res.status(201).send(savedUser);
 });
 
 app.put("/usermovie/:id", async (req, res) => {

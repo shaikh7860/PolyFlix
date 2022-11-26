@@ -8,6 +8,8 @@ function Login(props) {
     password: "",
   });
 
+  const [error, setError] = useState();
+
   function handleChange(event) {
     const { name, value } = event.target;
     if (name === "username")
@@ -15,8 +17,12 @@ function Login(props) {
     else setToken({ username: token["username"], password: value });
   }
 
-  function submitForm() {
-    props.handleSubmit(token);
+  async function submitForm() {
+    const result = await props.handleSubmit(token);
+    console.log(result);
+    if (!result) {
+      setError("Invalid login. Please try again.");
+    }
     setToken({ username: "", password: "" });
   }
 
@@ -26,6 +32,7 @@ function Login(props) {
         <img src={logo} alt={""} class="img-fluid"></img>
       </div>
       <div class="login-box">
+        {error ? <label>{error}</label> : null}
         <form>
           <label>
             <p>Username</p>
@@ -51,9 +58,7 @@ function Login(props) {
             <input type="button" value="Log in" onClick={submitForm} />
           </div>
         </form>
-        <ul>
-          <Link to="/createaccount">Create an account</Link>
-        </ul>
+        <Link to="/createaccount">Create an account</Link>
       </div>
     </div>
   );

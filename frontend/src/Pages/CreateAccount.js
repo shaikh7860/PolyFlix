@@ -9,6 +9,8 @@ function CreateAccount(props) {
     password: "",
   });
 
+  const [error, setError] = useState();
+
   function handleChange(event) {
     const { name, value } = event.target;
     if (name === "username")
@@ -31,8 +33,10 @@ function CreateAccount(props) {
       });
   }
 
-  function submitForm() {
-    props.handleSubmit(token);
+  async function submitForm() {
+    const response = await props.handleSubmit(token);
+    if (response === 400) setError("Invalid username or password");
+    if (response === 500) setError("Username already taken");
     setToken({ name: "", username: "", password: "" });
   }
 
@@ -42,6 +46,7 @@ function CreateAccount(props) {
         <img src={logo} alt={""} class="img-fluid"></img>
       </div>
       <div class="login-box">
+        {error ? <label>{error}</label> : null}
         <form>
           <label>
             <p>Name</p>
@@ -77,9 +82,7 @@ function CreateAccount(props) {
             <input type="button" value="Create Account" onClick={submitForm} />
           </div>
         </form>
-        <ul>
-          <Link to="/">Go back</Link>
-        </ul>
+        <Link to="/">Go back</Link>
       </div>
     </div>
   );
