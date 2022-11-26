@@ -243,9 +243,6 @@ function MyApp() {
           element={
             <div>
               <Login handleSubmit={tryLogIn} />
-              <ul>
-                <Link to="/createaccount">Create an account</Link>
-              </ul>
             </div>
           }
         />
@@ -254,9 +251,6 @@ function MyApp() {
           element={
             <div>
               <CreateAccount handleSubmit={makeAccount} />
-              <ul>
-                <Link to="/">Go back</Link>
-              </ul>
             </div>
           }
         />

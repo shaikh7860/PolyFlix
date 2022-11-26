@@ -36,6 +36,16 @@
   margin-top: 50px;
 }
 
+.logo-image-big {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 18px;
+  overflow: hidden;
+  margin-top: 90px;
+  margin-left: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -88,6 +98,14 @@ body {
   font-size: 20px;
   padding: 20px;
   text-align: center;
+}
+
+.login-box {
+  position: fixed;
+  left: 50%;
+  top: 10%;
+  padding: 20px;
+  width: 500px;
 }
 
 /* Movie Image */
