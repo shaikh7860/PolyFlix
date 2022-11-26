@@ -79,6 +79,12 @@ async function findUserById(id) {
   }
 }
 
+async function getAllUsers() {
+  const userModel = getDbConnection().model("User", UserSchema);
+  result = await userModel.find().select(["-password", "-salt"]);
+  return result;
+}
+
 async function addUser(user) {
   // userModel is a Model, a subclass of mongoose.Model
   if (!user.password || user.password.length < 2) {
@@ -106,6 +112,18 @@ async function pushFavMovie(userId, movie) {
     return await userModel.updateOne(
       { _id: userId },
       { $push: { favmovies: movie } }
+    );
+  } catch {
+    return null;
+  }
+}
+
+async function pushFriend(userId, friend) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    return await userModel.updateOne(
+      { _id: userId },
+      { $push: { friends: friend } }
     );
   } catch {
     return null;
@@ -140,3 +158,5 @@ exports.addUser = addUser;
 exports.setConnection = setConnection;
 exports.findUser = findUser;
 exports.pushFavMovie = pushFavMovie;
+exports.pushFriend = pushFriend;
+exports.getAllUsers = getAllUsers;
