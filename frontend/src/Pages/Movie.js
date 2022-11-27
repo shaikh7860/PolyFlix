@@ -21,7 +21,6 @@ function Movie(props) {
   }
 
   async function getMovieTrailer(movieID) {
-    console.log("inside func: " + movieID);
 
     const result = await axios.request(
       "https://api.themoviedb.org/3/movie/" +

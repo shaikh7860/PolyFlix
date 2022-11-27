@@ -108,20 +108,15 @@ async function addUser(user) {
 
 function pushFavMovie(userId, movie) {
   const userModel = getDbConnection().model("User", UserSchema);
-  console.log("TESTXX");
 
   var x = userModel.find(
     { "favmovies.id": movie.id, _id: userId },
     function (err, result) {
       if (err) {
-        console.log("IF STMT");
       } else {
-        console.log("RESULT: " + JSON.stringify(result));
         if (result.length == 0) {
-          console.log("RESULT NOT FOUND");
           var isFavorited = addFavorite(userId, movie);
         } else {
-          console.log("RESULT FOUND");
           var isFavorited = removeFavorite(userId, movie);
         }
         return isFavorited;
@@ -129,7 +124,6 @@ function pushFavMovie(userId, movie) {
     }
   );
 
-  console.log("X : " + x);
   // try {
   //   return await userModel.updateOne(
   //     { _id: userId },
@@ -142,7 +136,6 @@ function pushFavMovie(userId, movie) {
 
 async function addFavorite(userId, movie) {
   const userModel = getDbConnection().model("User", UserSchema);
-  console.log("IN ADD FAV");
   try {
     // return await userModel.updateOne(
     //   { _id: userId },
@@ -160,14 +153,6 @@ async function addFavorite(userId, movie) {
 
 async function removeFavorite(userId, movie) {
   const userModel = getDbConnection().model("User", UserSchema);
-  console.log(
-    "IN REMOVE FAV -- userID: " +
-      userId +
-      " movie: " +
-      JSON.stringify(movie) +
-      " movieID: " +
-      movie.id
-  );
   try {
     x = await userModel.updateOne(
       { _id: userId },
