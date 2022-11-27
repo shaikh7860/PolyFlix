@@ -173,6 +173,7 @@ function MyApp() {
       updateToken(userRes.data.users_list, false);
       return userRes;
     }
+
   }
 
   async function getFavMovies(id) {

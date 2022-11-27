@@ -37,8 +37,8 @@ function Movie(props) {
     location.state.movieTrailer = String(result_filter[0].key);
   }
 
-  const [favButtonText, setFavButtonText] = useState("Add to Favorites");
-  const [favButtonDisabled, changeDisabled] = useState(false);
+  const [favButtonText, setFavButtonText] = useState("Add To Favorites");
+  const [favButtonVariant, setFavButtonVariant] = useState("danger");
 
   useEffect(() => {
     props.getFavMovies(cookies.id).then((result) => {
@@ -48,8 +48,7 @@ function Movie(props) {
           console.log("checking above id");
           if (location.state.id === result[i].id) {
             console.log("match found");
-            setFavButtonText("Favorite");
-            changeDisabled(true);
+            setFavButtonText("Favorited");
           }
         }
       }
@@ -58,8 +57,11 @@ function Movie(props) {
 
   function handleFavorites(movie) {
     props.addToFavorites(movie);
-    setFavButtonText("Favorited");
-    changeDisabled(true);
+    if (favButtonText === "Add To Favorites") {
+      setFavButtonText("Favorited");
+    } else {
+      setFavButtonText("Add To Favorites");
+    }
   }
   getMovieTrailer(location.state.id);
 
@@ -79,8 +81,7 @@ function Movie(props) {
           {location.state.title} <br />
           <div class="add-to-favorites-button">
             <Button
-              disabled={favButtonDisabled}
-              variant="danger"
+              variant={favButtonVariant}
               onClick={() => handleFavorites(location.state)}
             >
               {favButtonText}

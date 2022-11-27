@@ -126,8 +126,12 @@ app.put("/user/:id", async (req, res) => {
   const movie = req.body;
   const userId = req.params["id"];
   const updatedUser = await userServices.pushFavMovie(userId, movie);
-  if (updatedUser) res.status(201).send(updatedUser);
-  else res.status(500).end();
+  if (updatedUser) {
+    res.status(201).send(updatedUser);
+  }
+  else {
+    res.status(500).end();
+  }
 });
 
 app.delete("/users/:id", async (req, res) => {
