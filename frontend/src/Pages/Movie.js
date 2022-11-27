@@ -37,6 +37,8 @@ function Movie(props) {
     location.state.movieTrailer = String(result_filter[0].key);
   }
 
+
+
   function getMonth(monthNum) {
     let month = "";
     if (monthNum === "01") {
@@ -77,7 +79,6 @@ function Movie(props) {
   }
 
   const [favButtonText, setFavButtonText] = useState("Add To Favorites");
-  const [favButtonDisabled, changeDisabled] = useState(false);
   const [favButtonVariant, setFavButtonVariant] = useState("danger");
 
   useEffect(() => {
