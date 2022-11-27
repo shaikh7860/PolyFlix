@@ -7,9 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
+import OtherUserProfile from "./Pages/OtherUserProfile";
 import Movie from "./Pages/Movie";
 import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from "./Pages/SearchResult";
+import UserSearch from "./Pages/UserSearch";
 // import SearchBar from "./SearchBar";
 // import NavBar from "./NavBar";
 import Login from "./Pages/Login";
@@ -167,7 +169,22 @@ function MyApp() {
   }
 
   async function addToFavorites(movie) {
-    const response = await axios.put(baseUrl + "user/" + cookies.id, movie);
+    const response = await axios.put(
+      baseUrl + "usermovie/" + cookies.id,
+      movie
+    );
+    if (response) {
+      const userRes = await axios.get(baseUrl + "users/" + cookies.id);
+      updateToken(userRes.data.users_list, false);
+      return userRes;
+    }
+  }
+
+  async function addFriend(user) {
+    const response = await axios.put(
+      baseUrl + "userfriend/" + cookies.id,
+      user
+    );
     if (response) {
       const userRes = await axios.get(baseUrl + "users/" + cookies.id);
       updateToken(userRes.data.users_list, false);
@@ -180,6 +197,24 @@ function MyApp() {
     const userRes = await axios.get(baseUrl + "users/" + id);
     if (userRes) {
       return userRes.data.users_list["favmovies"];
+    } else {
+      return [];
+    }
+  }
+
+  async function getFriends(id) {
+    const userRes = await axios.get(baseUrl + "users/" + id);
+    if (userRes) {
+      return userRes.data.users_list["friends"];
+    } else {
+      return [];
+    }
+  }
+
+  async function getAllUsers() {
+    const result = await axios.get(baseUrl + "allusers");
+    if (result) {
+      return result.data.users_list;
     } else {
       return [];
     }
@@ -251,6 +286,17 @@ function MyApp() {
           }
         />
         <Route
+          path="/user/:userName"
+          element={
+            <OtherUserProfile
+              handleSubmit={searchForMovies}
+              getFavMovies={getFavMovies}
+              addFriend={addFriend}
+              getFriends={getFriends}
+            />
+          }
+        />
+        <Route
           path="/movie/:movieName"
           element={
             <Movie
@@ -268,6 +314,24 @@ function MyApp() {
               characterData={characters}
               movieName={searchInput}
               handleSubmit={searchForMovies}
+            />
+          }
+        />
+        <Route
+          path="/userSearch"
+          element={
+            <UserSearch
+              handleSubmit={searchForMovies}
+              getAllUsers={getAllUsers}
+            />
+          }
+        />
+        <Route
+          path="/friendslist/:userName"
+          element={
+            <UserSearch
+              handleSubmit={searchForMovies}
+              getAllUsers={getFriends}
             />
           }
         />

@@ -21,16 +21,16 @@ function SearchBar(props) {
       <div class="search-bar">
         <input
           type="text"
-          placeholder="Search here"
+          placeholder="Search for movies..."
           onChange={handleChange}
           value={searchInput}
         />
-      </div>
-      <div class="search-button">
-        <Button variant="danger" onClick={submitSearch}>
-          Search
-        </Button>
-        {/* <input type="button" value="Search" onClick={submitSearch} /> */}
+        <div class="search-button">
+          <Button variant="danger" onClick={submitSearch}>
+            Search
+          </Button>
+          {/* <input type="button" value="Search" onClick={submitSearch} /> */}
+        </div>
       </div>
     </box>
   );
