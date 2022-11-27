@@ -100,14 +100,14 @@ body {
 /* Search Bar */
 .search-bar input[type="text"] {
   position: absolute;
-  left: 25%;
+  left: 32%;
   padding: 14px;
   width: 510px;
   height: 42px;
 }
 .search-button {
   position: absolute;
-  left: 69%;
+  left: 77%;
 }
 
 /* NEW ADDITIONS */
@@ -222,6 +222,7 @@ body {
   position: relative;
   left: 22px;
   font-size: 150%;
+  display: inline;
 }
 
 /* .profile-name-header {
@@ -237,6 +238,18 @@ body {
   display: inline;
 }
 
+.profile-user-button-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-to-friends-button {
+  position: relative;
+  top: -35px;
+  left: 950px;
+  font-size: 110%;
+}
+
 .recent-reviews {
   position: relative;
   font-size: 100%;
@@ -250,6 +263,12 @@ body {
 }
 
 .log-out-button {
+  position: relative;
+  top: 50px;
+  left: 22px;
+}
+
+.friends-list {
   position: relative;
   top: 50px;
   left: 22px;

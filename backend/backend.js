@@ -115,6 +115,15 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
+app.get("/allusers", async (req, res) => {
+  const result = await userServices.getAllUsers();
+  if (result === undefined || result === null)
+    res.status(404).send("Resource not found.");
+  else {
+    res.send({ users_list: result });
+  }
+});
+
 app.post("/user", async (req, res) => {
   const user = req.body;
   const savedUser = await userServices.addUser(user);
@@ -122,7 +131,7 @@ app.post("/user", async (req, res) => {
   else res.status(500).end();
 });
 
-app.put("/user/:id", async (req, res) => {
+app.put("/usermovie/:id", async (req, res) => {
   const movie = req.body;
   const userId = req.params["id"];
   const updatedUser = await userServices.pushFavMovie(userId, movie);
@@ -132,6 +141,14 @@ app.put("/user/:id", async (req, res) => {
   else {
     res.status(500).end();
   }
+});
+
+app.put("/userfriend/:id", async (req, res) => {
+  const friend = req.body;
+  const userId = req.params["id"];
+  const updatedUser = await userServices.pushFriend(userId, friend);
+  if (updatedUser) res.status(201).send(updatedUser);
+  else res.status(500).end();
 });
 
 app.delete("/users/:id", async (req, res) => {

@@ -21,6 +21,7 @@ function NavBar(props) {
             <Nav className="me-auto">
               <Nav.Link href="/home">Home</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
+              <Nav.Link href="/userSearch">Find Users</Nav.Link>
               <SearchBar handleSubmit={props.handleSubmit} />
             </Nav>
           </Navbar.Collapse>
