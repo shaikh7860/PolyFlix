@@ -76,7 +76,7 @@ function Movie(props) {
     return newDate;
   }
 
-  const [favButtonText, setFavButtonText] = useState("Add to Favorites");
+  const [favButtonText, setFavButtonText] = useState("Add To Favorites");
   const [favButtonDisabled, changeDisabled] = useState(false);
   const [favButtonVariant, setFavButtonVariant] = useState("danger");
 
