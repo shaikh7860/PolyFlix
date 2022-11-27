@@ -37,6 +37,45 @@ function Movie(props) {
     location.state.movieTrailer = String(result_filter[0].key);
   }
 
+  function getMonth(monthNum) {
+    let month = "";
+    if (monthNum === "01") {
+      month = "January";
+    } else if (monthNum === "02") {
+      month = "February";
+    } else if (monthNum === "03") {
+      month = "March";
+    } else if (monthNum === "04") {
+      month = "April";
+    } else if (monthNum === "05") {
+      month = "May";
+    } else if (monthNum === "06") {
+      month = "June";
+    } else if (monthNum === "07") {
+      month = "July";
+    } else if (monthNum === "08") {
+      month = "August";
+    } else if (monthNum === "09") {
+      month = "September";
+    } else if (monthNum === "10") {
+      month = "October";
+    } else if (monthNum === "11") {
+      month = "November";
+    } else if (monthNum === "12") {
+      month = "December";
+    } else {
+      month = "Undefined";
+    }
+    return month;
+  }
+
+  function formatDate(date) {
+    const tokensArr = date.split("-");
+    let month = getMonth(tokensArr[1]);
+    let newDate = month + " " + tokensArr[2] + ", " + tokensArr[0];
+    return newDate;
+  }
+
   const [favButtonText, setFavButtonText] = useState("Add to Favorites");
   const [favButtonDisabled, changeDisabled] = useState(false);
 
@@ -44,10 +83,7 @@ function Movie(props) {
     props.getFavMovies(cookies.id).then((result) => {
       if (result) {
         for (let i = 0; i < result.length; i++) {
-          console.log(result[i].id);
-          console.log("checking above id");
           if (location.state.id === result[i].id) {
-            console.log("match found");
             setFavButtonText("Favorite");
             changeDisabled(true);
           }
@@ -105,7 +141,8 @@ function Movie(props) {
           <br />
           <div class="movie-description">
             {" "}
-            <strong> Release Date: </strong> {location.state.release_date}{" "}
+            <strong> Release Date: </strong>{" "}
+            {formatDate(location.state.release_date)}{" "}
           </div>{" "}
           <br />
           <div class="movie-description">

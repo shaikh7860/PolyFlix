@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import MovieList from "../MovieList";
 import { useCookies } from "react-cookie";
 
@@ -50,6 +50,20 @@ function Profile(props) {
             </div>
           </div>
         </div>
+
+        <div class="friends-list">
+          <input
+            type="button"
+            value="My Friends"
+            onClick={() =>
+              navigate("/friendslist/" + cookies.username, {
+                state: { id: cookies.id },
+              })
+            }
+          />
+        </div>
+        <br></br>
+        <br></br>
         <br></br>
       </div>
 

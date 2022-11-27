@@ -112,14 +112,14 @@ body {
 /* Search Bar */
 .search-bar input[type="text"] {
   position: absolute;
-  left: 25%;
+  left: 32%;
   padding: 14px;
   width: 510px;
   height: 42px;
 }
 .search-button {
   position: absolute;
-  left: 69%;
+  left: 77%;
 }
 
 /* NEW ADDITIONS */
@@ -250,6 +250,7 @@ body {
   /* display: inline-block; */
   position: relative;
   left: 10px;
+  display: inline;
 }
 
 /* .profile-name-header {
@@ -265,6 +266,18 @@ body {
   font-weight: bold;
   display: inline;
   left: 8px;
+}
+
+.profile-user-button-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-to-friends-button {
+  position: relative;
+  top: -35px;
+  left: 950px;
+  font-size: 110%;
 }
 
 .recent-reviews {
@@ -285,6 +298,12 @@ body {
   left: 1100px;
   border-radius: 10px;
   font-size: 25px;
+}
+
+.friends-list {
+  position: relative;
+  top: 50px;
+  left: 22px;
 }
 
 .empty-search-text1 {
