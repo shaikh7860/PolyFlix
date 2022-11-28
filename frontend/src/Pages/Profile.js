@@ -29,16 +29,20 @@ function Profile(props) {
 
         <div class="profile-header">PROFILE</div>
 
-        <div class="log-out-button">
+        {/* <div class="log-out-button">
           <input type="button" value="Sign out" onClick={props.logOut} />
-        </div>
+        </div> */}
 
         <div class="profile-username">
+          <br></br>
           {/* <span class="profile-name-header">Name: </span> {props.cookies.name} */}
           <div class="profile-username-header">&nbsp;Username: </div>{" "}
           <span class="profile-username-text">{cookies.username}</span>
-          <br></br>
-          <br></br>
+          <div class="log-out-button">
+          <input type="button" value="Sign out" onClick={props.logOut} />
+          </div>
+          {/* <br></br>
+          <br></br> */}
         </div>
 
       <div className="favorites-section">

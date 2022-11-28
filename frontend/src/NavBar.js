@@ -8,8 +8,9 @@ import SearchBar from "./SearchBar";
 
 function NavBar(props) {
   return (
-    <Container>
-      <Navbar variant="lights" expand="lg">
+    <div class="nav-bar-container">
+    <Container>   
+      <Navbar variant="lights" expand="lg" bg="#ddc105">
         <Container>
           <a class="navbar-brand" href="/home">
             <div class="logo-image">
@@ -30,6 +31,7 @@ function NavBar(props) {
         </Container>
       </Navbar>
     </Container>
+    </div>
   );
 }
 
