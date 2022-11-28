@@ -137,8 +137,7 @@ app.put("/usermovie/:id", async (req, res) => {
   const updatedUser = await userServices.pushFavMovie(userId, movie);
   if (updatedUser) {
     res.status(201).send(updatedUser);
-  }
-  else {
+  } else {
     res.status(500).end();
   }
 });
