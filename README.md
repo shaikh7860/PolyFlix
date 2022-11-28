@@ -15,11 +15,11 @@ On VS Code, download the Prettier extension
 Then format the document with prettier (Cmd+Shift+P)
 After, go to settings (Cmd+,) and search "Editor:Format on Save" and turn it on
 
-### NPM INSTALLS
-## Backend
+## NPM INSTALLS
+### Backend
 - npm install dotenv
 - npm install axios
-## Frontend
+### Frontend
 - npm install react
 - npm install react-router-dom@6
 - npm install react-cookie
