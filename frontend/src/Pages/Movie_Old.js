@@ -110,14 +110,11 @@ function Movie(props) {
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
 
-      <div class="movie-page-container">
-        <div class="title-container">
+      <div class="float-container1">
+        <div class="title-format">
           {" "}
           {location.state.title} <br />
-        </div>
-
-        <div class="movie-box-container">
-          <div class="add-to-favorites-button-new">
+          <div class="add-to-favorites-button">
             <Button
               variant={favButtonVariant}
               onClick={() => handleFavorites(location.state)}
@@ -125,64 +122,66 @@ function Movie(props) {
               {favButtonText}
             </Button>
           </div>
+        </div>
 
-          <div class="movie-page-image">
-            <img
-              src={
-                "http://image.tmdb.org/t/p/w342/" + location.state.poster_path
-              }
-              class="movie-image"
-            />
-          </div>
+        <div class="float-child1">
+          <img
+            src={"http://image.tmdb.org/t/p/w342/" + location.state.poster_path}
+            class="movie-image"
+          />
+          <br />
+        </div>
 
-          <div class="movie-info-container">
-            <div class="description-header"> Description: </div>
-            <div class="description-body">
-              {" "}
-              {location.state.overview} <br />{" "}
-            </div>{" "}
-            <br />
-            <div class="movie-description">
-              {" "}
-              <strong> Release Date: </strong>{" "}
-              {formatDate(location.state.release_date)}{" "}
-            </div>{" "}
-            <br />
-            <div class="movie-description">
-              {" "}
-              <strong> Rating: </strong> {location.state.vote_average}{" "}
-            </div>{" "}
-            <br />
-            <div class="movie-description">
-              {" "}
-              <strong> Duration: </strong> {location.state.runtime}{" "}
-            </div>
+        <div class="float-child2">
+          <div class="description-header"> Description: </div>
+          <div class="description-body">
+            {" "}
+            {location.state.overview} <br />{" "}
+          </div>{" "}
+          <br />
+          <div class="movie-description">
+            {" "}
+            <strong> Release Date: </strong>{" "}
+            {formatDate(location.state.release_date)}{" "}
+          </div>{" "}
+          <br />
+          <div class="movie-description">
+            {" "}
+            <strong> Rating: </strong> {location.state.vote_average}{" "}
+          </div>{" "}
+          <br />
+          <div class="movie-description">
+            {" "}
+            <strong> Duration: </strong> {location.state.runtime}{" "}
           </div>
-
-          <div class="player-wrapper">
-            <div class="trailer-watch-button">
-              <button
-                onClick={() => {
-                  setOpenModal(true);
-                }}
-              >
-                {" "}
-                Watch Trailer{" "}
-              </button>
-            </div>
-            {openModal && (
-              <Modal
-                setOpenModal={setOpenModal}
-                url={
-                  "https://www.youtube.com/watch?v=" +
-                  location.state.movieTrailer
-                }
-              />
-            )}
-          </div>
+          {/* <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QBmre1vaLwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
         </div>
       </div>
 
+      <div class="player-wrapper">
+        {/* <div class="trailer-label"> 
+            <strong> Trailer: </strong> 
+          </div> */}
+        <div class="trailer-watch-button">
+          <button
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            {" "}
+            Watch Trailer{" "}
+          </button>
+        </div>
+        {openModal && (
+          <Modal
+            setOpenModal={setOpenModal}
+            url={
+              "https://www.youtube.com/watch?v=" + location.state.movieTrailer
+            }
+          />
+        )}
+        {/* <ReactPlayer class="react-player" url={"https://www.youtube.com/watch?v="+location.state.movieTrailer} controls={true} /> */}
+      </div>
       <br />
 
       <div class="user-box">

@@ -318,13 +318,6 @@ body {
   font-size: 150%;
 }
 
-.player-wrapper {
-  position: absolute;
-  /* padding-top: 56.25% Player ratio: 100 / (1280 / 720) */
-  top: 570px;
-  left: 470px;
-}
-
 .react-player {
   position: relative;
   top: -100px;
@@ -355,8 +348,8 @@ body {
   top: 100px;
   font-size: 150%;
   font-weight: bold;
-  padding: 10px ;
-  border: 1px solid green ;
+  padding: 10px;
+  border: 1px solid green;
 }
 
 .invalid-url-page {
@@ -394,3 +387,65 @@ body {
   height: 100%;
 }
 
+
+/*  */
+/* Changes for new Movie page */
+/*  */
+
+.movie-page-container {
+  outline-style: solid;
+  position: absolute;
+  padding: 50px;
+  height: 1000px;
+  width: 1486px;
+}
+
+.title-container {
+  outline-style: solid;
+  position: relative;
+  font-size: 250%;
+  font-weight: bold;
+  width: 1390px;
+}
+
+.movie-box-container {
+  outline-style: solid;
+  position: relative;
+  padding: 0px;
+  height: 700px;
+  width: 1390px;
+}
+
+.add-to-favorites-button-new {
+  outline-style: solid;
+  position: relative;
+  float: right;
+  right: 10%;
+  height: 42px;
+  width: 168px;
+  top: 2%;
+}
+
+.movie-page-image {
+  outline-style: solid;
+  position: relative;
+  float: left;
+  top: 2%;
+}
+
+.movie-info-container {
+  outline-style: solid;
+  position: relative;
+  width: 75%;
+  float: left;
+  left: 2%;
+  top: 4%;
+}
+
+.player-wrapper {
+  outline-style: solid;
+  position: absolute;
+  top: 55%;
+  left: 16.5%;
+  /* padding-top: 56.25% Player ratio: 100 / (1280 / 720) */
+}
