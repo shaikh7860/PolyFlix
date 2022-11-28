@@ -54,4 +54,4 @@ jobs:
           app-name: 'PolyFlix'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7DB43970970A43B7B4AD0B29C53BEFB3 }}
-          package: .
+          package: backend
