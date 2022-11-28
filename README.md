@@ -17,7 +17,10 @@ After, go to settings (Cmd+,) and search "Editor:Format on Save" and turn it on
 
 ### NPM INSTALLS
 ## Backend
-npm install dotenv
-npm install axios
+- npm install dotenv
+- npm install axios
 ## Frontend
-npm install react-router-dom@6 (frontend)
+- npm install react
+- npm install react-router-dom@6
+- npm install react-cookie
+- npm install react-bootstrap
