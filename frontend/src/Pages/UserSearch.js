@@ -98,13 +98,14 @@ function UserSearch(props) {
   }
 
   return (
-    <div>
+    <div class="container-fluid bg_image">
       <div>
         <nav>
           <NavBar handleSubmit={props.handleSubmit}></NavBar>
         </nav>
         <div class="user-search-bar">
           <input
+            style={{ color: "white" }}
             type="text"
             placeholder="Search for users..."
             onChange={handleChange}

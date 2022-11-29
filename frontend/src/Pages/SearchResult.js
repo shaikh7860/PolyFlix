@@ -31,7 +31,7 @@ function SearchResult(props) {
   } else {
     if (props.movieData.length > 0) {
       return (
-        <div>
+        <div class="container-fluid bg_image">
           <div>
             <nav>
               <NavBar handleSubmit={props.handleSubmit}></NavBar>
