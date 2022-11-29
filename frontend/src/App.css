@@ -230,7 +230,7 @@ body {
   font-weight: bold;
   color: white;
   background-color: black ;
-  top: -30px;
+  top: -29px;
   padding: 10px ;
   border: 1px solid yellow;
   font-family: 'Helvetica', 'Times New Roman', Times, serif, Helvetica, sans-serif; 
@@ -393,15 +393,18 @@ body {
 /*  */
 
 .movie-page-container {
-  outline-style: solid;
+  /* outline-style: solid; */
+  background-image: url('./cpgreen.jpg');
+  background-size: cover;
   position: absolute;
   padding: 50px;
   height: 1000px;
   width: 1486px;
+  color: white ;
 }
 
 .title-container {
-  outline-style: solid;
+  /* outline-style: solid; */
   position: relative;
   font-size: 250%;
   font-weight: bold;
@@ -409,7 +412,7 @@ body {
 }
 
 .movie-box-container {
-  outline-style: solid;
+  /* outline-style: solid; */
   position: relative;
   padding: 0px;
   height: 700px;
@@ -417,7 +420,7 @@ body {
 }
 
 .add-to-favorites-button-new {
-  outline-style: solid;
+  /* outline-style: solid; */
   position: relative;
   float: right;
   right: 10%;
@@ -427,14 +430,14 @@ body {
 }
 
 .movie-page-image {
-  outline-style: solid;
+  /* outline-style: solid; */
   position: relative;
   float: left;
   top: 2%;
 }
 
 .movie-info-container {
-  outline-style: solid;
+  /* outline-style: solid; */
   position: relative;
   width: 75%;
   float: left;
@@ -443,7 +446,7 @@ body {
 }
 
 .player-wrapper {
-  outline-style: solid;
+  /* outline-style: solid; */
   position: absolute;
   top: 55%;
   left: 16.5%;
