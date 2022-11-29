@@ -273,12 +273,12 @@ body {
   flex-direction: row;
 }
 
-.add-to-friends-button {
+/* .add-to-friends-button {
   position: relative;
   top: -35px;
   left: 950px;
   font-size: 110%;
-}
+} */
 
 .recent-reviews {
   position: relative;
@@ -459,4 +459,20 @@ body {
   outline-style: solid;
   outline-color: white;
   
+}
+
+.add-to-friends-button {
+  position: relative;
+  top: -30px;
+  left: 1100px;
+  border-radius: 10px;
+  font-size: 25px;
+}
+
+.log-out-button {
+  position: relative;
+  top: -30px;
+  left: 1100px;
+  border-radius: 10px;
+  font-size: 25px;
 }

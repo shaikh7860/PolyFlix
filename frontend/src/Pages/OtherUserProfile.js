@@ -45,11 +45,13 @@ function OtherUserProfile(props) {
       <div class="profile-page">
         <div class="profile-header">{location.state.name}'s PROFILE</div>
 
-        <div class="profile-user-button-row">
+        {/* <div class="profile-user-button-row"> */}
           <div class="profile-username">
+            <br></br>
             {/* <span class="profile-name-header">Name: </span> {props.userinfo.name} */}
-            <div class="profile-username-header">Username: </div>{" "}
-            {location.state.username}
+            <div class="profile-username-header">&nbsp;Username: </div>{" "}
+            {/* {location.state.username} */}
+            <span class="profile-username-text">{location.state.username}</span>
             <div class="add-to-friends-button">
               <Button
                 disabled={friendButtonDisabled}
@@ -60,7 +62,7 @@ function OtherUserProfile(props) {
               </Button>
             </div>
           </div>
-        </div>
+        {/* </div> */}
         <br></br>
 
         <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favorites</strong>

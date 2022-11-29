@@ -39,7 +39,7 @@ function Profile(props) {
           <div class="profile-username-header">&nbsp;Username: </div>{" "}
           <span class="profile-username-text">{cookies.username}</span>
           <div class="log-out-button">
-          <input type="button" value="Sign out" onClick={props.logOut} />
+            <input type="button" value="Sign out" onClick={props.logOut} />
           </div>
           {/* <br></br>
           <br></br> */}
