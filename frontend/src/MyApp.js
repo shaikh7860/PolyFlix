@@ -228,6 +228,15 @@ function MyApp() {
     }
   }
 
+  async function getMovieDetails(movieID) {
+    const result = await axios.get(baseUrl + "movies/details/" + movieID);
+    if (result) {
+      return result.data;
+    } else {
+      return false;
+    }
+  }
+
   function updateToken(token, goHome = true) {
     setToken(token);
     setCookie("name", token["name"], { path: "/", maxAge: "900" });
@@ -279,6 +288,7 @@ function MyApp() {
               characterData={characters}
               removeCharacter={removeOneCharacter}
               handleSubmit={searchForMovies}
+              getMovieDetails={getMovieDetails}
             />
           }
         />

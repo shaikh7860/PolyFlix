@@ -28,7 +28,10 @@ function Home(props) {
         <div class="magic-wrapper">
           <div className="container-fluid movie-app">
             <div className="row">
-              <MovieList movieData={props.PopMovieData} />
+              <MovieList
+                movieData={props.PopMovieData}
+                getMovieDetails={props.getMovieDetails}
+              />
             </div>
           </div>
         </div>
@@ -37,7 +40,10 @@ function Home(props) {
         <div class="magic-wrapper">
           <div className="container-fluid movie-app">
             <div className="row">
-              <MovieList movieData={props.TopMovieData} />
+              <MovieList
+                movieData={props.TopMovieData}
+                getMovieDetails={props.getMovieDetails}
+              />
             </div>
           </div>
         </div>
@@ -46,7 +52,10 @@ function Home(props) {
         <div class="magic-wrapper">
           <div className="container-fluid movie-app">
             <div className="row">
-              <MovieList movieData={props.UpcomingMovieData} />
+              <MovieList
+                movieData={props.UpcomingMovieData}
+                getMovieDetails={props.getMovieDetails}
+              />
             </div>
           </div>
         </div>

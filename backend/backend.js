@@ -92,6 +92,23 @@ app.get("/movies/trailer/:movieID", async (req, res) => {
   }
 });
 
+app.get("/movies/details/:movieID", async (req, res) => {
+  const id = req.params["movieID"];
+  try {
+    const result = await axios.request(
+      "https://api.themoviedb.org/3/movie/" +
+        id +
+        "?api_key=" +
+        process.env.API_KEY +
+        "&language=en-US"
+    );
+    res.send(result.data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error occured in the server");
+  }
+});
+
 app.get("/search", async (req, res) => {
   try {
     const name = req.query["name"];

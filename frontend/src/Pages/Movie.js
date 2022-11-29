@@ -104,7 +104,24 @@ function Movie(props) {
     });
   }
 
+  // function setMovieDetails(id) {
+  //   props.getMovieDetails(id).then((result) => {
+  //     console.log(result);
+  //     if (result.runtime === 0) {
+  //       location.state.movieDuration = "unknown";
+  //     } else {
+  //       location.state.movieDuration = result.runtime;
+  //     }
+  //     if (result.budget === 0) {
+  //       location.state.movieBudget = "unknown";
+  //     } else {
+  //       location.state.movieBudget = result.budget;
+  //     }
+  //   });
+  // }
+
   setMovieTrailer(location.state.id);
+  // setMovieDetails(location.state.id);
 
   // code to implement modal for trailer video
   const [openModal, setOpenModal] = useState(false);
@@ -161,7 +178,12 @@ function Movie(props) {
             <br />
             <div class="movie-description">
               {" "}
-              <strong> Duration: </strong> {location.state.runtime}{" "}
+              <strong> Duration: </strong> {location.state.movieDuration}{" "}
+            </div>
+            <br />
+            <div class="movie-description">
+              {" "}
+              <strong> Budget: </strong> {location.state.movieBudget}{" "}
             </div>
           </div>
 
