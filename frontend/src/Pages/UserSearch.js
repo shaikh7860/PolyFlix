@@ -98,7 +98,7 @@ function UserSearch(props) {
   }
 
   return (
-    <div class="container-fluid bg_image">
+    <div class="bg_image1">
       <div>
         <nav>
           <NavBar handleSubmit={props.handleSubmit}></NavBar>

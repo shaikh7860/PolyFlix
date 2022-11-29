@@ -19,7 +19,7 @@ function Home(props) {
       //   {/* <Table movieData = {props.movieData} characterData={props.characterData} removeCharacter={props.removeCharacter} /> */}
       //   <MovieList movieData = {props.movieData} />
       //   <Form handleSubmit = {props.handleSubmit} />
-      <div class="container-fluid bg_image">
+      <div class="bg_image1">
         <nav>
           <NavBar handleSubmit={props.handleSubmit}></NavBar>
         </nav>
