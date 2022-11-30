@@ -218,6 +218,10 @@ function Movie(props) {
           </div>
         </div>
       </div>
+
+      <br />
+
+      
     </div>
   );
 }

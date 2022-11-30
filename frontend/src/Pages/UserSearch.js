@@ -70,13 +70,16 @@ function UserSearch(props) {
     }
   }, []);
 
+  
+
   function correctNav(row) {
     if (row.username === cookies.username) {
       navigate("/profile");
     } else {
       navigate("/user/" + row.username, {
         state: {
-          id: row._id,
+          _id: row._id,
+          // id: row.id,
           username: row.username,
           name: row.name,
           favmovies: row.favmovies,

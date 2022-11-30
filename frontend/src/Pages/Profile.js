@@ -26,7 +26,7 @@ function Profile(props) {
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
       <div class="profile-page">
-        <div class="profile-header">PROFILE</div>
+        <div class="profile-header">MY PROFILE</div>
 
         <div class="log-out-button">
           <input type="button" value="Sign out" onClick={props.logOut} />
@@ -70,10 +70,6 @@ function Profile(props) {
           <br></br>
           <br></br>
         </div>
-
-        {/* <div class="recent-reviews">
-          <div class="recent-reviews-header">Recent Reviews</div>
-        </div> */}
       </div>
     </div>
   );

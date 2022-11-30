@@ -145,9 +145,9 @@ function MyApp() {
           "&password=" +
           token["password"]
       );
-      if (response) {
-        console.log(response.data);
+      if (response.data.users_list) {
         updateToken(response.data.users_list);
+        return true;
       } else {
         return false;
       }
@@ -161,10 +161,11 @@ function MyApp() {
     try {
       const response = await axios.post(baseUrl + "user", token);
       updateToken(response.data);
+      return 0;
     } catch (error) {
       console.log(error);
       navigate("/createaccount");
-      return;
+      return error.response.status;
     }
   }
 
@@ -261,9 +262,6 @@ function MyApp() {
           element={
             <div>
               <Login handleSubmit={tryLogIn} />
-              <ul>
-                <Link to="/createaccount">Create an account</Link>
-              </ul>
             </div>
           }
         />
@@ -272,9 +270,6 @@ function MyApp() {
           element={
             <div>
               <CreateAccount handleSubmit={makeAccount} />
-              <ul>
-                <Link to="/">Go back</Link>
-              </ul>
             </div>
           }
         />
@@ -355,7 +350,7 @@ function MyApp() {
             />
           }
         />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage handleSubmit={searchForMovies}/>} />
       </Routes>
     </div>
   );
