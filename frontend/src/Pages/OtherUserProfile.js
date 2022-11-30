@@ -17,15 +17,14 @@ function OtherUserProfile(props) {
   const location = useLocation();
 
   useEffect(() => {
-    props.getFriends(cookies.id).then((result) => {
+    props.getFriends(location.state._id).then((result) => {
       if (result) {
         console.log(location.state);
+        console.log(result);
         for (let i = 0; i < result.length; i++) {
           console.log(result[i].id);
           console.log(result[i]._id);
-          if (
-            location.state._id === result[i]._id
-          ) {
+          if (location.state._id === result[i]._id) {
             console.log("match found");
             setFriendButtonText("Friend!");
             // changeDisabled(true);
@@ -79,7 +78,10 @@ function OtherUserProfile(props) {
         <div class="magic-wrapper">
           <div className="container-fluid movie-app">
             <div className="row">
-              <MovieList movieData={location.state.favmovies} />
+              <MovieList
+                movieData={location.state.favmovies}
+                getMovieDetails={props.getMovieDetails}
+              />
             </div>
           </div>
         </div>
@@ -91,7 +93,7 @@ function OtherUserProfile(props) {
             value={location.state.name + "'s Friends"}
             onClick={() =>
               navigate("/friendslist/" + location.state.username, {
-                state: { id: location.state.id },
+                state: { id: location.state._id },
               })
             }
           />
