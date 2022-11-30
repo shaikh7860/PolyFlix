@@ -95,14 +95,16 @@ function TableBody(props) {
 
 function Table(props) {
   return (
-    <table>
-      <TableHeader />
-      <TableBody
-        movieData={props.movieData}
-        characterData={props.characterData}
-        removeCharacter={props.removeCharacter}
-      />
-    </table>
+    <div class="container-fluid bg_image">
+      <table>
+        <TableHeader />
+        <TableBody
+          movieData={props.movieData}
+          characterData={props.characterData}
+          removeCharacter={props.removeCharacter}
+        />
+      </table>
+    </div>
   );
 }
 

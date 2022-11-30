@@ -334,7 +334,7 @@ function MyApp() {
             />
           }
         />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage handleSubmit={searchForMovies}/>} />
       </Routes>
     </div>
   );

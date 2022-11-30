@@ -20,11 +20,14 @@ function SearchResult(props) {
 
   if (props.movieData.length > 0) {
     return (
-      <div>
+      <div classname="container-fluid bg_image">
         <nav>
           <NavBar handleSubmit={props.handleSubmit}></NavBar>
         </nav>
-        Search results for: {props.movieName}
+        <div class="search-result-text">
+          Search results for: {props.movieName}
+        </div>
+
         <Table
           movieData={props.movieData}
           characterData={props.characterData}
@@ -34,11 +37,14 @@ function SearchResult(props) {
   } else {
     if (props.movieData.length > 0) {
       return (
-        <div>
+        <div classname="container-fluid bg_image">
           <nav>
             <NavBar handleSubmit={props.handleSubmit}></NavBar>
           </nav>
-          Search results for: {props.movieName}
+          <div class="search-result-text">
+            Search results for: {props.movieName}
+          </div>
+          {/* Search results for: {props.movieName} */}
           <Table
             movieData={props.movieData}
             characterData={props.characterData}

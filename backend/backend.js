@@ -134,7 +134,7 @@ app.post("/user", async (req, res) => {
 app.put("/usermovie/:id", async (req, res) => {
   const movie = req.body;
   const userId = req.params["id"];
-  const updatedUser = await userServices.pushFavMovie(userId, movie);
+  const updatedUser = userServices.pushFavMovie(userId, movie);
   if (updatedUser) {
     res.status(201).send(updatedUser);
   } else {
@@ -145,7 +145,7 @@ app.put("/usermovie/:id", async (req, res) => {
 app.put("/userfriend/:id", async (req, res) => {
   const friend = req.body;
   const userId = req.params["id"];
-  const updatedUser = await userServices.pushFriend(userId, friend);
+  const updatedUser = await userServices.pushFriend_2(userId, friend);
   if (updatedUser) res.status(201).send(updatedUser);
   else res.status(500).end();
 });

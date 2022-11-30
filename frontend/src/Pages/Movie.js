@@ -185,31 +185,7 @@ function Movie(props) {
 
       <br />
 
-      <div class="user-box">
-        <div class="user-reviews-header"> User Reviews: </div>
-
-        <div class=".user-reviews-text-box">
-          <label for="freeform"></label>
-          <br />
-          <textarea
-            id="freeform"
-            name="freeform"
-            placeholder="Enter Review Here..."
-            rows="4"
-            cols="50"
-          ></textarea>{" "}
-          <br /> <br />
-        </div>
-        <div class="post-button">
-          {" "}
-          <input
-            value="Post"
-            class="submit"
-            type="button"
-            onClick="dosomething(this.value);"
-          />{" "}
-        </div>
-      </div>
+      
     </div>
   );
 }

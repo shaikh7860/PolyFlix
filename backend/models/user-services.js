@@ -176,6 +176,60 @@ async function pushFriend(userId, friend) {
   }
 }
 
+function pushFriend_2(userId, friend) {
+  const userModel = getDbConnection().model("User", UserSchema);
+
+  var x = userModel.find(
+    { "friends._id": friend._id, _id: userId },
+    function (err, result) {
+      if (err) {
+      } else {
+        console.log("FRIENDS RETURNED: "+JSON.stringify(result))
+        if (result.length == 0) {
+          var isFriended = addFriend(userId, friend);
+        } else {
+          console.log("HII");
+          var isFriended = removeFriend(userId, friend);
+        }
+        return isFriended;
+      }
+    }
+  );
+
+}
+
+async function addFriend(userId, friend) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    // return await userModel.updateOne(
+    //   { _id: userId },
+    //   { $push: { favmovies: movie } }
+    // );
+    x = await userModel.updateOne(
+      { _id: userId },
+      { $push: { friends: friend } }
+    );
+    // return true;
+  } catch {
+    return null;
+  }
+}
+
+async function removeFriend(userId, friend) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    x = await userModel.updateOne(
+      { _id: userId },
+      { $pullAll: { friends: [friend] } }
+    );
+    // return false;
+  } catch {
+    return null;
+  }
+}
+
+
+
 // async function findUserByName(name) {
 //   const userModel = getDbConnection().model("User", UserSchema);
 //   return await userModel.find({ name: name });
@@ -206,3 +260,4 @@ exports.findUser = findUser;
 exports.pushFavMovie = pushFavMovie;
 exports.pushFriend = pushFriend;
 exports.getAllUsers = getAllUsers;
+exports.pushFriend_2 = pushFriend_2;
