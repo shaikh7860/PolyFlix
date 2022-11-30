@@ -98,8 +98,15 @@ function Movie(props) {
       setFavButtonText("Add To Favorites");
     }
   }
+
+  const [trailerAvailable, setTrailerAvailable] = useState(true);
+  const [trailerText, setTrailerText] = useState("Watch Trailer");
   function setMovieTrailer(id) {
     props.getMovieTrailer(id).then((result) => {
+      if (!result) {
+        setTrailerAvailable(false);
+        setTrailerText("Trailer Unavailable");
+      }
       location.state.movieTrailer = result;
     });
   }
@@ -190,12 +197,13 @@ function Movie(props) {
           <div class="player-wrapper">
             <div class="trailer-watch-button">
               <button
+                disabled={!trailerAvailable}
                 onClick={() => {
                   setOpenModal(true);
                 }}
               >
                 {" "}
-                Watch Trailer{" "}
+                {trailerText}{" "}
               </button>
             </div>
             {openModal && (

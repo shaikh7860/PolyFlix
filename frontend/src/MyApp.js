@@ -300,6 +300,7 @@ function MyApp() {
               handleSubmit={searchForMovies}
               PopMovieData={cookies.favmovies}
               getFavMovies={getFavMovies}
+              getMovieDetails={getMovieDetails}
             />
           }
         />

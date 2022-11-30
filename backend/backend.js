@@ -85,7 +85,11 @@ app.get("/movies/trailer/:movieID", async (req, res) => {
     var result_filter = result.data.results.filter(
       (element) => element.type == "Trailer"
     );
-    res.send(String(result_filter[0].key));
+    if (result_filter[0]) {
+      res.send(String(result_filter[0].key));
+    } else {
+      res.send(null);
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("An error occured in the server");
