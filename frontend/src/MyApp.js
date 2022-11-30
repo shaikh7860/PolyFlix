@@ -219,6 +219,24 @@ function MyApp() {
     }
   }
 
+  async function getMovieTrailer(movieID) {
+    const result = await axios.get(baseUrl + "movies/trailer/" + movieID);
+    if (result) {
+      return result.data;
+    } else {
+      return false;
+    }
+  }
+
+  async function getMovieDetails(movieID) {
+    const result = await axios.get(baseUrl + "movies/details/" + movieID);
+    if (result) {
+      return result.data;
+    } else {
+      return false;
+    }
+  }
+
   function updateToken(token, goHome = true) {
     setToken(token);
     setCookie("name", token["name"], { path: "/", maxAge: "900" });
@@ -270,6 +288,7 @@ function MyApp() {
               characterData={characters}
               removeCharacter={removeOneCharacter}
               handleSubmit={searchForMovies}
+              getMovieDetails={getMovieDetails}
             />
           }
         />
@@ -302,6 +321,7 @@ function MyApp() {
               handleSubmit={searchForMovies}
               addToFavorites={addToFavorites}
               getFavMovies={getFavMovies}
+              getMovieTrailer={getMovieTrailer}
             />
           }
         />

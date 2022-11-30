@@ -18,6 +18,20 @@ function SearchResult(props) {
     window.location = "/home";
   }
 
+  // if (props.movieData.length > 0) {
+  //   return (
+  //     <div>
+  //       <nav>
+  //         <NavBar handleSubmit={props.handleSubmit}></NavBar>
+  //       </nav>
+  //       Search results for: {props.movieName}
+  //       <Table
+  //         movieData={props.movieData}
+  //         characterData={props.characterData}
+  //       />
+  //     </div>
+  //   );
+  // } else {
   if (props.movieData.length > 0) {
     return (
       <div classname="container-fluid bg_image">

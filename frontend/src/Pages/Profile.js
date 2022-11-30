@@ -21,7 +21,7 @@ function Profile(props) {
     });
   }, []);
   return (
-    <div class = "container-fluid bg_image1">
+    <div class="bg_image1">
       <nav>
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
@@ -45,31 +45,33 @@ function Profile(props) {
           <br></br> */}
         </div>
 
-      <div className="favorites-section">
-        <div className = "favorites-text"><strong>&nbsp;&nbsp;&nbsp;&nbsp;Your Favorites</strong> </div> 
-        <div class="magic-wrapper">
-          <div className="container-fluid movie-app">
-            <div className="row">
-              <MovieList movieData={favmovies} />
+        <div className="favorites-section">
+          <div className="favorites-text">
+            <strong>&nbsp;&nbsp;&nbsp;&nbsp;Your Favorites</strong>{" "}
+          </div>
+          <div class="magic-wrapper">
+            <div className="container-fluid movie-app">
+              <div className="row">
+                <MovieList movieData={favmovies} />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="friends-list">
-          <input
-            type="button"
-            value="My Friends"
-            onClick={() =>
-              navigate("/friendslist/" + cookies.username, {
-                state: { id: cookies.id },
-              })
-            }
-          />
+          <div class="friends-list">
+            <input
+              type="button"
+              value="My Friends"
+              onClick={() =>
+                navigate("/friendslist/" + cookies.username, {
+                  state: { id: cookies.id },
+                })
+              }
+            />
+          </div>
+          <br></br>
+          <br></br>
+          <br></br>
         </div>
-        <br></br>
-        <br></br>
-        <br></br>
-      </div>
 
 
 

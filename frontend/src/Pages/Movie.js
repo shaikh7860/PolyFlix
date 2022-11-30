@@ -20,20 +20,20 @@ function Movie(props) {
     navigate("/");
   }
 
-  async function getMovieTrailer(movieID) {
-    const result = await axios.request(
-      "https://api.themoviedb.org/3/movie/" +
-        movieID +
-        "/videos?api_key=" +
-        "a4f5ca3d995fae36deb0e8691ab2d880" +
-        "&language=en-US" +
-        "&append_to_response=videos"
-    );
-    var result_filter = result.data.results.filter(
-      (element) => element.type == "Trailer"
-    );
-    location.state.movieTrailer = String(result_filter[0].key);
-  }
+  // async function getMovieTrailer(movieID) {
+  //   const result = await axios.request(
+  //     "https://api.themoviedb.org/3/movie/" +
+  //       movieID +
+  //       "/videos?api_key=" +
+  //       "a4f5ca3d995fae36deb0e8691ab2d880" +
+  //       "&language=en-US" +
+  //       "&append_to_response=videos"
+  //   );
+  //   var result_filter = result.data.results.filter(
+  //     (element) => element.type == "Trailer"
+  //   );
+  //   location.state.movieTrailer = String(result_filter[0].key);
+  // }
 
   function getMonth(monthNum) {
     let month = "";
@@ -98,7 +98,30 @@ function Movie(props) {
       setFavButtonText("Add To Favorites");
     }
   }
-  getMovieTrailer(location.state.id);
+  function setMovieTrailer(id) {
+    props.getMovieTrailer(id).then((result) => {
+      location.state.movieTrailer = result;
+    });
+  }
+
+  // function setMovieDetails(id) {
+  //   props.getMovieDetails(id).then((result) => {
+  //     console.log(result);
+  //     if (result.runtime === 0) {
+  //       location.state.movieDuration = "unknown";
+  //     } else {
+  //       location.state.movieDuration = result.runtime;
+  //     }
+  //     if (result.budget === 0) {
+  //       location.state.movieBudget = "unknown";
+  //     } else {
+  //       location.state.movieBudget = result.budget;
+  //     }
+  //   });
+  // }
+
+  setMovieTrailer(location.state.id);
+  // setMovieDetails(location.state.id);
 
   // code to implement modal for trailer video
   const [openModal, setOpenModal] = useState(false);
@@ -155,7 +178,12 @@ function Movie(props) {
             <br />
             <div class="movie-description">
               {" "}
-              <strong> Duration: </strong> {location.state.runtime}{" "}
+              <strong> Duration: </strong> {location.state.movieDuration}{" "}
+            </div>
+            <br />
+            <div class="movie-description">
+              {" "}
+              <strong> Budget: </strong> {location.state.movieBudget}{" "}
             </div>
           </div>
 
