@@ -179,7 +179,7 @@ app.post("/user", async (req, res) => {
 app.put("/usermovie/:id", async (req, res) => {
   const movie = req.body;
   const userId = req.params["id"];
-  const updatedUser = userServices.pushFavMovie(userId, movie);
+  const updatedUser = await userServices.pushFavMovie(userId, movie);
   if (updatedUser) {
     res.status(201).send(updatedUser);
   } else {

@@ -42,6 +42,7 @@ function Login(props) {
               id="username"
               value={token.username}
               onChange={handleChange}
+              style={{ background: "white" }}
             />
           </label>
           <label>

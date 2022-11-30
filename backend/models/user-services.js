@@ -124,32 +124,23 @@ async function addUser(user) {
   }
 }
 
-function pushFavMovie(userId, movie) {
+async function pushFavMovie(userId, movie) {
   const userModel = getDbConnection().model("User", UserSchema);
 
   var x = userModel.find(
     { "favmovies.id": movie.id, _id: userId },
-    function (err, result) {
+    async function (err, result) {
       if (err) {
       } else {
         if (result.length == 0) {
-          var isFavorited = addFavorite(userId, movie);
+          var isFavorited = await addFavorite(userId, movie);
         } else {
-          var isFavorited = removeFavorite(userId, movie);
+          var isFavorited = await removeFavorite(userId, movie);
         }
         return isFavorited;
       }
     }
   );
-
-  // try {
-  //   return await userModel.updateOne(
-  //     { _id: userId },
-  //     { $push: { favmovies: movie } }
-  //   );
-  // } catch {
-  //   return null;
-  // }
 }
 
 async function addFavorite(userId, movie) {
@@ -176,7 +167,7 @@ async function removeFavorite(userId, movie) {
       { _id: userId },
       { $pullAll: { favmovies: [movie] } }
     );
-    return false;
+    return true;
   } catch {
     return null;
   }
