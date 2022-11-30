@@ -203,7 +203,7 @@ test("Test addUser()-- failure path with invalid password length", async () => {
     password: "h",
   };
   const result = await userServices.addUser(dummyUser);
-  expect(result).toBeFalsy();
+  expect(result).toBe(1);
 });
 
 test("Test addUser()-- failure path with no username", async () => {
@@ -212,7 +212,7 @@ test("Test addUser()-- failure path with no username", async () => {
     password: "hpotter1",
   };
   const result = await userServices.addUser(dummyUser);
-  expect(result).toBeFalsy();
+  expect(result).toBe(1);
 });
 
 test("Test addUser() -- failure path with no password", async () => {
@@ -221,7 +221,7 @@ test("Test addUser() -- failure path with no password", async () => {
     username: "ywizard",
   };
   const result = await userServices.addUser(dummyUser);
-  expect(result).toBeFalsy();
+  expect(result).toBe(1);
 });
 
 test("Test addUser() -- failure path with no name", async () => {
