@@ -52,7 +52,7 @@ function Profile(props) {
           <div class="magic-wrapper">
             <div className="container-fluid movie-app">
               <div className="row">
-                <MovieList movieData={favmovies} />
+                <MovieList movieData={favmovies} getMovieDetails={props.getMovieDetails} />
               </div>
             </div>
           </div>
