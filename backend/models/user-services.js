@@ -85,10 +85,28 @@ async function getAllUsers() {
   return result;
 }
 
+async function checkUserName(username) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  let res = await userModel.findOne({ username: username });
+  console.log(res);
+  if (res) {
+    return 0;
+  } else return 1;
+}
+
 async function addUser(user) {
   // userModel is a Model, a subclass of mongoose.Model
   if (!user.password || user.password.length < 2) {
-    return false;
+    return 1;
+  }
+
+  if (!user.username || user.username.length < 2) {
+    return 1;
+  }
+
+  namematch = await checkUserName(user.username);
+  if (namematch === 0) {
+    return 2;
   }
   hashedObject = hasher(user.password, generateSalt(12));
   user.password = hashedObject.hashedpassword;
