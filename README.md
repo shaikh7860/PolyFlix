@@ -15,10 +15,6 @@ https://miro.com/app/board/uXjVPJ_5azg=/?share_link_id=141138062493
 ### UI Prototype:
 https://www.figma.com/file/uYDGdJpJMdvsbJIZhnjp3b/307-Project-Prototype?node-id=2%3A33
 
-### Prettier Format Instructions:
-On VS Code, download the Prettier extension
-Then format the document with prettier (Cmd+Shift+P)
-After, go to settings (Cmd+,) and search "Editor:Format on Save" and turn it on
 
 ## Dev Environment Setup
 ### Backend installs
@@ -29,3 +25,8 @@ After, go to settings (Cmd+,) and search "Editor:Format on Save" and turn it on
 - npm install react-router-dom@6
 - npm install react-cookie
 - npm install react-bootstrap
+
+### Prettier Format Setup Instructions:
+On VS Code, download the Prettier extension
+Then format the document with prettier (Cmd+Shift+P)
+After, go to settings (Cmd+,) and search "Editor:Format on Save" and turn it on
