@@ -184,7 +184,7 @@ function pushFriend_2(userId, friend) {
     function (err, result) {
       if (err) {
       } else {
-        console.log("FRIENDS RETURNED: "+JSON.stringify(result))
+        console.log("FRIENDS RETURNED: " + JSON.stringify(result));
         if (result.length == 0) {
           var isFriended = addFriend(userId, friend);
         } else {
@@ -195,7 +195,6 @@ function pushFriend_2(userId, friend) {
       }
     }
   );
-
 }
 
 async function addFriend(userId, friend) {
@@ -227,8 +226,6 @@ async function removeFriend(userId, friend) {
     return null;
   }
 }
-
-
 
 // async function findUserByName(name) {
 //   const userModel = getDbConnection().model("User", UserSchema);

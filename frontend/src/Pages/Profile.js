@@ -26,7 +26,6 @@ function Profile(props) {
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
       <div class="profile-page">
-
         <div class="profile-header">MY PROFILE</div>
 
         {/* <div class="log-out-button">
@@ -52,7 +51,10 @@ function Profile(props) {
           <div class="magic-wrapper">
             <div className="container-fluid movie-app">
               <div className="row">
-                <MovieList movieData={favmovies} getMovieDetails={props.getMovieDetails} />
+                <MovieList
+                  movieData={favmovies}
+                  getMovieDetails={props.getMovieDetails}
+                />
               </div>
             </div>
           </div>
@@ -72,9 +74,6 @@ function Profile(props) {
           <br></br>
           <br></br>
         </div>
-
-
-
       </div>
     </div>
   );
