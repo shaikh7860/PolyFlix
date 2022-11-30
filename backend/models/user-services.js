@@ -124,13 +124,59 @@ async function addUser(user) {
   }
 }
 
-async function pushFavMovie(userId, movie) {
+function pushFavMovie(userId, movie) {
+  const userModel = getDbConnection().model("User", UserSchema);
+
+  var x = userModel.find(
+    { "favmovies.id": movie.id, _id: userId },
+    function (err, result) {
+      if (err) {
+      } else {
+        if (result.length == 0) {
+          var isFavorited = addFavorite(userId, movie);
+        } else {
+          var isFavorited = removeFavorite(userId, movie);
+        }
+        return isFavorited;
+      }
+    }
+  );
+
+  // try {
+  //   return await userModel.updateOne(
+  //     { _id: userId },
+  //     { $push: { favmovies: movie } }
+  //   );
+  // } catch {
+  //   return null;
+  // }
+}
+
+async function addFavorite(userId, movie) {
   const userModel = getDbConnection().model("User", UserSchema);
   try {
-    return await userModel.updateOne(
+    // return await userModel.updateOne(
+    //   { _id: userId },
+    //   { $push: { favmovies: movie } }
+    // );
+    x = await userModel.updateOne(
       { _id: userId },
       { $push: { favmovies: movie } }
     );
+    return true;
+  } catch {
+    return null;
+  }
+}
+
+async function removeFavorite(userId, movie) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    x = await userModel.updateOne(
+      { _id: userId },
+      { $pullAll: { favmovies: [movie] } }
+    );
+    return false;
   } catch {
     return null;
   }
@@ -143,6 +189,57 @@ async function pushFriend(userId, friend) {
       { _id: userId },
       { $push: { friends: friend } }
     );
+  } catch {
+    return null;
+  }
+}
+
+function pushFriend_2(userId, friend) {
+  const userModel = getDbConnection().model("User", UserSchema);
+
+  var x = userModel.find(
+    { "friends._id": friend._id, _id: userId },
+    function (err, result) {
+      if (err) {
+      } else {
+        console.log("FRIENDS RETURNED: " + JSON.stringify(result));
+        if (result.length == 0) {
+          var isFriended = addFriend(userId, friend);
+        } else {
+          console.log("HII");
+          var isFriended = removeFriend(userId, friend);
+        }
+        return isFriended;
+      }
+    }
+  );
+}
+
+async function addFriend(userId, friend) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    // return await userModel.updateOne(
+    //   { _id: userId },
+    //   { $push: { favmovies: movie } }
+    // );
+    x = await userModel.updateOne(
+      { _id: userId },
+      { $push: { friends: friend } }
+    );
+    // return true;
+  } catch {
+    return null;
+  }
+}
+
+async function removeFriend(userId, friend) {
+  const userModel = getDbConnection().model("User", UserSchema);
+  try {
+    x = await userModel.updateOne(
+      { _id: userId },
+      { $pullAll: { friends: [friend] } }
+    );
+    // return false;
   } catch {
     return null;
   }
@@ -178,3 +275,4 @@ exports.findUser = findUser;
 exports.pushFavMovie = pushFavMovie;
 exports.pushFriend = pushFriend;
 exports.getAllUsers = getAllUsers;
+exports.pushFriend_2 = pushFriend_2;

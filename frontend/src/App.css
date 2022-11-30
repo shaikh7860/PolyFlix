@@ -100,6 +100,7 @@ body {
   text-align: center;
 }
 
+
 .login-box {
   position: fixed;
   left: 50%;
@@ -107,6 +108,18 @@ body {
   padding: 20px;
   width: 500px;
 }
+
+.favorites-text {
+  font-size: 150%;
+ }
+
+ .favorites-section {
+  position: relative;
+  top: 70px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1px;
+ }
 
 /* Movie Image */
 .movie-image {
@@ -234,12 +247,28 @@ body {
   text-align: center;
   font-size: 300%;
   font-weight: bold;
+  color: white;
+  background-color: black ;
+  top: -29px;
+  padding: 10px ;
+  border: 1px solid yellow;
+  font-family: 'Helvetica', 'Times New Roman', Times, serif, Helvetica, sans-serif; 
 }
 
 .profile-username {
   position: relative;
-  left: 22px;
+  /* left: 22px; */
   font-size: 150%;
+  top:-5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1px;
+}
+
+.profile-username-text {
+  /* display: inline-block; */
+  position: relative;
+  left: 10px;
   display: inline;
 }
 
@@ -249,11 +278,13 @@ body {
   font-weight: bold;
 } */
 
+
 .profile-username-header {
   position: relative;
   font-size: 100%;
   font-weight: bold;
   display: inline;
+  left: 8px;
 }
 
 .profile-user-button-row {
@@ -261,12 +292,12 @@ body {
   flex-direction: row;
 }
 
-.add-to-friends-button {
+/* .add-to-friends-button {
   position: relative;
   top: -35px;
   left: 950px;
   font-size: 110%;
-}
+} */
 
 .recent-reviews {
   position: relative;
@@ -280,16 +311,28 @@ body {
   font-weight: bold;
 }
 
-.log-out-button {
+/* .log-out-button {
   position: relative;
-  top: 50px;
-  left: 22px;
-}
+  top: -30px;
+  left: 1100px;
+  border-radius: 10px;
+  font-size: 25px;
+} */
 
 .friends-list {
   position: relative;
   top: 50px;
   left: 22px;
+}
+
+.search-result-text {
+  position: relative;
+  padding: 20px;
+  font-size: 150%;
+  font-weight: bolder;
+  text-align: center;
+  color: white;
+  background-color: #1e4d2b;
 }
 
 .empty-search-text1 {
@@ -300,15 +343,8 @@ body {
 
 .empty-search-text2 {
   position: relative;
-  top: 100px;
+  top: 175px;
   font-size: 150%;
-}
-
-.player-wrapper {
-  position: absolute;
-  /* padding-top: 56.25% Player ratio: 100 / (1280 / 720) */
-  top: 570px;
-  left: 470px;
 }
 
 .react-player {
@@ -338,17 +374,140 @@ body {
 .invalid-url-text {
   position: relative;
   background-color: red;
-  top: 50px;
+  top: 100px;
   font-size: 150%;
   font-weight: bold;
-  padding: 10px ;
-  border: 1px solid green ;
+  padding: 10px;
+  border: 1px solid green;
+}
+
+.invalid-url-page {
+  position: relative;
+  top: -70px;
 }
 
 .bg_image{
-  background-image: url('./bg3.jpg');
+  background-image: url('./cpgreen.jpg');
+  background-size: cover;
+  display: block;
+  position: absolute;
+  color: #f5f5f5; 
+  width: 98.4%;
+}
+
+.bg_image1{
+  background-image: url('./cpgreen.jpg');
   background-size: cover;
   display: block;
   position: absolute;
   color: #f5f5f5;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.bg_image2{
+  background-image: url('./cpgreen.jpg');
+  background-size: cover;
+  display: block;
+  position: absolute;
+  color: #f5f5f5;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+/*  */
+/* Changes for new Movie page */
+/*  */
+
+.movie-page-container {
+  /* outline-style: solid; */
+  background-image: url('./cpgreen.jpg');
+  background-size: cover;
+  position: absolute;
+  padding: 50px;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: white ;
+}
+
+.title-container {
+  /* outline-style: solid; */
+  position: relative;
+  font-size: 250%;
+  font-weight: bold;
+  width: 1390px;
+}
+
+.movie-box-container {
+  /* outline-style: solid; */
+  position: relative;
+  padding: 0px;
+  height: 700px;
+  width: 100%;
+}
+
+.add-to-favorites-button-new {
+  /* outline-style: solid; */
+  position: relative;
+  float: right;
+  right: 10%;
+  height: 42px;
+  width: 168px;
+  top: 2%;
+}
+
+.movie-page-image {
+  /* outline-style: solid; */
+  position: relative;
+  float: left;
+  top: 2%;
+}
+
+.movie-info-container {
+  /* outline-style: solid; */
+  position: relative;
+  width: 60%;
+  float: left;
+  left: 2%;
+  top: 4%;
+}
+
+.player-wrapper {
+  /* outline-style: solid; */
+  position: absolute;
+  top: 55%;
+  left: auto;
+  /* padding-top: 56.25% Player ratio: 100 / (1280 / 720) */
+}
+
+
+.nav-bar-container {
+  background-color:#ddc105;
+  outline-style: solid;
+  outline-color: white;
+  
+}
+
+.add-to-friends-button {
+  position: relative;
+  top: -30px;
+  left: 1100px;
+  border-radius: 10px;
+  font-size: 25px;
+}
+
+.log-out-button {
+  position: relative;
+  float: right;
+  right: 10px;
+  top: -20px;
+  border-radius: 10px;
+  font-size: 25px;
 }

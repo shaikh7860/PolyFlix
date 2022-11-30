@@ -20,22 +20,20 @@ function Movie(props) {
     navigate("/");
   }
 
-  async function getMovieTrailer(movieID) {
-    console.log("inside func: " + movieID);
-
-    const result = await axios.request(
-      "https://api.themoviedb.org/3/movie/" +
-        movieID +
-        "/videos?api_key=" +
-        "a4f5ca3d995fae36deb0e8691ab2d880" +
-        "&language=en-US" +
-        "&append_to_response=videos"
-    );
-    var result_filter = result.data.results.filter(
-      (element) => element.type == "Trailer"
-    );
-    location.state.movieTrailer = String(result_filter[0].key);
-  }
+  // async function getMovieTrailer(movieID) {
+  //   const result = await axios.request(
+  //     "https://api.themoviedb.org/3/movie/" +
+  //       movieID +
+  //       "/videos?api_key=" +
+  //       "a4f5ca3d995fae36deb0e8691ab2d880" +
+  //       "&language=en-US" +
+  //       "&append_to_response=videos"
+  //   );
+  //   var result_filter = result.data.results.filter(
+  //     (element) => element.type == "Trailer"
+  //   );
+  //   location.state.movieTrailer = String(result_filter[0].key);
+  // }
 
   function getMonth(monthNum) {
     let month = "";
@@ -76,16 +74,16 @@ function Movie(props) {
     return newDate;
   }
 
-  const [favButtonText, setFavButtonText] = useState("Add to Favorites");
-  const [favButtonDisabled, changeDisabled] = useState(false);
+  const [favButtonText, setFavButtonText] = useState("Add To Favorites");
+  const [favButtonVariant, setFavButtonVariant] = useState("danger");
 
   useEffect(() => {
     props.getFavMovies(cookies.id).then((result) => {
       if (result) {
         for (let i = 0; i < result.length; i++) {
           if (location.state.id === result[i].id) {
-            setFavButtonText("Favorite");
-            changeDisabled(true);
+            console.log("match found");
+            setFavButtonText("Favorited");
           }
         }
       }
@@ -94,10 +92,36 @@ function Movie(props) {
 
   function handleFavorites(movie) {
     props.addToFavorites(movie);
-    setFavButtonText("Favorited");
-    changeDisabled(true);
+    if (favButtonText === "Add To Favorites") {
+      setFavButtonText("Favorited");
+    } else {
+      setFavButtonText("Add To Favorites");
+    }
   }
-  getMovieTrailer(location.state.id);
+  function setMovieTrailer(id) {
+    props.getMovieTrailer(id).then((result) => {
+      location.state.movieTrailer = result;
+    });
+  }
+
+  // function setMovieDetails(id) {
+  //   props.getMovieDetails(id).then((result) => {
+  //     console.log(result);
+  //     if (result.runtime === 0) {
+  //       location.state.movieDuration = "unknown";
+  //     } else {
+  //       location.state.movieDuration = result.runtime;
+  //     }
+  //     if (result.budget === 0) {
+  //       location.state.movieBudget = "unknown";
+  //     } else {
+  //       location.state.movieBudget = result.budget;
+  //     }
+  //   });
+  // }
+
+  setMovieTrailer(location.state.id);
+  // setMovieDetails(location.state.id);
 
   // code to implement modal for trailer video
   const [openModal, setOpenModal] = useState(false);
@@ -109,106 +133,87 @@ function Movie(props) {
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
 
-      <div class="float-container1">
-        <div class="title-format">
+      <div class="movie-page-container">
+        <div class="title-container">
           {" "}
           {location.state.title} <br />
-          <div class="add-to-favorites-button">
+        </div>
+
+        <div class="movie-box-container">
+          <div class="add-to-favorites-button-new">
             <Button
-              disabled={favButtonDisabled}
-              variant="danger"
+              variant={favButtonVariant}
               onClick={() => handleFavorites(location.state)}
             >
               {favButtonText}
             </Button>
           </div>
-        </div>
 
-        <div class="float-child1">
-          <img
-            src={"http://image.tmdb.org/t/p/w342/" + location.state.poster_path}
-            class="movie-image"
-          />
-          <br />
-        </div>
-
-        <div class="float-child2">
-          <div class="description-header"> Description: </div>
-          <div class="description-body">
-            {" "}
-            {location.state.overview} <br />{" "}
-          </div>{" "}
-          <br />
-          <div class="movie-description">
-            {" "}
-            <strong> Release Date: </strong>{" "}
-            {formatDate(location.state.release_date)}{" "}
-          </div>{" "}
-          <br />
-          <div class="movie-description">
-            {" "}
-            <strong> Rating: </strong> {location.state.vote_average}{" "}
-          </div>{" "}
-          <br />
-          <div class="movie-description">
-            {" "}
-            <strong> Duration: </strong> {location.state.runtime}{" "}
+          <div class="movie-page-image">
+            <img
+              src={
+                "http://image.tmdb.org/t/p/w342/" + location.state.poster_path
+              }
+              class="movie-image"
+            />
           </div>
-          {/* <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QBmre1vaLwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+
+          <div class="movie-info-container">
+            <div class="description-header"> Description: </div>
+            <div class="description-body">
+              {" "}
+              {location.state.overview} <br />{" "}
+            </div>{" "}
+            <br />
+            <div class="movie-description">
+              {" "}
+              <strong> Release Date: </strong>{" "}
+              {formatDate(location.state.release_date)}{" "}
+            </div>{" "}
+            <br />
+            <div class="movie-description">
+              {" "}
+              <strong> Rating: </strong> {location.state.vote_average}{" "}
+            </div>{" "}
+            <br />
+            <div class="movie-description">
+              {" "}
+              <strong> Duration: </strong> {location.state.movieDuration}{" "}
+            </div>
+            <br />
+            <div class="movie-description">
+              {" "}
+              <strong> Budget: </strong> {location.state.movieBudget}{" "}
+            </div>
+          </div>
+
+          <div class="player-wrapper">
+            <div class="trailer-watch-button">
+              <button
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+              >
+                {" "}
+                Watch Trailer{" "}
+              </button>
+            </div>
+            {openModal && (
+              <Modal
+                setOpenModal={setOpenModal}
+                url={
+                  "https://www.youtube.com/watch?v=" +
+                  location.state.movieTrailer
+                }
+              />
+            )}
+          </div>
         </div>
       </div>
 
-      <div class="player-wrapper">
-        {/* <div class="trailer-label"> 
-            <strong> Trailer: </strong> 
-          </div> */}
-        <div class="trailer-watch-button">
-          <button
-            onClick={() => {
-              setOpenModal(true);
-            }}
-          >
-            {" "}
-            Watch Trailer{" "}
-          </button>
-        </div>
-        {openModal && (
-          <Modal
-            setOpenModal={setOpenModal}
-            url={
-              "https://www.youtube.com/watch?v=" + location.state.movieTrailer
-            }
-          />
-        )}
-        {/* <ReactPlayer class="react-player" url={"https://www.youtube.com/watch?v="+location.state.movieTrailer} controls={true} /> */}
-      </div>
       <br />
 
-      <div class="user-box">
-        <div class="user-reviews-header"> User Reviews: </div>
-
-        <div class=".user-reviews-text-box">
-          <label for="freeform"></label>
-          <br />
-          <textarea
-            id="freeform"
-            name="freeform"
-            placeholder="Enter Review Here..."
-            rows="4"
-            cols="50"
-          ></textarea>{" "}
-          <br /> <br />
-        </div>
-        <div class="post-button">
-          {" "}
-          <input
-            value="Post"
-            class="submit"
-            type="button"
-            onClick="dosomething(this.value);"
-          />{" "}
-        </div>
-      </div>
+      
     </div>
   );
 }

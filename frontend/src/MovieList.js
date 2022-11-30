@@ -4,7 +4,50 @@ import { useNavigate } from "react-router-dom";
 
 const MovieList = (props) => {
   const navigate = useNavigate();
-  console.log(props.movieData);
+
+  function timeConvert(n) {
+    var num = n;
+    var hours = num / 60;
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    return rhours + " hour(s) and " + rminutes + " minute(s).";
+  }
+
+  function setMovieDetails(movie) {
+    var movieD = "Cannot Be Found";
+    var movieB = "Cannot Be Found";
+    props.getMovieDetails(movie.id).then((result) => {
+      if (result.runtime !== 0) {
+        movieD = timeConvert(result.runtime);
+      }
+      if (result.budget !== 0) {
+        const formatter = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        });
+        movieB = formatter.format(result.budget);
+      }
+      console.log(movieD);
+
+      navigate("/movie/" + movie.title, {
+        state: {
+          id: movie.id,
+          title: movie.title,
+          vote_average: movie.vote_average,
+          poster_path: movie.poster_path,
+          overview: movie.overview,
+          //release_date: movie.release_date,
+          release_date: movie.release_date,
+          popularity: movie.popularity,
+          movieTrailer: null,
+          movieDuration: movieD,
+          movieBudget: movieB,
+        },
+      });
+    });
+  }
+
   return (
     <>
       {props.movieData.map((movie, index) => (
@@ -15,20 +58,7 @@ const MovieList = (props) => {
           <img
             src={"http://image.tmdb.org/t/p/w154/" + movie.poster_path}
             alt={"movie"}
-            onClick={() =>
-              navigate("/movie/" + movie.title, {
-                state: {
-                  id: movie.id,
-                  title: movie.title,
-                  vote_average: movie.vote_average,
-                  poster_path: movie.poster_path,
-                  overview: movie.overview,
-                  release_date: movie.release_date,
-                  popularity: movie.popularity,
-                  movieTrailer: null,
-                },
-              })
-            }
+            onClick={() => setMovieDetails(movie)}
           />
           {/* <button onClick={() => navigate("/movie/" + movie.title, {state: {id: movie.id, title: movie.title, vote_average: movie.vote_average, poster_path: movie.poster_path}}) }>View Info</button> */}
         </div>

@@ -70,13 +70,16 @@ function UserSearch(props) {
     }
   }, []);
 
+  
+
   function correctNav(row) {
     if (row.username === cookies.username) {
       navigate("/profile");
     } else {
       navigate("/user/" + row.username, {
         state: {
-          id: row._id,
+          _id: row._id,
+          // id: row.id,
           username: row.username,
           name: row.name,
           favmovies: row.favmovies,
@@ -98,13 +101,14 @@ function UserSearch(props) {
   }
 
   return (
-    <div>
+    <div class="bg_image1">
       <div>
         <nav>
           <NavBar handleSubmit={props.handleSubmit}></NavBar>
         </nav>
         <div class="user-search-bar">
           <input
+            style={{ color: "white" }}
             type="text"
             placeholder="Search for users..."
             onChange={handleChange}
