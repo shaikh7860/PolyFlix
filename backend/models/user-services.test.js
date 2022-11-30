@@ -193,7 +193,7 @@ test("Test addUser()-- failure path with invalid username length", async () => {
     password: "harry1",
   };
   const result = await userServices.addUser(dummyUser);
-  expect(result).toBeFalsy();
+  expect(result).toBe(1);
 });
 
 test("Test addUser()-- failure path with invalid password length", async () => {
