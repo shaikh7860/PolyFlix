@@ -128,7 +128,7 @@ function Movie(props) {
 
   return (
     // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
-    <div>
+    <div class="bg_image1">
       <nav>
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
@@ -210,10 +210,6 @@ function Movie(props) {
           </div>
         </div>
       </div>
-
-      <br />
-
-      
     </div>
   );
 }

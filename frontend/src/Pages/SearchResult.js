@@ -14,24 +14,6 @@ function SearchResult(props) {
     navigate("/");
   }
 
-  function GoToHomePage() {
-    window.location = "/home";
-  }
-
-  // if (props.movieData.length > 0) {
-  //   return (
-  //     <div>
-  //       <nav>
-  //         <NavBar handleSubmit={props.handleSubmit}></NavBar>
-  //       </nav>
-  //       Search results for: {props.movieName}
-  //       <Table
-  //         movieData={props.movieData}
-  //         characterData={props.characterData}
-  //       />
-  //     </div>
-  //   );
-  // } else {
   if (props.movieData.length > 0) {
     return (
       <div classname="container-fluid bg_image">
@@ -45,51 +27,26 @@ function SearchResult(props) {
         <Table
           movieData={props.movieData}
           characterData={props.characterData}
+          getMovieDetails={props.getMovieDetails}
         />
       </div>
     );
   } else {
-    if (props.movieData.length > 0) {
-      return (
-        <div classname="container-fluid bg_image">
-          <nav>
-            <NavBar handleSubmit={props.handleSubmit}></NavBar>
-          </nav>
-          <div class="search-result-text">
-            Search results for: {props.movieName}
+    return (
+      <div class="container-fluid bg_image2">
+        <nav>
+          <NavBar handleSubmit={props.handleSubmit}></NavBar>
+        </nav>
+        <div class="invalid-url-page">
+          <div class="invalid-url-text">
+            No results found for: {props.movieName}
           </div>
-          {/* Search results for: {props.movieName} */}
-          <Table
-            movieData={props.movieData}
-            characterData={props.characterData}
-          />
-        </div>
-      );
-    } else {
-      return (
-        // <div>
-        //   <div class="invalid-url-text">
-        //     No results found for: {props.movieName}
-        //   </div>
-        //   <div class="empty-search-text2">
-        //     <a href="https://www.google.com/">Return to the home page!</a>
-        //   </div>
-        // </div>
-        <div class="container-fluid bg_image2">
-          <nav>
-            <NavBar handleSubmit={props.handleSubmit}></NavBar>
-          </nav>
-          <div class="invalid-url-page">
-            <div class="invalid-url-text">
-              No results found for: {props.movieName}
-            </div>
-            <div class="empty-search-text2">
-              <button onClick={navigateHome}>Return to the home page</button>
-            </div>
+          <div class="empty-search-text2">
+            <button onClick={navigateHome}>Return to the home page</button>
           </div>
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 

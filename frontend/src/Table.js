@@ -1,45 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function getMonth(monthNum) {
-  let month = "";
-  if (monthNum === "01") {
-    month = "January";
-  } else if (monthNum === "02") {
-    month = "February";
-  } else if (monthNum === "03") {
-    month = "March";
-  } else if (monthNum === "04") {
-    month = "April";
-  } else if (monthNum === "05") {
-    month = "May";
-  } else if (monthNum === "06") {
-    month = "June";
-  } else if (monthNum === "07") {
-    month = "July";
-  } else if (monthNum === "08") {
-    month = "August";
-  } else if (monthNum === "09") {
-    month = "September";
-  } else if (monthNum === "10") {
-    month = "October";
-  } else if (monthNum === "11") {
-    month = "November";
-  } else if (monthNum === "12") {
-    month = "December";
-  } else {
-    month = "Undefined";
-  }
-  return month;
-}
-
-function formatDate(date) {
-  const tokensArr = date.split("-");
-  let month = getMonth(tokensArr[1]);
-  let newDate = month + " " + tokensArr[2] + ", " + tokensArr[0];
-  return newDate;
-}
-
 function TableHeader() {
   return (
     <thead>
@@ -55,7 +16,48 @@ function TableHeader() {
 function TableBody(props) {
   const navigate = useNavigate();
 
-  console.log(props.movieData);
+  function timeConvert(n) {
+    var num = n;
+    var hours = num / 60;
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    return rhours + " hour(s) and " + rminutes + " minute(s).";
+  }
+
+  function setMovieDetails(movie) {
+    var movieD = "Cannot Be Found";
+    var movieB = "Cannot Be Found";
+    props.getMovieDetails(movie.id).then((result) => {
+      if (result.runtime !== 0) {
+        movieD = timeConvert(result.runtime);
+      }
+      if (result.budget !== 0) {
+        const formatter = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        });
+        movieB = formatter.format(result.budget);
+      }
+      console.log(movieD);
+
+      navigate("/movie/" + movie.title, {
+        state: {
+          id: movie.id,
+          title: movie.title,
+          vote_average: movie.vote_average,
+          poster_path: movie.poster_path,
+          overview: movie.overview,
+          //release_date: movie.release_date,
+          release_date: movie.release_date,
+          popularity: movie.popularity,
+          movieTrailer: null,
+          movieDuration: movieD,
+          movieBudget: movieB,
+        },
+      });
+    });
+  }
   const rows = props.movieData.map((row, index) => {
     return (
       <tr key={index}>
@@ -68,24 +70,7 @@ function TableBody(props) {
           />
         </td>
         <td>
-          <button
-            onClick={() =>
-              navigate("/movie/" + row.title, {
-                state: {
-                  id: row.id,
-                  title: row.title,
-                  vote_average: row.vote_average,
-                  poster_path: row.poster_path,
-                  overview: row.overview,
-                  runtime: row.runtime,
-                  //release_date: formatDate(row.release_date),
-                  release_date: row.release_date,
-                },
-              })
-            }
-          >
-            View Info
-          </button>
+          <button onClick={() => setMovieDetails(row)}>View Info</button>
         </td>
       </tr>
     );
@@ -102,6 +87,7 @@ function Table(props) {
           movieData={props.movieData}
           characterData={props.characterData}
           removeCharacter={props.removeCharacter}
+          getMovieDetails={props.getMovieDetails}
         />
       </table>
     </div>

@@ -307,6 +307,7 @@ function MyApp() {
               getFavMovies={getFavMovies}
               addFriend={addFriend}
               getFriends={getFriends}
+              getMovieDetails={getMovieDetails}
             />
           }
         />
@@ -329,6 +330,7 @@ function MyApp() {
               characterData={characters}
               movieName={searchInput}
               handleSubmit={searchForMovies}
+              getMovieDetails={getMovieDetails}
             />
           }
         />
@@ -350,7 +352,10 @@ function MyApp() {
             />
           }
         />
-        <Route path="*" element={<ErrorPage handleSubmit={searchForMovies}/>} />
+        <Route
+          path="*"
+          element={<ErrorPage handleSubmit={searchForMovies} />}
+        />
       </Routes>
     </div>
   );
