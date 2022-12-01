@@ -387,7 +387,7 @@ body {
 }
 
 .bg_image{
-  background-image: url('./cpgreen.jpg');
+  background-image: url('./Images/cpgreen.jpg');
   background-size: cover;
   display: block;
   position: absolute;
@@ -396,7 +396,7 @@ body {
 }
 
 .bg_image1{
-  background-image: url('./cpgreen.jpg');
+  background-image: url('./Images/cpgreen.jpg');
   background-size: cover;
   display: block;
   position: absolute;
@@ -408,7 +408,7 @@ body {
 }
 
 .bg_image2{
-  background-image: url('./cpgreen.jpg');
+  background-image: url('./Images/cpgreen.jpg');
   background-size: cover;
   display: block;
   position: absolute;
@@ -426,7 +426,7 @@ body {
 
 .movie-page-container {
   /* outline-style: solid; */
-  background-image: url('./cpgreen.jpg');
+  background-image: url('./Images/cpgreen.jpg');
   background-size: cover;
   position: absolute;
   padding: 50px;

@@ -1,10 +1,10 @@
 import React from "react";
 import "../App.css";
-import NavBar from "../NavBar";
-import MovieList from "../MovieList.js";
+import NavBar from "../Components/NavBar";
+import MovieList from "../Components/MovieList.js";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import logo from "../moviedatabaselogo.svg";
+import logo from "../Images/moviedatabaselogo.svg";
 
 function Home(props) {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import movieTrailer from "movie-trailer";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import def from "./default.jpg";
+import def from "../Images/default.jpg";
 const MovieList = (props) => {
   const navigate = useNavigate();
 

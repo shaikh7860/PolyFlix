@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../NavBar";
+import NavBar from "../Components/NavBar";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -69,8 +69,6 @@ function UserSearch(props) {
       });
     }
   }, []);
-
-  
 
   function correctNav(row) {
     if (row.username === cookies.username) {

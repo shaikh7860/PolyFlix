@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import NavBar from "../NavBar";
+import NavBar from "../Components/NavBar";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useCookies } from "react-cookie";
 import { useState } from "react";
-import Modal from "../Modal";
-import def2 from "../default2.jpg";
+import Modal from "../Components/Modal";
+import def2 from "../Images/default2.jpg";
 const axios = require("axios");
 
 function Movie(props) {

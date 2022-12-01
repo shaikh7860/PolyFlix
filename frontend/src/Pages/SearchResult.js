@@ -1,6 +1,6 @@
 import React from "react";
-import Table from "../Table.js";
-import NavBar from "../NavBar";
+import Table from "../Components/Table.js";
+import NavBar from "../Components/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
