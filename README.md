@@ -15,6 +15,9 @@ https://miro.com/app/board/uXjVPJ_5azg=/?share_link_id=141138062493
 ### UI Prototype:
 https://www.figma.com/file/uYDGdJpJMdvsbJIZhnjp3b/307-Project-Prototype?node-id=2%3A33
 
+### Account Creation Sequence Diagram
+https://tinyurl.com/3bh49hdp
+
 
 ## Dev Environment Setup
 ### Backend installs
