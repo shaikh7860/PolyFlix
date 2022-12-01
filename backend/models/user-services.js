@@ -88,7 +88,6 @@ async function getAllUsers() {
 async function checkUserName(username) {
   const userModel = getDbConnection().model("User", UserSchema);
   let res = await userModel.findOne({ username: username });
-  console.log(res);
   if (res) {
     return 0;
   } else return 1;
@@ -129,18 +128,21 @@ function pushFavMovie(userId, movie) {
 
   var x = userModel.find(
     { "favmovies.id": movie.id, _id: userId },
-    function (err, result) {
-      if (err) {
+    async function (err, result) {
+      if (err) { 
+        return err;
       } else {
         if (result.length == 0) {
-          var isFavorited = addFavorite(userId, movie);
+          var isFavorited = await addFavorite(userId, movie);
+          // console.log(isFavorited);
         } else {
-          var isFavorited = removeFavorite(userId, movie);
+          var isFavorited = await removeFavorite(userId, movie);
         }
         return isFavorited;
       }
     }
   );
+  return x;
 
   // try {
   //   return await userModel.updateOne(
@@ -213,6 +215,7 @@ function pushFriend_2(userId, friend) {
       }
     }
   );
+  return x;
 }
 
 async function addFriend(userId, friend) {
@@ -276,3 +279,6 @@ exports.pushFavMovie = pushFavMovie;
 exports.pushFriend = pushFriend;
 exports.getAllUsers = getAllUsers;
 exports.pushFriend_2 = pushFriend_2;
+exports.checkUserName = checkUserName;
+exports.addFavorite = addFavorite;
+exports.removeFavorite = removeFavorite;
