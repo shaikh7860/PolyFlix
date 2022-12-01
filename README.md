@@ -11,6 +11,7 @@ PolyFlix is a web app for Cal Poly students to find movies and see what their fr
 
 ### UML Class Diagram
 https://miro.com/app/board/uXjVPJ_5azg=/?share_link_id=141138062493
+Last updated 11/30/2022
 
 ### UI Prototype:
 https://www.figma.com/file/uYDGdJpJMdvsbJIZhnjp3b/307-Project-Prototype?node-id=2%3A33
@@ -33,3 +34,8 @@ https://tinyurl.com/3bh49hdp
 On VS Code, download the Prettier extension
 Then format the document with prettier (Cmd+Shift+P)
 After, go to settings (Cmd+,) and search "Editor:Format on Save" and turn it on
+
+### To run dev environment
+Open two terminal windows. 
+- In the first window, navigate to Polyflix/backend and type in 'npm run dev'. The message "REST API is listening" indicates that the backend is functioning.
+- In the second window, navigate to Polyflix/frontend and type in 'npm start'. The browser window will open automatically.
