@@ -1,7 +1,7 @@
 import movieTrailer from "movie-trailer";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import def from "./default.jpg";
 const MovieList = (props) => {
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const MovieList = (props) => {
         });
         movieB = formatter.format(result.budget);
       }
-      console.log(movieD);
+      console.log(movie.poster_path);
 
       navigate("/movie/" + movie.title, {
         state: {
@@ -55,11 +55,19 @@ const MovieList = (props) => {
           key={movie.id}
           className="image-container d-flex justify-content-start flex-shrink-1 w-25 m-3"
         >
-          <img
-            src={"http://image.tmdb.org/t/p/w154/" + movie.poster_path}
-            alt={"movie"}
-            onClick={() => setMovieDetails(movie)}
-          />
+          {movie.poster_path ? (
+            <img
+              src={"http://image.tmdb.org/t/p/w154/" + movie.poster_path}
+              alt={"movie"}
+              onClick={() => setMovieDetails(movie)}
+            />
+          ) : (
+            <img
+              src={def}
+              alt={"movie"}
+              onClick={() => setMovieDetails(movie)}
+            />
+          )}
           {/* <button onClick={() => navigate("/movie/" + movie.title, {state: {id: movie.id, title: movie.title, vote_average: movie.vote_average, poster_path: movie.poster_path}}) }>View Info</button> */}
         </div>
       ))}
