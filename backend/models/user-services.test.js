@@ -342,18 +342,28 @@ test("Test pushFriend_2(userID, friend) -- ", async () => {
   expect(result2).toBeTruthy();
 });
 
-test("Test addFriend(userID, movie) -- successful add", async () => {
-
+test("Test addFriend(userID, friend) and removeFriend(userID, friend) -- successful add and remove", async () => {
+  
   const dummyUser = {
     name: "Harry Potter",
     username: "Young wizard",
-    password: "harry1"
+    password: "harry1",
   };
-  const movie = {id: "1000", name: "Batman"};
-  const result2 = await userServices.addUser(dummyUser);
-  // await result2.save();
-  const result = await userServices.addFavorite(result2._id, movie);
-  expect(result).toBeTruthy();
+
+  const dummyUser1 = {
+    name: "Michael Jordan",
+    username: "mike",
+    password: "mike1",
+  };
+
+  // const friend = {friends_id: "1000", name: "Batman"};
+  const result = await userServices.addUser(dummyUser);
+  const result1 = await userServices.addUser(dummyUser1);
+  const result2 = userServices.addFriend(result._id, result1);
+  const result3 = userServices.removeFriend(result._id, result1);
+  expect(result2).toBeTruthy();
+  expect(result3).toBeTruthy();
+
 });
 
 
