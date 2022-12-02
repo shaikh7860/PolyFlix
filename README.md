@@ -1,6 +1,6 @@
 # 307-Project: PolyFlix
 
-https://github.com/shaikh7860/PolyFlix/actions/workflows/new_main_polyflix.yml/badge.svg
+![example workflow]https://github.com/shaikh7860/PolyFlix/actions/workflows/new_main_polyflix.yml/badge.svg
 
 ### Description:
 PolyFlix is a web app for Cal Poly students to find movies and see what their friends are watching. With PolyFlix, users can share their movie experiences with their friends. It includes the following features:
