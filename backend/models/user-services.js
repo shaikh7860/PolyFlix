@@ -1,9 +1,7 @@
-const { response } = require("express");
 const mongoose = require("mongoose");
 const UserSchema = require("./user");
 let crypto = require("crypto");
 require("dotenv").config();
-// console.log(process.env)
 let dbConnection;
 
 let generateSalt = (rounds) => {
@@ -39,7 +37,6 @@ function getDbConnection() {
 }
 
 async function getUsers(username, password) {
-  // const userModel = getDbConnection().model("User", UserSchema);
   let result;
   if (username && password) {
     result = await findUser(username, password);
@@ -132,7 +129,6 @@ async function pushFavMovie(userId, movie) {
     });
     if (result.length == 0) {
       var isFavorited = addFavorite(userId, movie);
-      // console.log(isFavorited);
     } else {
       var isFavorited = removeFavorite(userId, movie);
     }
@@ -146,16 +142,13 @@ async function pushFavMovie(userId, movie) {
 async function addFavorite(userId, movie) {
   const userModel = getDbConnection().model("User", UserSchema);
   try {
-    // return await userModel.updateOne(
-    //   { _id: userId },
-    //   { $push: { favmovies: movie } }
-    // );
     x = await userModel.updateOne(
       { _id: userId },
       { $push: { favmovies: movie } }
     );
     return true;
-  } catch {
+  } catch (error) {
+    console.log(error);
     return null;
   }
 }
@@ -173,18 +166,6 @@ async function removeFavorite(userId, movie) {
   }
 }
 
-// async function pushFriend(userId, friend) {
-//   const userModel = getDbConnection().model("User", UserSchema);
-//   try {
-//     return await userModel.updateOne(
-//       { _id: userId },
-//       { $push: { friends: friend } }
-//     );
-//   } catch {
-//     return null;
-//   }
-// }
-
 async function pushFriend_2(userId, friend) {
   const userModel = getDbConnection().model("User", UserSchema);
   try {
@@ -192,11 +173,9 @@ async function pushFriend_2(userId, friend) {
       "friends._id": friend._id,
       _id: userId,
     });
-    console.log("FRIENDS RETURNED: " + JSON.stringify(result));
     if (result.length == 0) {
       var isFriended = addFriend(userId, friend);
     } else {
-      console.log("HII");
       var isFriended = removeFriend(userId, friend);
     }
     return isFriended;
@@ -209,16 +188,13 @@ async function pushFriend_2(userId, friend) {
 async function addFriend(userId, friend) {
   const userModel = getDbConnection().model("User", UserSchema);
   try {
-    // return await userModel.updateOne(
-    //   { _id: userId },
-    //   { $push: { favmovies: movie } }
-    // );
     x = await userModel.updateOne(
       { _id: userId },
       { $push: { friends: friend } }
     );
     return true;
-  } catch {
+  } catch (error) {
+    console.log(error);
     return null;
   }
 }
@@ -231,40 +207,18 @@ async function removeFriend(userId, friend) {
       { $pullAll: { friends: [friend] } }
     );
     return true;
-  } catch {
+  } catch (error) {
+    console.log(error);
     return null;
   }
 }
 
-// async function findUserByName(name) {
-//   const userModel = getDbConnection().model("User", UserSchema);
-//   return await userModel.find({ name: name });
-// }
-
-// async function findUserByJob(job) {
-//   const userModel = getDbConnection().model("User", UserSchema);
-//   return await userModel.find({ job: job });
-// }
-
-// async function removeUserById(id) {
-//   const userModel = getDbConnection().model("User", UserSchema);
-//   try {
-//     const result = await userModel.findByIdAndDelete(id);
-//     return result;
-//   } catch (error) {
-//     console.log(error);
-//     return -1;
-//   }
-// }
-
 exports.getUsers = getUsers;
 exports.findUserById = findUserById;
 exports.addUser = addUser;
-// exports.removeUserById = removeUserById;
 exports.setConnection = setConnection;
 exports.findUser = findUser;
 exports.pushFavMovie = pushFavMovie;
-// exports.pushFriend = pushFriend;
 exports.getAllUsers = getAllUsers;
 exports.pushFriend_2 = pushFriend_2;
 exports.checkUserName = checkUserName;

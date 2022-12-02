@@ -7,7 +7,6 @@ import { useCookies } from "react-cookie";
 import { useState } from "react";
 import Modal from "../Components/Modal";
 import def2 from "../Images/default2.jpg";
-const axios = require("axios");
 
 function Movie(props) {
   const navigate = useNavigate();
@@ -64,7 +63,6 @@ function Movie(props) {
       if (result) {
         for (let i = 0; i < result.length; i++) {
           if (location.state.id === result[i].id) {
-            console.log("match found");
             setFavButtonText("Favorited");
           }
         }
@@ -94,13 +92,11 @@ function Movie(props) {
   }
 
   setMovieTrailer(location.state.id);
-  // setMovieDetails(location.state.id);
 
   // code to implement modal for trailer video
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
     <div class="bg_image1">
       <nav>
         <NavBar handleSubmit={props.handleSubmit}></NavBar>

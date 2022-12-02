@@ -61,14 +61,6 @@ beforeEach(async () => {
   };
   result = await userServices.addUser(dummyUser);
   await result.save();
-
-  // dummyUser = {
-  //   name: "Harry Potter",
-  //   username: "Young wizard",
-  //   password: "harry1",
-  // };
-  // result = await userServices.addUser(dummyUser);
-  // await result.save();
 });
 
 afterEach(async () => {
@@ -81,13 +73,11 @@ test("Testing getUsers -- input undefined", async () => {
   } catch (e) {
     expect(e).toEqual("ENTER USERNAME AND PASSWORD");
   }
-  // expect(() => userServices.getUsers()).toThrow("ENTER USERNAME AND PASSWORD");
 });
 
 test("Test getUsers -- 1 user exists", async () => {
   const users = await userServices.getUsers("tlasso", "tlasso1");
   expect(users).toBeDefined();
-  // expect(users.length).toBe(1);
 });
 
 test("Test getUsers -- 3 user exists", async () => {
@@ -103,11 +93,6 @@ test("Test getUsers -- 3 user exists", async () => {
   expect(users).toBeDefined();
   expect(users.length).toBe(3);
 });
-
-// test("Test getUsers() -- user does not exist", async () => {
-//   const users = await userServices.getUsers("ashaikh", "ashaikh1");
-//   expect(users).toBe(null);
-// });
 
 test("Test findUser() -- no input", async () => {
   const users = await userServices.findUser();
@@ -145,20 +130,6 @@ test("Test findUserById() -- Fetching by valid id and not finding", async () => 
   const user = await userServices.findUserById(anyId);
   expect(user).toBeNull();
 });
-
-// test("Test findUserById() -- Fetching by valid id and finding", async () => {
-//   const dummyUser = {
-//     name: "Harry Potter",
-//     username: "Young wizard",
-//     password: "harry1",
-//   };
-//   const result = new userModel(dummyUser);
-//   const addedUser = await result.save();
-//   const foundUser = await userServices.findUserById(addedUser.id);
-//   expect(foundUser).toBeDefined();
-//   expect(foundUser.id).toBe(addedUser.id);
-//   expect(foundUser.name).toBe(addedUser.name);
-// });
 
 test("Test addUser() -- successful path", async () => {
   const dummyUser = {
@@ -292,7 +263,6 @@ test("Test addFavorite(userID, movie) -- successful add", async () => {
   };
   const movie = { id: "1000", name: "Batman" };
   const result2 = await userServices.addUser(dummyUser);
-  // await result2.save();
   const result = await userServices.addFavorite(result2._id, movie);
   expect(result).toBeTruthy();
 });
@@ -353,41 +323,3 @@ test("Test addFriend(userID, friend) and removeFriend(userID, friend) -- success
   expect(result2).toBeTruthy();
   expect(result3).toBeTruthy();
 });
-
-// test("Test removeUserById() -- successful", async () => {
-//   const dummyUser = {
-//     _id: "6132b9d47cefd0cc1916b6a9",
-//     name: "Harry Potter",
-//     username: "Young wizard",
-//     password: "harry1",
-//   };
-
-//   const result = await userServices.addUser(dummyUser);
-//   expect(result).toBeTruthy();
-//   expect(result.name).toBe(dummyUser.name);
-//   expect(result.username).toBe(dummyUser.username);
-//   expect(result.password).toBe(dummyUser.password);
-//   expect(result).toHaveProperty("_id");
-
-//   const result1 = await userServices.removeUserById("6132b9d47cefd0cc1916b6a9");
-//   expect(result1).toBeTruthy(); // add not -1
-// });
-
-// test("Test removeUserById() -- successful", async () => {
-//   const dummyUser = {
-//     _id: "6132b9d47cefd0cc1916b6a9",
-//     name: "Harry Potter",
-//     username: "Young wizard",
-//     password: "harry1",
-//   };
-
-//   const result = await userServices.addUser(dummyUser);
-//   expect(result).toBeTruthy();
-//   expect(result.name).toBe(dummyUser.name);
-//   expect(result.username).toBe(dummyUser.username);
-//   expect(result.password).toBe(dummyUser.password);
-//   expect(result).toHaveProperty("_id");
-
-//   const result1 = await userServices.removeUserById("1324cefd0cc1916b6a9");
-//   expect(result1).toBe(-1);
-// });

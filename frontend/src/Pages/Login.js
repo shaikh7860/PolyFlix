@@ -19,7 +19,6 @@ function Login(props) {
 
   async function submitForm() {
     const result = await props.handleSubmit(token);
-    console.log(result);
     if (!result) {
       setError("Invalid login. Please try again.");
     }

@@ -12,10 +12,8 @@ function Profile(props) {
     navigate("/");
   }
   useEffect(() => {
-    console.log(cookies.id);
     props.getFavMovies(cookies.id).then((result) => {
       if (result) {
-        console.log(result);
         setFavMovies(result);
       }
     });
@@ -32,7 +30,6 @@ function Profile(props) {
           <div class="log-out-button">
             <input type="button" value="Sign out" onClick={props.logOut} />
           </div>
-          {/* <span class="profile-name-header">Name: </span> {props.cookies.name} */}
           <div class="profile-username-header">&nbsp;Username: </div>{" "}
           <span class="profile-username-text">{cookies.username}</span>
           <br></br>

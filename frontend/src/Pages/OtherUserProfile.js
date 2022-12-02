@@ -19,15 +19,9 @@ function OtherUserProfile(props) {
   useEffect(() => {
     props.getFriends(location.state._id).then((result) => {
       if (result) {
-        console.log(location.state);
-        console.log(result);
         for (let i = 0; i < result.length; i++) {
-          console.log(result[i].id);
-          console.log(result[i]._id);
           if (location.state._id === result[i]._id) {
-            console.log("match found");
             setFriendButtonText("Friend!");
-            // changeDisabled(true);
           }
         }
       }
@@ -36,14 +30,11 @@ function OtherUserProfile(props) {
 
   function handleFriends(user) {
     props.addFriend(user);
-    console.log(user);
     if (friendButtonText === "Add Friend") {
       setFriendButtonText("Friend!");
     } else {
       setFriendButtonText("Add Friend");
     }
-
-    // changeDisabled(true);
   }
 
   return (
@@ -53,13 +44,9 @@ function OtherUserProfile(props) {
       </nav>
       <div class="profile-page">
         <div class="profile-header">{location.state.name}'s PROFILE</div>
-
-        {/* <div class="profile-user-button-row"> */}
         <div class="profile-username">
           <br></br>
-          {/* <span class="profile-name-header">Name: </span> {props.userinfo.name} */}
           <div class="profile-username-header">&nbsp;Username: </div>{" "}
-          {/* {location.state.username} */}
           <span class="profile-username-text">{location.state.username}</span>
           <div class="add-to-friends-button">
             <Button
@@ -71,7 +58,6 @@ function OtherUserProfile(props) {
             </Button>
           </div>
         </div>
-        {/* </div> */}
         <br></br>
 
         <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favorites</strong>

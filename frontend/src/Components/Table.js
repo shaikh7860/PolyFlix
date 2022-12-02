@@ -39,7 +39,6 @@ function TableBody(props) {
         });
         movieB = formatter.format(result.budget);
       }
-      console.log(movieD);
 
       navigate("/movie/" + movie.title, {
         state: {
@@ -48,7 +47,6 @@ function TableBody(props) {
           vote_average: movie.vote_average,
           poster_path: movie.poster_path,
           overview: movie.overview,
-          //release_date: movie.release_date,
           release_date: movie.release_date,
           popularity: movie.popularity,
           movieTrailer: null,

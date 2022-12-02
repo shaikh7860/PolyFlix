@@ -43,8 +43,6 @@ function UserSearch(props) {
 
   useEffect(() => {
     if (location.state) {
-      console.log("Hi");
-      console.log(location.state);
       props.getAllUsers(location.state.id).then((result) => {
         if (result) {
           setStaticUsers(
@@ -56,7 +54,6 @@ function UserSearch(props) {
         }
       });
     } else {
-      console.log("Uh oh");
       props.getAllUsers().then((result) => {
         if (result) {
           setStaticUsers(
@@ -77,7 +74,6 @@ function UserSearch(props) {
       navigate("/user/" + row.username, {
         state: {
           _id: row._id,
-          // id: row.id,
           username: row.username,
           name: row.name,
           favmovies: row.favmovies,
