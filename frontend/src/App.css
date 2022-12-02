@@ -164,7 +164,6 @@ body {
   position: relative;
   font-size: 100%;
   top: 5px;
-  /* font-weight: bold; */
 }
 
 .movie-description {
@@ -217,15 +216,12 @@ body {
   font-weight: bold;
   right: 290px;
   top: 20px;
-  /* bottom: 50px; */
 }
 
 .user-reviews-text-box {
   position: absolute;
   top: 100px;
-  /* top: 100px; */
 }
-/* left 100px; */
 
 .user-box {
   position: relative;
@@ -258,7 +254,6 @@ body {
 
 .profile-username {
   position: relative;
-  /* left: 22px; */
   font-size: 150%;
   top: -5px;
   border: 1px solid black;
@@ -267,17 +262,10 @@ body {
 }
 
 .profile-username-text {
-  /* display: inline-block; */
   position: relative;
   left: 10px;
   display: inline;
 }
-
-/* .profile-name-header {
-  position: relative;
-  font-size: 100%;
-  font-weight: bold;
-} */
 
 .profile-username-header {
   position: relative;
@@ -292,13 +280,6 @@ body {
   flex-direction: row;
 }
 
-/* .add-to-friends-button {
-  position: relative;
-  top: -35px;
-  left: 950px;
-  font-size: 110%;
-} */
-
 .recent-reviews {
   position: relative;
   font-size: 100%;
@@ -310,14 +291,6 @@ body {
   font-size: 150%;
   font-weight: bold;
 }
-
-/* .log-out-button {
-  position: relative;
-  top: -30px;
-  left: 1100px;
-  border-radius: 10px;
-  font-size: 25px;
-} */
 
 .friends-list {
   position: relative;
@@ -386,8 +359,8 @@ body {
   top: -70px;
 }
 
-.bg_image {
-  background-image: url("./cpgreen.jpg");
+.bg_image{
+  background-image: url('./Images/cpgreen.jpg');
   background-size: cover;
   display: block;
   position: absolute;
@@ -395,8 +368,8 @@ body {
   width: 98.4%;
 }
 
-.bg_image1 {
-  background-image: url("./cpgreen.jpg");
+.bg_image1{
+  background-image: url('./Images/cpgreen.jpg');
   background-size: cover;
   display: block;
   position: absolute;
@@ -407,8 +380,8 @@ body {
   overflow-x: hidden;
 }
 
-.bg_image2 {
-  background-image: url("./cpgreen.jpg");
+.bg_image2{
+  background-image: url('./Images/cpgreen.jpg');
   background-size: cover;
   display: block;
   position: absolute;
@@ -424,8 +397,7 @@ body {
 /*  */
 
 .movie-page-container {
-  /* outline-style: solid; */
-  background-image: url("./cpgreen.jpg");
+  background-image: url('./Images/cpgreen.jpg');
   background-size: cover;
   position: absolute;
   padding: 50px;
@@ -437,7 +409,6 @@ body {
 }
 
 .title-container {
-  /* outline-style: solid; */
   position: relative;
   font-size: 250%;
   font-weight: bold;
@@ -445,7 +416,6 @@ body {
 }
 
 .movie-box-container {
-  /* outline-style: solid; */
   position: relative;
   padding: 0px;
   height: 700px;
@@ -453,7 +423,6 @@ body {
 }
 
 .add-to-favorites-button-new {
-  /* outline-style: solid; */
   position: relative;
   float: right;
   right: 10%;
@@ -463,14 +432,12 @@ body {
 }
 
 .movie-page-image {
-  /* outline-style: solid; */
   position: relative;
   float: left;
   top: 2%;
 }
 
 .movie-info-container {
-  /* outline-style: solid; */
   position: relative;
   width: 60%;
   float: left;
@@ -479,11 +446,9 @@ body {
 }
 
 .player-wrapper {
-  /* outline-style: solid; */
   position: absolute;
   top: 55%;
   left: auto;
-  /* padding-top: 56.25% Player ratio: 100 / (1280 / 720) */
 }
 
 .nav-bar-container {

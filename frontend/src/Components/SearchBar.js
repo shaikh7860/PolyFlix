@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./App.css";
+import "../App.css";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 
 function SearchBar(props) {
   const [searchInput, setSearchInput] = useState("");
@@ -29,7 +28,6 @@ function SearchBar(props) {
           <Button variant="danger" onClick={submitSearch}>
             Search
           </Button>
-          {/* <input type="button" value="Search" onClick={submitSearch} /> */}
         </div>
       </div>
     </box>

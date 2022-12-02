@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../logo.png";
+import logo from "../Images/logo.png";
 
 function Login(props) {
   const [token, setToken] = useState({
@@ -19,7 +19,6 @@ function Login(props) {
 
   async function submitForm() {
     const result = await props.handleSubmit(token);
-    console.log(result);
     if (!result) {
       setError("Invalid login. Please try again.");
     }

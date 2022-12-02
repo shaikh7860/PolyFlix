@@ -2,12 +2,12 @@ const express = require("express");
 const app = express();
 const port = 5001;
 const cors = require("cors");
-const crypto = require("crypto");
+// const crypto = require("crypto");
 const axios = require("axios");
 require("dotenv").config();
 
 const userServices = require("./models/user-services");
-const { reset } = require("nodemon");
+// const { reset } = require("nodemon");
 
 app.use(cors());
 app.use(express.json());
@@ -135,7 +135,6 @@ app.get("/users", async (req, res) => {
   const password = req.query["password"];
   try {
     const result = await userServices.getUsers(username, password);
-    // console.log({ users_list: result });
     if ({ users_list: result }) {
       res.send({ users_list: result });
     } else {
@@ -204,10 +203,6 @@ app.delete("/users/:id", async (req, res) => {
     res.status(204).end();
   }
 });
-
-// app.listen(port, () => {
-//   console.log(`Example app listening at http://localhost:${port}`);
-// });
 
 app.listen(process.env.PORT || port, () => {
   console.log("REST API is listening.");

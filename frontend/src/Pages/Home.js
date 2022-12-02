@@ -1,10 +1,10 @@
 import React from "react";
 import "../App.css";
-import NavBar from "../NavBar";
-import MovieList from "../MovieList.js";
+import NavBar from "../Components/NavBar";
+import MovieList from "../Components/MovieList.js";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import logo from "../moviedatabaselogo.svg";
+import logo from "../Images/moviedatabaselogo.svg";
 
 function Home(props) {
   const navigate = useNavigate();
@@ -13,12 +13,6 @@ function Home(props) {
     navigate("/");
   } else {
     return (
-      // <div>
-      //   THIS IS THE HOME PAGE
-
-      //   {/* <Table movieData = {props.movieData} characterData={props.characterData} removeCharacter={props.removeCharacter} /> */}
-      //   <MovieList movieData = {props.movieData} />
-      //   <Form handleSubmit = {props.handleSubmit} />
       <div class="bg_image1">
         <nav>
           <NavBar handleSubmit={props.handleSubmit}></NavBar>
@@ -62,7 +56,7 @@ function Home(props) {
         <div>
           <br></br>
           <i>&nbsp;&nbsp;Movie database provided by:&nbsp;&nbsp;&nbsp;</i>
-          <object data={logo} width="250" height="20"></object>
+          <object data={logo} aria-label="" width="250" height="20"></object>
         </div>
       </div>
     );

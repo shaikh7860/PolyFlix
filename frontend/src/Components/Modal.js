@@ -1,6 +1,4 @@
 import React from "react";
-// import "./Modal.css";
-import { useLocation } from "react-router-dom";
 import ReactPlayer from "react-player";
 
 function Modal(props) {

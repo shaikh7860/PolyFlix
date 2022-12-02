@@ -1,8 +1,6 @@
-// import Table from './Table';
-// import Form from './Form';
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Home from "./Pages/Home";
@@ -12,8 +10,6 @@ import Movie from "./Pages/Movie";
 import ErrorPage from "./Pages/ErrorPage";
 import SearchResult from "./Pages/SearchResult";
 import UserSearch from "./Pages/UserSearch";
-// import SearchBar from "./SearchBar";
-// import NavBar from "./NavBar";
 import Login from "./Pages/Login";
 import CreateAccount from "./Pages/CreateAccount";
 import { useCookies } from "react-cookie";
@@ -79,16 +75,6 @@ function MyApp() {
     });
   }, []);
 
-  // async function makePostCall(person) {
-  //   try {
-  //     const response = await axios.post("http://localhost:5001/users", person);
-  //     return response;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return false;
-  //   }
-  // }
-
   function removeOneCharacter(index) {
     makeDeleteCall(characters[index]["_id"]).then((result) => {
       if (result && result.status === 204) {
@@ -108,13 +94,6 @@ function MyApp() {
       return false;
     }
   }
-  // function updateList(person) {
-  //   makePostCall(person).then((result) => {
-  //     if (result && result.status === 201)
-  //       setCharacters([...characters, result.data]);
-  //     navigate("/users-table");
-  //   });
-  // }
 
   function searchForMovies(movie) {
     setSearchInput(movie);

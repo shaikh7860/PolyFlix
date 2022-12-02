@@ -1,7 +1,6 @@
-import movieTrailer from "movie-trailer";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import def from "./default.jpg";
+import def from "../Images/default.jpg";
 const MovieList = (props) => {
   const navigate = useNavigate();
 
@@ -28,8 +27,6 @@ const MovieList = (props) => {
         });
         movieB = formatter.format(result.budget);
       }
-      console.log(movie.poster_path);
-
       navigate("/movie/" + movie.title, {
         state: {
           id: movie.id,
@@ -37,7 +34,6 @@ const MovieList = (props) => {
           vote_average: movie.vote_average,
           poster_path: movie.poster_path,
           overview: movie.overview,
-          //release_date: movie.release_date,
           release_date: movie.release_date,
           popularity: movie.popularity,
           movieTrailer: null,
@@ -68,7 +64,6 @@ const MovieList = (props) => {
               onClick={() => setMovieDetails(movie)}
             />
           )}
-          {/* <button onClick={() => navigate("/movie/" + movie.title, {state: {id: movie.id, title: movie.title, vote_average: movie.vote_average, poster_path: movie.poster_path}}) }>View Info</button> */}
         </div>
       ))}
     </>
