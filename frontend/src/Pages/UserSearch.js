@@ -70,8 +70,6 @@ function UserSearch(props) {
     }
   }, []);
 
-  
-
   function correctNav(row) {
     if (row.username === cookies.username) {
       navigate("/profile");

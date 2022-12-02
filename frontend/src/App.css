@@ -111,15 +111,15 @@ body {
 
 .favorites-text {
   font-size: 150%;
- }
+}
 
- .favorites-section {
+.favorites-section {
   position: relative;
   top: 70px;
   border: 1px solid black;
   border-radius: 10px;
   padding: 1px;
- }
+}
 
 /* Movie Image */
 .movie-image {
@@ -248,18 +248,19 @@ body {
   font-size: 300%;
   font-weight: bold;
   color: white;
-  background-color: black ;
+  background-color: black;
   top: -29px;
-  padding: 10px ;
+  padding: 10px;
   border: 1px solid yellow;
-  font-family: 'Helvetica', 'Times New Roman', Times, serif, Helvetica, sans-serif; 
+  font-family: "Helvetica", "Times New Roman", Times, serif, Helvetica,
+    sans-serif;
 }
 
 .profile-username {
   position: relative;
   /* left: 22px; */
   font-size: 150%;
-  top:-5px;
+  top: -5px;
   border: 1px solid black;
   border-radius: 10px;
   padding: 1px;
@@ -277,7 +278,6 @@ body {
   font-size: 100%;
   font-weight: bold;
 } */
-
 
 .profile-username-header {
   position: relative;
@@ -386,17 +386,17 @@ body {
   top: -70px;
 }
 
-.bg_image{
-  background-image: url('./cpgreen.jpg');
+.bg_image {
+  background-image: url("./cpgreen.jpg");
   background-size: cover;
   display: block;
   position: absolute;
-  color: #f5f5f5; 
+  color: #f5f5f5;
   width: 98.4%;
 }
 
-.bg_image1{
-  background-image: url('./cpgreen.jpg');
+.bg_image1 {
+  background-image: url("./cpgreen.jpg");
   background-size: cover;
   display: block;
   position: absolute;
@@ -407,8 +407,8 @@ body {
   overflow-x: hidden;
 }
 
-.bg_image2{
-  background-image: url('./cpgreen.jpg');
+.bg_image2 {
+  background-image: url("./cpgreen.jpg");
   background-size: cover;
   display: block;
   position: absolute;
@@ -418,7 +418,6 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
 
 /*  */
 /* Changes for new Movie page */
@@ -426,7 +425,7 @@ body {
 
 .movie-page-container {
   /* outline-style: solid; */
-  background-image: url('./cpgreen.jpg');
+  background-image: url("./cpgreen.jpg");
   background-size: cover;
   position: absolute;
   padding: 50px;
@@ -434,7 +433,7 @@ body {
   width: 100%;
   overflow-y: hidden;
   overflow-x: hidden;
-  color: white ;
+  color: white;
 }
 
 .title-container {
@@ -487,12 +486,10 @@ body {
   /* padding-top: 56.25% Player ratio: 100 / (1280 / 720) */
 }
 
-
 .nav-bar-container {
-  background-color:#ddc105;
+  background-color: #ddc105;
   outline-style: solid;
   outline-color: white;
-  
 }
 
 .add-to-friends-button {
