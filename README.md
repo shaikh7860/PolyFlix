@@ -21,21 +21,21 @@ https://tinyurl.com/3bh49hdp
 
 
 ## Dev Environment Setup
-### Backend installs
-- npm install dotenv
-- npm install axios
-### Frontend installs
-- npm install react
-- npm install react-router-dom@6
-- npm install react-cookie
-- npm install react-bootstrap
+### First Time Setup
+#### Backend Environment Setup
+- In the terminal, navigate to Polyflix/backend, then type in 'npm install'.
+#### Frontend Environment Setup
+- In the terminal, navigate to Polyflix/frontend, then type in 'npm install'.
+### To run dev environment
+Open two terminal windows. 
+- In the first window, navigate to Polyflix/backend and type in 'npm run dev'. The message "REST API is listening" indicates that the backend is functioning.
+- In the second window, navigate to Polyflix/frontend and type in 'npm start'. The browser window will open automatically.
 
 ### Prettier Format Setup Instructions:
 On VS Code, download the Prettier extension
 Then format the document with prettier (Cmd+Shift+P)
 After, go to settings (Cmd+,) and search "Editor:Format on Save" and turn it on
 
-### To run dev environment
-Open two terminal windows. 
-- In the first window, navigate to Polyflix/backend and type in 'npm run dev'. The message "REST API is listening" indicates that the backend is functioning.
-- In the second window, navigate to Polyflix/frontend and type in 'npm start'. The browser window will open automatically.
+### Code  coverage report
+<img width="732" alt="Screen Shot 2022-12-01 at 5 22 16 PM" src="https://user-images.githubusercontent.com/15881669/205193413-45941f2a-c29a-4bdb-9374-0d047680e856.png">
+Generated on: 12/1/2022
