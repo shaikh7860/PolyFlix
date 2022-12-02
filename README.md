@@ -40,4 +40,4 @@ After, go to settings (Cmd+,) and search "Editor:Format on Save" and turn it on
 
 ### Code  coverage report
 <img width="732" alt="Screen Shot 2022-12-01 at 5 22 16 PM" src="https://user-images.githubusercontent.com/15881669/205193413-45941f2a-c29a-4bdb-9374-0d047680e856.png">
-Generated on: 12/1/2022
+Generated on: 12/1/2022 at 5:22 pm
