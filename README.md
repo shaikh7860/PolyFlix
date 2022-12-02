@@ -10,6 +10,9 @@ PolyFlix is a web app for Cal Poly students to find movies and see what their fr
 - User-centered profile system, allowing users to view the profiles of other PolyFlix users
 - Capability for users to add movies to their favorites and other users to their friends list, making PolyFlix a social experience.
 
+##Demo Video
+https://drive.google.com/file/d/1_2UvBqMYxTNws6CkRAgYH90VelwVg0cA/view?usp=sharing
+
 ## Design Plan
 
 ### UML Class Diagram
