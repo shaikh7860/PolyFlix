@@ -1,7 +1,7 @@
 # 307-Project: PolyFlix
 
 ### Description:
-PolyFlix is a web app for Cal Poly students to find movies and see what their friends are watching. It includes the following features:
+PolyFlix is a web app for Cal Poly students to find movies and see what their friends are watching. With PolyFlix, users can share their movie experiences with their friends. It includes the following features:
 - Access to information of thousands of movies, including descriptions and trailers.
 - Search functionality for users to find exactly what movie they want.
 - User-centered profile system, allowing users to view the profiles of other PolyFlix users

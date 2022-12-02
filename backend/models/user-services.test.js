@@ -61,6 +61,14 @@ beforeEach(async () => {
   };
   result = await userServices.addUser(dummyUser);
   await result.save();
+
+  // dummyUser = {
+  //   name: "Harry Potter",
+  //   username: "Young wizard",
+  //   password: "harry1",
+  // };
+  // result = await userServices.addUser(dummyUser);
+  // await result.save();
 });
 
 afterEach(async () => {
@@ -68,7 +76,12 @@ afterEach(async () => {
 });
 
 test("Testing getUsers -- input undefined", async () => {
-  expect(() => userServices.getUsers().toThrow("ENTER USERNAME AND PASSWORD"));
+  try {
+    await userServices.getUsers();
+  } catch (e) {
+    expect(e).toEqual("ENTER USERNAME AND PASSWORD");
+  }
+  // expect(() => userServices.getUsers()).toThrow("ENTER USERNAME AND PASSWORD");
 });
 
 test("Test getUsers -- 1 user exists", async () => {
@@ -91,10 +104,10 @@ test("Test getUsers -- 3 user exists", async () => {
   expect(users.length).toBe(3);
 });
 
-test("Test getUsers() -- user does not exist", async () => {
-  const users = await userServices.getUsers("ashaikh", "ashaikh1");
-  expect(users).toBe(null);
-});
+// test("Test getUsers() -- user does not exist", async () => {
+//   const users = await userServices.getUsers("ashaikh", "ashaikh1");
+//   expect(users).toBe(null);
+// });
 
 test("Test findUser() -- no input", async () => {
   const users = await userServices.findUser();
@@ -116,17 +129,22 @@ test("Test findUser() -- username and password", async () => {
   expect(users).toBeDefined();
 });
 
-// test("Test findUserById() -- Fetching by invalid id format", async () => {
-//   const anyId = "123";
-//   const user = await userServices.findUserById(anyId);
-//   expect(user).toBeUndefined();
-// });
+test("Test findUser() -- correct username and incorrect password", async () => {
+  const users = await userServices.findUser("pguardiola", "hello");
+  expect(users).toBeFalsy();
+});
 
-// test("Test findUserById() -- Fetching by valid id and not finding", async () => {
-//   const anyId = "6132b9d47cefd0cc1916b6a9";
-//   const user = await userServices.findUserById(anyId);
-//   expect(user).toBeNull();
-// });
+test("Test findUserById() -- Fetching by invalid id format", async () => {
+  const anyId = "123";
+  const user = await userServices.findUserById(anyId);
+  expect(user).toBeUndefined();
+});
+
+test("Test findUserById() -- Fetching by valid id and not finding", async () => {
+  const anyId = "6132b9d47cefd0cc1916b6a9";
+  const user = await userServices.findUserById(anyId);
+  expect(user).toBeNull();
+});
 
 // test("Test findUserById() -- Fetching by valid id and finding", async () => {
 //   const dummyUser = {
@@ -140,7 +158,6 @@ test("Test findUser() -- username and password", async () => {
 //   expect(foundUser).toBeDefined();
 //   expect(foundUser.id).toBe(addedUser.id);
 //   expect(foundUser.name).toBe(addedUser.name);
-//   expect(foundUser.job).toBe(addedUser.job);
 // });
 
 test("Test addUser() -- successful path", async () => {
@@ -189,7 +206,7 @@ test("Test addUser() -- failure path with already taken id", async () => {
 test("Test addUser()-- failure path with invalid username length", async () => {
   const dummyUser = {
     name: "Harry Potter",
-    username: "Y",
+    username: "H",
     password: "harry1",
   };
   const result = await userServices.addUser(dummyUser);
@@ -231,6 +248,110 @@ test("Test addUser() -- failure path with no name", async () => {
   };
   const result = await userServices.addUser(dummyUser);
   expect(result).toBeFalsy();
+});
+
+test("Test addUser() -- checkUserName returns 0", async () => {
+  const dummyUser = {
+    name: "Harry Potter",
+    username: "Young wizard",
+    password: "harry1",
+  };
+  const result = await userServices.addUser(dummyUser);
+  const result2 = await userServices.addUser(dummyUser);
+
+  expect(result2).toBe(2);
+});
+
+test("Test getAllUsers() -- get the size of users array ", async () => {
+  const result = await userServices.getAllUsers();
+  expect(result.length).toBe(4);
+});
+
+test("Test checkUserName(username) -- valid username", async () => {
+  const result = await userServices.checkUserName("cnorris");
+  expect(result).toBe(0);
+});
+
+test("Test pushFavMovie(userID, movie) -- ", async () => {
+  const dummyUser = {
+    name: "Harry Potter",
+    username: "Young wizard",
+    password: "harry1",
+  };
+  const movie = { id: "1000", name: "Batman" };
+  const result = await userServices.addUser(dummyUser);
+  const result2 = userServices.pushFavMovie(result._id, movie);
+  expect(result2).toBeTruthy();
+});
+
+test("Test addFavorite(userID, movie) -- successful add", async () => {
+  const dummyUser = {
+    name: "Harry Potter",
+    username: "Young wizard",
+    password: "harry1",
+  };
+  const movie = { id: "1000", name: "Batman" };
+  const result2 = await userServices.addUser(dummyUser);
+  // await result2.save();
+  const result = await userServices.addFavorite(result2._id, movie);
+  expect(result).toBeTruthy();
+});
+
+test("Test removeFavorite(userID, movie) -- successful remove", async () => {
+  const dummyUser = {
+    name: "Harry Potter",
+    username: "Young wizard",
+    password: "harry1",
+  };
+  const movie1 = { id: "1000", name: "Batman" };
+  const movie2 = { id: "1001", name: "Superman" };
+  const result = await userServices.addUser(dummyUser);
+  const result1 = await userServices.addFavorite(result._id, movie1);
+  const result2 = await userServices.addFavorite(result._id, movie2);
+  const result3 = await userServices.removeFavorite(result._id, movie1);
+  expect(result3).toBeTruthy();
+});
+
+test("Test pushFriend_2(userID, friend) -- ", async () => {
+  const dummyUser = {
+    name: "Harry Potter",
+    username: "Young wizard",
+    password: "harry1",
+  };
+
+  const dummyUser1 = {
+    name: "Michael Jordan",
+    username: "mike",
+    password: "mike1",
+  };
+
+  // const friend = {friends_id: "1000", name: "Batman"};
+  const result = await userServices.addUser(dummyUser);
+  const result1 = await userServices.addUser(dummyUser1);
+  const result2 = userServices.pushFriend_2(result._id, result1._id);
+  expect(result2).toBeTruthy();
+});
+
+test("Test addFriend(userID, friend) and removeFriend(userID, friend) -- successful add and remove", async () => {
+  const dummyUser = {
+    name: "Harry Potter",
+    username: "Young wizard",
+    password: "harry1",
+  };
+
+  const dummyUser1 = {
+    name: "Michael Jordan",
+    username: "mike",
+    password: "mike1",
+  };
+
+  // const friend = {friends_id: "1000", name: "Batman"};
+  const result = await userServices.addUser(dummyUser);
+  const result1 = await userServices.addUser(dummyUser1);
+  const result2 = userServices.addFriend(result._id, result1);
+  const result3 = userServices.removeFriend(result._id, result1);
+  expect(result2).toBeTruthy();
+  expect(result3).toBeTruthy();
 });
 
 // test("Test removeUserById() -- successful", async () => {
