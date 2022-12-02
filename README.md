@@ -11,7 +11,7 @@ PolyFlix is a web app for Cal Poly students to find movies and see what their fr
 - Capability for users to add movies to their favorites and other users to their friends list, making PolyFlix a social experience.
 
 ### Demo Video
-https://drive.google.com/file/d/1_2UvBqMYxTNws6CkRAgYH90VelwVg0cA/view?usp=sharing
+https://youtu.be/uf93IXtfaj8
 
 ## Design Plan
 
