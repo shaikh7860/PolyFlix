@@ -100,13 +100,13 @@ body {
   text-align: center;
 }
 
-
 .login-box {
-  position: fixed;
-  left: 50%;
+  position: relative;
+  float: right;
   top: 10%;
   padding: 20px;
   width: 500px;
+  background-color: white;
 }
 
 .favorites-text {
@@ -432,7 +432,7 @@ body {
   padding: 50px;
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   color: white ;
 }
@@ -507,7 +507,7 @@ body {
   position: relative;
   float: right;
   right: 10px;
-  top: -20px;
+  top: 10px;
   border-radius: 10px;
   font-size: 25px;
 }

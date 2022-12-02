@@ -1,39 +1,21 @@
 import React, { useEffect } from "react";
-// import { useParams, useLocation } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NavBar from "../NavBar";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useCookies } from "react-cookie";
 import { useState } from "react";
-// import { Modal } from "bootstrap";
 import Modal from "../Modal";
-
+import def2 from "../default2.jpg";
 const axios = require("axios");
 
 function Movie(props) {
   const navigate = useNavigate();
-  // let { movieName } = useParams();
   const location = useLocation();
   const [cookies, setCookie] = useCookies("password");
   if (!cookies.password) {
     navigate("/");
   }
-
-  // async function getMovieTrailer(movieID) {
-  //   const result = await axios.request(
-  //     "https://api.themoviedb.org/3/movie/" +
-  //       movieID +
-  //       "/videos?api_key=" +
-  //       "a4f5ca3d995fae36deb0e8691ab2d880" +
-  //       "&language=en-US" +
-  //       "&append_to_response=videos"
-  //   );
-  //   var result_filter = result.data.results.filter(
-  //     (element) => element.type == "Trailer"
-  //   );
-  //   location.state.movieTrailer = String(result_filter[0].key);
-  // }
 
   function getMonth(monthNum) {
     let month = "";
@@ -98,27 +80,18 @@ function Movie(props) {
       setFavButtonText("Add To Favorites");
     }
   }
+
+  const [trailerAvailable, setTrailerAvailable] = useState(true);
+  const [trailerText, setTrailerText] = useState("Watch Trailer");
   function setMovieTrailer(id) {
     props.getMovieTrailer(id).then((result) => {
+      if (!result) {
+        setTrailerAvailable(false);
+        setTrailerText("Trailer Unavailable");
+      }
       location.state.movieTrailer = result;
     });
   }
-
-  // function setMovieDetails(id) {
-  //   props.getMovieDetails(id).then((result) => {
-  //     console.log(result);
-  //     if (result.runtime === 0) {
-  //       location.state.movieDuration = "unknown";
-  //     } else {
-  //       location.state.movieDuration = result.runtime;
-  //     }
-  //     if (result.budget === 0) {
-  //       location.state.movieBudget = "unknown";
-  //     } else {
-  //       location.state.movieBudget = result.budget;
-  //     }
-  //   });
-  // }
 
   setMovieTrailer(location.state.id);
   // setMovieDetails(location.state.id);
@@ -128,7 +101,7 @@ function Movie(props) {
 
   return (
     // <div>THIS IS THE MOVIE PAGE FOR {movieName}</div>
-    <div>
+    <div class="bg_image1">
       <nav>
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
@@ -150,12 +123,17 @@ function Movie(props) {
           </div>
 
           <div class="movie-page-image">
-            <img
-              src={
-                "http://image.tmdb.org/t/p/w342/" + location.state.poster_path
-              }
-              class="movie-image"
-            />
+            {location.state.poster_path ? (
+              <img
+                src={
+                  "http://image.tmdb.org/t/p/w154/" + location.state.poster_path
+                }
+                alt={"movie"}
+                class="movie-image"
+              />
+            ) : (
+              <img src={def2} alt={"movie"} class="movie-image" />
+            )}
           </div>
 
           <div class="movie-info-container">
@@ -190,12 +168,13 @@ function Movie(props) {
           <div class="player-wrapper">
             <div class="trailer-watch-button">
               <button
+                disabled={!trailerAvailable}
                 onClick={() => {
                   setOpenModal(true);
                 }}
               >
                 {" "}
-                Watch Trailer{" "}
+                {trailerText}{" "}
               </button>
             </div>
             {openModal && (
@@ -210,10 +189,6 @@ function Movie(props) {
           </div>
         </div>
       </div>
-
-      <br />
-
-      
     </div>
   );
 }

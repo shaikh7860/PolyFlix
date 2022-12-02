@@ -21,27 +21,22 @@ function Profile(props) {
     });
   }, []);
   return (
-    <div class="bg_image1">
+    <div class="container-fluid bg_image1">
       <nav>
         <NavBar handleSubmit={props.handleSubmit}></NavBar>
       </nav>
       <div class="profile-page">
         <div class="profile-header">MY PROFILE</div>
 
-        {/* <div class="log-out-button">
-          <input type="button" value="Sign out" onClick={props.logOut} />
-        </div> */}
-
         <div class="profile-username">
-          <br></br>
-          {/* <span class="profile-name-header">Name: </span> {props.cookies.name} */}
-          <div class="profile-username-header">&nbsp;Username: </div>{" "}
-          <span class="profile-username-text">{cookies.username}</span>
           <div class="log-out-button">
             <input type="button" value="Sign out" onClick={props.logOut} />
           </div>
-          {/* <br></br>
-          <br></br> */}
+          {/* <span class="profile-name-header">Name: </span> {props.cookies.name} */}
+          <div class="profile-username-header">&nbsp;Username: </div>{" "}
+          <span class="profile-username-text">{cookies.username}</span>
+          <br></br>
+          <br></br>
         </div>
 
         <div className="favorites-section">

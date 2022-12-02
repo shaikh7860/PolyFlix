@@ -167,7 +167,7 @@ async function removeFavorite(userId, movie) {
       { _id: userId },
       { $pullAll: { favmovies: [movie] } }
     );
-    return false;
+    return true;
   } catch {
     return null;
   }
